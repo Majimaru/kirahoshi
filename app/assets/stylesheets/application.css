@@ -26,18 +26,5 @@ html, body, main {
 
 header {
   background-color: #333333;
-}
-
-.top-image {
-  height: 100%;
-  background-color: #DDFFFF;
-  background-image: url('pexels-pixabay-355887.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
-
-.top-text {
-  font-size: 20px;
-  background-color: rgb(255, 255, 255, 0.85);
+  /*background-color: #0D0116*/
 }
