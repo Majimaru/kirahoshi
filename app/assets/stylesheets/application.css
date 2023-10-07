@@ -24,7 +24,16 @@ html, body, main {
   height: 100%;
 }
 
-header {
+/*header {*/
+/*  background-color: #0D0116;*/
+/*}*/
+
+header, main, .col-sm-12 {
   background-color: #333333;
-  /*background-color: #0D0116*/
+}
+
+@media screen and (max-width:425px) {
+  * {
+    font-size: 16px;
+  }
 }
