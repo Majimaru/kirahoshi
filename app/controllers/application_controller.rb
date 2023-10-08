@@ -1,7 +1,11 @@
 class ApplicationController < ActionController::Base
   
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :authenticate_admin!, if: :admin_url
+  
+  # トップページを除き、URLに"/admin"が含まれていない、かつ、未ログインの場合にアクセス拒否
+  before_action :authenticate_user!, except: [:top], unless: :admin_url
+  # トップページを除き、URLに"/admin"が含まれている、かつ、未ログインの場合にアクセス拒否
+  before_action :authenticate_admin!, except: [:top], if: :admin_url
 
   def admin_url
     request.fullpath.include?("/admin")
@@ -14,7 +18,7 @@ class ApplicationController < ActionController::Base
     when User
       user_path(current_user)
     when Admin
-      root_path
+      admin_users_path
     end
   end
   

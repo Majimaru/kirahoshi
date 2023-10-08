@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   
-  namespace :public do
-    get 'users/show'
-    get 'users/edit'
+  namespace :admin do
+    get 'users/index'
   end
   # ユーザー用
   devise_for :users,skip: [:passwords], controllers: {
@@ -21,9 +20,10 @@ Rails.application.routes.draw do
    sessions: "admin/sessions"
   }
   
-  # namespace :admin do
-  #   devise_for :admin, skip: [:registrations, :passwords]
-  # end
+  namespace :admin do
+    # devise_for :admin, skip: [:registrations, :passwords]
+    resources :users, only: [:index]
+  end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
