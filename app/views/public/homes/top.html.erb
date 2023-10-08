@@ -2,7 +2,7 @@
 <div class="top-image">
   <div class="container">
     <div class="row">
-      <div class="col-sm-12 col-md-10 col-lg-8 mx-auto mt-5 py-4 top-text text-center rounded-lg">
+      <div class="col-sm-12 col-md-9 col-lg-7 mx-auto mt-5 py-4 top-text text-center rounded-lg">
         <h4 class="mb-4">きらほし へようこそ!</h4>
         <p>
           当サイトは、星評価を通して他人からの<br>
@@ -10,9 +10,10 @@
           星のように、あなたの人生を少しでも<br>明るくする助けになれば幸いです。<br>
         </p>
         
-        <%= link_to "ログイン / 新規登録", new_user_session_path, class: "col-md-6 my-3 btn btn-lg btn-info rounded-pill" %><br>
+        <%= link_to "ログイン / 新規登録", new_user_session_path, 
+            class: "col-sm-6 my-3 btn btn-lg btn-warning rounded-pill" %><br>
         <%= link_to "ゲストログイン", root_path, 
-            class: "col-md-6 bg-light btn btn-lg btn-outline-info rounded-pill" %>
+            class: "col-sm-6 bg-light btn btn-lg btn-outline-warning rounded-pill border-3" %>
       </div>
     </div>
   </div>

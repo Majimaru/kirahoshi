@@ -1,32 +1,43 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-12 col-md-10 col-lg-8 mx-auto mt-5 p-4 text-light border border-5 border-light rounded-lg">
-      <h2>ログイン</h2>
-
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="field">
-          <%= f.label "メールアドレス" %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-        </div>
-      
-        <div class="field">
-          <%= f.label "パスワード" %><br />
-          <%= f.password_field :password, autocomplete: "current-password" %>
-        </div>
-      
-        <% if devise_mapping.rememberable? %>
+    <div class="col-sm-11 col-md-7 col-lg-5 mx-auto mt-5 p-0 text-light">
+      <div class="px-4 pb-4 border-bottom border-2 border-light">
+        <h2 class="mb-4 px-3 border-start border-5 border-warning">ログイン</h2>
+        
+        <!--ログインフォーム-->
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field">
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me %>
+            <%= f.label "メールアドレス" %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-12 mt-2 mb-4" %>
+          </div>
+        
+          <div class="field">
+            <%= f.label "パスワード" %><br />
+            <%= f.password_field :password, autocomplete: "current-password", class: "col-12", 
+              placeholder: "8桁以上 16桁以下の英数字" %>
+          </div>
+        
+          <% if devise_mapping.rememberable? %>
+            <div class="field">
+              <%= f.check_box :remember_me, class: "mt-3" %>
+              <%= f.label "ログイン状態を保存する" %>
+            </div>
+          <% end %>
+        
+          <div class="actions">
+            <%= f.submit "ログイン", class: "col-12 mt-4 mb-5 btn btn-outline-warning rounded-pill border-3" %>
           </div>
         <% end %>
+      </div>
       
-        <div class="actions">
-          <%= f.submit "Log in" %>
-        </div>
-      <% end %>
-      
-      <%= render "public/shared/links" %>
+      <!--新規登録フォーム-->
+      <div class="mt-5 p-4">
+        <h2 class="mb-4 px-3 border-start border-5 border-warning">新規登録</h2>
+        <p>アカウント登録がお済みでない方はこちらから</p>
+        
+        <%= link_to "新規登録", new_user_registration_path, 
+            class: "col-12 mt-4 mb-5 btn btn-outline-warning rounded-pill border-3" %>
+      </div>
     </div>
   </div>
 </div>

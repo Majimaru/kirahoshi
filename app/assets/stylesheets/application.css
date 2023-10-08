@@ -32,8 +32,8 @@ header, main, .col-sm-12 {
   background-color: #333333;
 }
 
-@media screen and (max-width:425px) {
-  * {
-    font-size: 16px;
-  }
-}
+/*@media screen and (max-width:425px) {*/
+/*  * {*/
+/*    font-size: 16px;*/
+/*  }*/
+/*}*/
