@@ -36,9 +36,16 @@ header, main, .col-sm-12 {
   font-size: 19px;
 }
 
-@media screen and (max-width:425px) {
-  .nav2 {
-    position: absolute;
-    bottom: 0;
-  }
+.nav2 .btn {
+  color: white;
+}
+
+.nav2 .btn:hover {
+  background-color: yellow;
+  /*color: red;*/
+}
+
+.nav2 .btn:active {
+  /*background-color: red;*/
+  /*color: blue;*/
 }
