@@ -5,9 +5,7 @@
         <%= link_to "マイページ", user_path(current_user), class: "w-100 btn rounded-pill" %>
       </li>
       <li class="nav-item">
-        <%= link_to root_path, class: "w-100 btn rounded-pill" do %>
-          投稿
-        <% end %>
+        <%= link_to "投稿", new_post_path, class: "w-100 btn rounded-pill" %>
       </li>
       <li class="nav-item">
         <%= link_to user_path(current_user), class: "w-100 btn rounded-pill" do %>

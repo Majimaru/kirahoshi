@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
+  # アソシエーション
+  has_many :posts, dependent: :destroy
+         
   # バリデーション
   validates :user_name, length: { maximum: 15 }
   validates :email, uniqueness:  true

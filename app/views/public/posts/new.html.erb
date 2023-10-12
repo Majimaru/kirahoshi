@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-9 col-lg-6 mt-5 mx-auto text-light">
+      <h5 class="mb-3">質問、悩みなど何でも投稿して下さい</h5>
+      <!--新規投稿フォーム-->
+      <%= form_with model: @post do |f| %>
+        <%= f.text_area :message, class: "form-control", rows: 10, placeholder: "500文字以内", required: true %>
+        
+        <div class="row justify-content-center">
+          <%= f.submit "投稿する", class: "col-6 mt-5 btn btn-outline-warning rounded-pill border-3" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
