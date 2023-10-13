@@ -53,3 +53,17 @@ header, main, .col-sm-12, .nav3 {
 .nav3 .btn {
   color: white;
 }
+
+/*@media screen and (min-width:426px) {*/
+/*  .main-visual {*/
+/*    margin-top: 48px;*/
+/*  }*/
+/*}*/
+
+/*スマホサイズのみ適用*/
+@media screen and (max-width:576px) {
+  .profile-image img {
+    width : 150px;
+    height: 150px;
+  }
+}

@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     case resource
     
     when User
-      user_path(current_user)
+      mypage_path
     when Admin
       admin_users_path
     end

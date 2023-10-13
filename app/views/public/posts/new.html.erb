@@ -17,7 +17,7 @@
       <%= form_with model: @post do |f| %>
         <%= f.text_area :message, class: "form-control", rows: 10, placeholder: "500文字以内", required: true %>
         
-        <div class="row justify-content-center">
+        <div class="text-center">
           <%= f.submit "投稿する", class: "col-6 mt-5 btn btn-outline-warning rounded-pill border-3" %>
         </div>
       <% end %>
