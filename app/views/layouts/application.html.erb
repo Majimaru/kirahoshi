@@ -16,8 +16,12 @@
     <!--ヘッダー-->
     <%= render "layouts/header" %>
     
-    <main class="">
+    <main>
+      <!--フラッシュメッセージ-->
+      <!--<%= render "layouts/flash_message" %>-->
+      
       <%= yield %>
+      
       <!--下部メニューバー-->
       <%= render "layouts/bottom_navbar" %>
     </main>

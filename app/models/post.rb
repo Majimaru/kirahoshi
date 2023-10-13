@@ -6,6 +6,6 @@ class Post < ApplicationRecord
   belongs_to :user
   
   # バリデーション
-  validates :message, presence: true, length: { maximum: 10 }
+  validates :message, presence: true, length: { maximum: 500 }
   
 end
