@@ -28,7 +28,11 @@ html, body, main {
 /*  background-color: #0D0116;*/
 /*}*/
 
-header, main, .col-sm-12, .nav3 {
+header, main, .col-sm-12, .nav3, .card-body {
+  background-color: #333333;
+}
+
+.card .card-header {
   background-color: #333333;
 }
 

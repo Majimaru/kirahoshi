@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-12 col-md-9 col-lg-6 mt-5 mx-auto text-light">
       <div class="text-center profile-image">
-        <%= image_tag @user.get_profile_image(200,200) %>
+        <%= image_tag @user.get_profile_image(200,200), class: "rounded-circle" %>
         <h2 class="mt-4">
           <%= @user.user_name %>
         </h2>
@@ -12,13 +12,13 @@
         <ul class="w-100 navbar-nav nav-justified">
           <li class="nav-item">
             <%= link_to profile_edit_path, class: "nav-link text-light" do %>
-              <i class="fa-solid fa-user-pen h2"></i><br>
+              <i class="fa-solid fa-user-pen h2 text-info"></i><br>
               プロフィール情報
             <% end %>
           </li>
           <li class="nav-item">
             <%= link_to new_post_path, class: "nav-link text-light" do %>
-              <i class="fa-solid fa-user-large-slash h2"></i><br>
+              <i class="fa-solid fa-user-large-slash h2 text-info"></i><br>
               ログイン情報
             <% end %>
           </li>

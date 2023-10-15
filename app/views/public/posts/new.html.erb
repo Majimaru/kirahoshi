@@ -1,18 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-9 col-lg-6 mx-auto text-light">
-        <nav class="col-12 mx-auto navbar navbar-expand sticky-top nav3">
-          <ul class="w-100 navbar-nav nav-justified text-light">
-            <li class="nav-item">
-              <%= link_to "新規投稿", new_post_path, class: "w-100 btn rounded-pill" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "投稿一覧", new_post_path, class: "w-100 btn rounded-pill" %>
-            </li>
-          </ul>
-        </nav>
+      <%= render "post_top_navbar" %>
       
-      <p class="mt-4 mt-md-5 mb-3">質問、悩みなど何でも投稿して下さい</p>
+      <p class="mb-3">質問、悩みなど何でも投稿して下さい</p>
       <!--新規投稿フォーム-->
       <%= form_with model: @post do |f| %>
         <%= f.text_area :message, class: "form-control", rows: 10, placeholder: "500文字以内", required: true %>
