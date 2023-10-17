@@ -4,14 +4,14 @@
       <h2 class="mt-5 mb-4 px-3 border-start border-5 border-warning">プロフィール編集</h2>
       
       <%= form_with model: @user, url: profile_update_path, method: :patch do |f| %>
-        <p>プロフィール画像</p>
-        <%= image_tag @user.get_profile_image(70,70) %>
-        <div class="my-3">
-          <%= f.file_field :profile_image, class: "form-control", accept: "image/*" %><br>
+        <div class="mb-5">
+          <%= f.label :profile_image, class: "form-label" %><br>
+          <%= image_tag @user.get_profile_image(70,70) %>
+          <%= f.file_field :profile_image, class: "mt-2 form-control", accept: "image/*" %>
         </div>
         
         <div class="mb-5">
-          <%= f.label "ユーザー名", class: "form-label" %>
+          <%= f.label :user_name, class: "form-label" %>
           <%= f.text_field :user_name, class: "mt-2 form-control" %>
         </div>
         
