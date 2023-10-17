@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  namespace :public do
+    get 'reviews/new'
+    get 'reviews/index'
+  end
   namespace :admin do
     get "users/index"
   end
@@ -18,6 +22,7 @@ Rails.application.routes.draw do
     get "users/profile/edit" => "users#profile_edit", as: "profile_edit"
     patch "users/profile" => "users#profile_update", as: "profile_update"    
     resources :posts, only: [:new, :index, :show, :create, :destroy]
+    resources :reviews, only: [:new, :index, :create]
   end
   
   

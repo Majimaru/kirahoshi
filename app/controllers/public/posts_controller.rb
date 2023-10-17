@@ -5,7 +5,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.where(user_id: current_user.id)
   end
 
   def show
@@ -27,7 +27,7 @@ class Public::PostsController < ApplicationController
   private
   
   def post_params
-    params.require(:post).permit(:message, :post_image)
+    params.require(:post).permit(:message, :post_image, :review_item)
   end
   
 end

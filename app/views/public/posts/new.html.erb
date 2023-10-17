@@ -6,20 +6,52 @@
       <p class="mb-3">質問、悩みなど何でも投稿して下さい</p>
       <!--新規投稿フォーム-->
       <%= form_with model: @post do |f| %>
-        <div class="mb-5">
-          <%= f.text_area :message, class: "form-control", rows: 6, placeholder: "500文字以内", 
+        <div class="mb-4">
+          <%= f.text_area :message, class: "form-control", rows: 5, placeholder: "500文字以内", 
               maxlength: 500, required: true %>
         </div>
         
-        <div class="mb-5">
+        <div class="mb-4">
           <%= f.label :post_image, class: "form-label" %>
           <%= f.file_field :post_image, class: "mt-2 form-control", accept: "image/*" %>
         </div>
         
+        <div class="mb-5">
+          <%= f.label :review_item, class: "form-label" %>
+          <div class="row">
+            <div class="col-7">
+              <%= f.text_field :review_item, class: "form-control", placeholder: "10文字以内", 
+                  maxlength: 10, required: true %>
+            </div>
+            <%= f.hidden_field :rate %>
+            <!--星評価を入力不可で表示-->
+            <div class="col-5 px-0" id="post_raty"></div>
+          </div>
+        </div>
+        
         <div class="text-center">
-          <%= f.submit "投稿する", class: "col-6 mt-5 btn btn-outline-warning rounded-pill border-3" %>
+          <%= f.submit "投稿する", class: "col-6 btn btn-outline-warning rounded-pill border-3" %>
         </div>
       <% end %>
     </div>
   </div>
 </div>
+
+<script>
+  $(document).on('turbolinks:load', function() {
+    // ブラウザバック時に星が増え続ける不具合対策
+    $('#post_raty').empty();
+    // scriptファイルをどのidの部分に配置するかを指定
+    let elem = document.querySelector('#post_raty');
+    // 星評価のオプションを指定
+    let opt = {  
+      // 表示画像
+      starOn : '<%= asset_path('star-on.png') %>',
+      // 表示する星の数
+      score: 5,
+      // 読み取り専用
+      readOnly: true,
+     };
+    raty(elem,opt);
+  });
+</script>

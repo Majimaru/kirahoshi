@@ -8,6 +8,12 @@ class Post < ApplicationRecord
   
   # バリデーション
   validates :message, presence: true, length: { maximum: 500 }
+  validates :review_item, presence: true, length: { maximum: 10 }
+  
+  # validates :rate, numericality: {
+  #   less_than_or_equal_to: 5,
+  #   greater_than_or_equal_to: 0.5
+  # }, presence: true
   
   # 投稿画像を表示
   def get_post_image(width, height)
