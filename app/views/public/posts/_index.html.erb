@@ -30,7 +30,9 @@
           <%= form_with model: @review, url: post_reviews_path(post), method: :post, local: false do |f| %>
             <%= post.review_item %>
             <%= f.hidden_field :rate %>
-            <span class="ms-2" id="rate_<%= post.id %>"></span>
+            <span class="post_<%= post.id %>">
+              <%= render "public/reviews/rate", post: post %>
+            </span>
             <%= f.submit "確定", class: "btn btn-sm btn-success" %>
           <% end %>
         </div>

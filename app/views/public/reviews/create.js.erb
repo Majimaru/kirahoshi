@@ -1,1 +1,1 @@
-$(“#post_<%= @post.id %>”).html("<%= j(render 'reviews/rate', post_de: @post) %>");
+$(“.post_<%= @post.id %>”).html("<%= j(render 'public/reviews/rate', post: @post) %>");

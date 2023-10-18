@@ -19,7 +19,6 @@ class Public::ReviewsController < ApplicationController
       review = current_user.reviews.new(post_id: @post.id, rate: rate)
       review.save
     end
-    redirect_to new_review_path
   end
   
   private
