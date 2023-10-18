@@ -27,7 +27,7 @@
       
       <% if view == "review" %>
         <div class="mt-3">
-          <%= form_with model: @review, url: post_reviews_path(post), method: :post do |f| %>
+          <%= form_with model: @review, url: post_reviews_path(post), method: :post, local: false do |f| %>
             <%= post.review_item %>
             <%= f.hidden_field :rate %>
             <span class="ms-2" id="rate_<%= post.id %>"></span>
@@ -60,7 +60,7 @@
           scoreName: "review[rate]",
         <% end %>
         
-        // 星半分評価の入力を
+        // 星半分評価の入力を許可
         half: true,
        };
       raty(elem,opt);
