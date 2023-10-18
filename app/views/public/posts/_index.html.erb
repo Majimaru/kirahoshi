@@ -15,47 +15,59 @@
         <%= image_tag post.post_image, class: "mt-3 rounded mx-auto d-block post-image" %>
       <% end %>
       
-      <% if view == "review" %>
-        <div class="row">
-          <div class="col-7">
+      <% if view == "xxxxxxxx" %>
+        <div class="mt-3">
+          <%= form_with model: @review do |f| %>
             <%= post.review_item %>
-          </div>
-          <% form_with model: @review do |f| %>
-            <%= f.hidden_field :rate %>
-            <div class="col-5 px-0" id="post_raty1"></div>
+            <%= f.hidden_field :rate, onchange: "changeRate()" %>
+            <span class="ms-2" id="rate_<%= post.id %>"></span>
           <% end %>
         </div>
       <% end %>
       
-      
-      <%= form_with model: @review do |f| %>
-        <div class="col-5 px-0" id="post_<%= post.id %>">
-          <%= render "public/reviews/rate", post_de: post %>
+      <% if view == "review" %>
+        <div class="mt-3">
+          <%= form_with model: @review, url: post_reviews_path(post), method: :post do |f| %>
+            <%= post.review_item %>
+            <%= f.hidden_field :rate %>
+            <span class="ms-2" id="rate_<%= post.id %>"></span>
+            <%= f.submit "確定", class: "btn btn-sm btn-success" %>
+          <% end %>
         </div>
       <% end %>
-
-
     </div>
   </div>
   
   <script>
     $(document).on('turbolinks:load', function() {
-      // これがないとブラウザバックで星が増え続ける不具合が発生
+      // ブラウザバックで星が増え続ける不具合対策
       $('#rate_<%= post.id %>').empty();
-      // scriptファイルをどのidの部分に配置するかを指定
+      
       let elem = document.querySelector('#rate_<%= post.id %>');
+      // 星画像などのオプション
       let opt = {  
-        //星画像の指定などのオプションをここに記述,
-        starOff:  '<%= asset_path('star-off.png') %>',
-        starOn : '<%= asset_path('star-on.png') %>',
+        starOff:  "<%= asset_path('star-off.png') %>",
+        starOn : "<%= asset_path('star-on.png') %>",
         starHalf: "<%= asset_path('star-half.png') %>",
-        // bookモデルのstarカラムへ値を保存という意味になる
-        scoreName: 'review[rate]',
-        // score: 
-        // 今回は５段階評価で星半分評価は入力できるように設定
+        
+        // Reviewテーブルに該当データが存在しているか判定
+        <% if post.reviewed_by?(current_user) %>
+          // 存在していたらrateを表示
+          score: "<%= post.get_rate(current_user).rate %>", 
+          scoreName: "review[rate]",
+        <% else %>
+          // reviewモデルのrateカラムへ値を保存
+          scoreName: "review[rate]",
+        <% end %>
+        
+        // 星半分評価の入力を
         half: true,
        };
       raty(elem,opt);
     });
+    
+    function changeRate(){
+      $('#rate_<%= post.id %>').empty();
+    }
   </script>
 <% end %>

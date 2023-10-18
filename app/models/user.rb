@@ -9,6 +9,7 @@ class User < ApplicationRecord
   
   # アソシエーション
   has_many :posts, dependent: :destroy
+  has_many :reviews, dependent: :destroy
          
   # バリデーション
   validates :user_name, length: { maximum: 15 }

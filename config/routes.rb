@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     get "users/index"
   end
   
-  # ユーザー用
+  # ユーザー側
   devise_for :users,skip: [:passwords], controllers: {
    registrations: "public/registrations",
    sessions: "public/sessions"
@@ -20,13 +20,16 @@ Rails.application.routes.draw do
     resources :users, only: [:destroy]
     get "users/mypage" => "users#show", as: "mypage"
     get "users/profile/edit" => "users#profile_edit", as: "profile_edit"
-    patch "users/profile" => "users#profile_update", as: "profile_update"    
-    resources :posts, only: [:new, :index, :show, :create, :destroy]
-    resources :reviews, only: [:new, :index, :create]
+    patch "users/profile" => "users#profile_update", as: "profile_update"
+    
+    resources :posts, only: [:new, :index, :show, :create, :destroy] do
+      resource :reviews, only: [:create]
+    end
+    resources :reviews, only: [:new, :index]
   end
   
   
-  # 管理者用
+  # 管理者側
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
    sessions: "admin/sessions"
   }

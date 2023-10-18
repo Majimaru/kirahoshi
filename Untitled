@@ -9,3 +9,37 @@
           <%= render "public/reviews/rate", post_de: post %>
         </div>
       <% end %>
+      
+  <script>
+    $(document).on('turbolinks:load', function() {
+      // これがないとブラウザバックで星が増え続ける不具合が発生
+      $('#rate_<%= post.id %>').empty();
+      // scriptファイルをどのidの部分に配置するかを指定
+      let elem = document.querySelector('#rate_<%= post.id %>');
+      let opt = {  
+        //星画像の指定などのオプションをここに記述,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: "<%= asset_path('star-half.png') %>",
+        // bookモデルのstarカラムへ値を保存という意味になる
+        scoreName: 'review[rate]',
+        // score: 
+        // 今回は５段階評価で星半分評価は入力できるように設定
+        half: true,
+       };
+      raty(elem,opt);
+    });
+  </script>
+  
+  
+
+        <% if post.reviewed_by?(current_user) %>
+          score: '<%= post.get_rate(current_user) %>', 
+        <% else %>
+          // bookモデルのstarカラムへ値を保存という意味になる
+          scoreName: "review[rate]",
+        <% end %>
+        
+        
+        <% score = post.get_rate(current_user).rate %>
+          score: "<%= score %>", 

@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 .top-image {
-  height: 100%;
+  min-height: 100vh;
   background-image: url('夜空3.jpg');
   background-size: cover;
   background-position: center;
