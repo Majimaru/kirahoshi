@@ -14,6 +14,48 @@
       <% if post.post_image.attached? %>
         <%= image_tag post.post_image, class: "mt-3 rounded mx-auto d-block post-image" %>
       <% end %>
+      
+      <% if view == "review" %>
+        <div class="row">
+          <div class="col-7">
+            <%= post.review_item %>
+          </div>
+          <% form_with model: @review do |f| %>
+            <%= f.hidden_field :rate %>
+            <div class="col-5 px-0" id="post_raty1"></div>
+          <% end %>
+        </div>
+      <% end %>
+      
+      
+      <%= form_with model: @review do |f| %>
+        <div class="col-5 px-0" id="post_<%= post.id %>">
+          <%= render "public/reviews/rate", post_de: post %>
+        </div>
+      <% end %>
+
+
     </div>
   </div>
+  
+  <script>
+    $(document).on('turbolinks:load', function() {
+      // これがないとブラウザバックで星が増え続ける不具合が発生
+      $('#rate_<%= post.id %>').empty();
+      // scriptファイルをどのidの部分に配置するかを指定
+      let elem = document.querySelector('#rate_<%= post.id %>');
+      let opt = {  
+        //星画像の指定などのオプションをここに記述,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: "<%= asset_path('star-half.png') %>",
+        // bookモデルのstarカラムへ値を保存という意味になる
+        scoreName: 'review[rate]',
+        // score: 
+        // 今回は５段階評価で星半分評価は入力できるように設定
+        half: true,
+       };
+      raty(elem,opt);
+    });
+  </script>
 <% end %>

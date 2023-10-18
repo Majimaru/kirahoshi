@@ -2,7 +2,7 @@ class Public::UsersController < ApplicationController
   
   def show
     # @user_new = User.new
-    @user     = User.find(current_user.id)
+    @user = User.find(current_user.id)
   end
 
   def profile_edit

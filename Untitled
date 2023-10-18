@@ -1,0 +1,11 @@
+        <div class="post_<%= post.id %>">
+          <%= render "reviews/rate", post_de: post %>
+        </div>
+        
+
+成功時
+      <%= form_with model: @review do |f| %>
+        <div class="col-5 px-0" id="post_<%= post.id %>">
+          <%= render "public/reviews/rate", post_de: post %>
+        </div>
+      <% end %>

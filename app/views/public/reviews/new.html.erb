@@ -8,7 +8,7 @@
       <!--投稿データが1件以上の時-->
       <% else %>
         <!--投稿一覧表示-->
-        <%= render "public/posts/index", posts: @posts %>
+        <%= render "public/posts/index", posts: @posts, view: "review" %>
       <% end %>
     </div>
   </div>

@@ -5,10 +5,10 @@
         <%= link_to "マイページ", mypage_path, class: "w-100 btn rounded-pill" %>
       </li>
       <li class="nav-item">
-        <%= link_to "投稿", new_post_path, class: "w-100 btn rounded-pill" %>
+        <%= link_to "投稿", new_post_path, class: "w-100 btn rounded-pill",data: {"turbolinks"=>false} %>
       </li>
       <li class="nav-item">
-        <%= link_to new_review_path, class: "w-100 btn rounded-pill" do %>
+        <%= link_to new_review_path, class: "w-100 btn rounded-pill",data: {"turbolinks"=>false} do %>
           レビュー
         <% end %>
       </li>
