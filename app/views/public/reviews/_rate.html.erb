@@ -17,9 +17,11 @@
         // 存在していたらrateを表示
         score: "<%= post.get_rate(current_user).rate %>", 
         scoreName: "review[rate]",
+        readOnly: true,
       <% else %>
         // reviewモデルのrateカラムへ値を保存
         scoreName: "review[rate]",
+        readOnly: true,
       <% end %>
       
       // 星半分評価の入力を許可
