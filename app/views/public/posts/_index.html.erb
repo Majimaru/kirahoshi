@@ -15,7 +15,7 @@
         <%= image_tag post.post_image, class: "mt-3 rounded mx-auto d-block post-image" %>
       <% end %> 
       
-      <% unless view == "review" %>
+      <% if view == "reviewssss" %>
         <div class="mt-3">
           <%= form_with model: @review, url: post_reviews_path(post), method: :post, local: false do |f| %>
             <%= post.review_item %>
@@ -28,43 +28,22 @@
         </div>
       <% end %>
       
-      <div class="mt-3">
-        <%= post.review_item %>
-        <span class="post_<%= post.id %>">
-          <%= render "public/reviews/rate", post: post %>
-        </span>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          レビューする
-        </button>
-        
-        <!-- Modal -->
-        <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog bg-dark">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <%= form_with model: @review, url: post_reviews_path(post), method: :post, local: false do |f| %>
-                  <%= post.review_item %>
-                  <%= f.hidden_field :rate %>
-                  <span class="post_<%= post.id %>">
-                    <span class="ms-2" id="rate_<%= post.id %>2"></span>
-                  </span>
-                  <%= f.submit "レビューする", class: "btn btn-sm btn-success" %>
-                <% end %>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
-            </div>
-          </div>
+      <div class="mt-4 pt-2">
+        <div class="mb-1">
+          <i class="fa-regular fa-flag me-2"></i>
+          <%= post.review_item %>
+        </div>
+        <div>
+          <span class=" post_<%= post.id %>">
+            <!--星評価を入力不可で表示-->
+            <%= render "public/reviews/view_rate", post: post %>
+          </span>
+          <!--レビュー用モーダルを表示-->
+          <%= render "public/reviews/save_rate", post: post %>
         </div>
       </div>
       
-      <% unless view == "review" %>
+      <% if view == "reviewssss" %>
         <div class="mt-3">
           <%= form_with model: @review, url: post_reviews_path(post), method: :post, local: false do |f| %>
             <%= post.review_item %>
@@ -78,37 +57,4 @@
       <% end %>
     </div>
   </div>
-  
-<script>
-  $(document).on('turbolinks:load', function() {
-    // ブラウザバックで星が増え続ける不具合対策
-    $('#rate_<%= post.id %>2').empty();
-    
-    let elem = document.querySelector('#rate_<%= post.id %>2');
-    // 星画像などのオプション
-    let opt = {  
-      starOff:  "<%= asset_path('star-off.png') %>",
-      starOn : "<%= asset_path('star-on.png') %>",
-      starHalf: "<%= asset_path('star-half.png') %>",
-      
-      // Reviewテーブルに該当データが存在しているか判定
-      <% if post.reviewed_by?(current_user) %>
-        // 存在していたらrateを表示
-        score: "<%= post.get_rate(current_user).rate %>", 
-        scoreName: "review[rate]",
-      <% else %>
-        // reviewモデルのrateカラムへ値を保存
-        scoreName: "review[rate]",
-      <% end %>
-      
-      // 星半分評価の入力を許可
-      half: true,
-     };
-    raty(elem,opt);
-  });
-  
-  function changeRate(){
-    $('#rate_<%= post.id %>').empty();
-  }
-</script>
 <% end %>

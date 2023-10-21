@@ -12,4 +12,6 @@ class Review < ApplicationRecord
     greater_than_or_equal_to: 0.5
   }, presence: true
   
+  validates :comment, length: { maximum: 100 }
+  
 end

@@ -192,6 +192,8 @@ ja:
         message: メッセージ
         post_image: 投稿画像
         review_item: レビュー項目
+      review:
+        comment: コメント
       user:
         user_name: ユーザー名
         profile_image: プロフィール画像

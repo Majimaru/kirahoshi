@@ -58,6 +58,20 @@ header, main, .col-sm-12, .nav3, .card-body, .nav4 {
   color: white;
 }
 
+.modal-header {
+  height: 55px;
+}
+
+.modal-save-btn  {
+  -webkit-transform: skew(-15deg);
+  background-image: linear-gradient(50deg, #2af598 20%, #009efd 80%);
+}
+
+.modal-cancel-btn {
+  width: 120px;
+  -webkit-transform: skew(-15deg);
+}
+
 /*@media screen and (min-width:426px) {*/
 /*  .main-visual {*/
 /*    margin-top: 48px;*/

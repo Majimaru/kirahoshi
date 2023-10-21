@@ -1,18 +1,18 @@
-<span class="ms-2" id="rate_<%= post.id %>"></span>
+<span class="ms-2" id="view_rate_<%= post.id %>"></span>
 
 <script>
   $(document).on('turbolinks:load', function() {
     // ブラウザバックで星が増え続ける不具合対策
-    $('#rate_<%= post.id %>').empty();
+    $('#view_rate_<%= post.id %>').empty();
     
-    let elem = document.querySelector('#rate_<%= post.id %>');
+    let elem = document.querySelector('#view_rate_<%= post.id %>');
     // 星画像などのオプション
     let opt = {  
       starOff:  "<%= asset_path('star-off.png') %>",
       starOn : "<%= asset_path('star-on.png') %>",
       starHalf: "<%= asset_path('star-half.png') %>",
       
-      // Reviewテーブルに該当データが存在しているか判定
+      // ReviewテーブルにユーザーIDと投稿IDが一致するデータが存在しているか判定
       <% if post.reviewed_by?(current_user) %>
         // 存在していたらrateを表示
         score: "<%= post.get_rate(current_user).rate %>", 

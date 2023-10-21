@@ -1,2 +1,4 @@
-$('#exampleModal').modal('hide')
-$(“.post_<%= @post.id %>”).html("<%= j(render 'public/reviews/rate', post: @post) %>");
+$('#reviewModal').modal('hide');
+<!--$(".modal-backdrop").remove();-->
+<!--$("body").removeClass("modal-open");-->
+$(“.post_<%= @post.id %>”).html("<%= escape_javascript(render 'public/reviews/view_rate', post: @post) %>");
