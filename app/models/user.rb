@@ -12,15 +12,15 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
          
   # バリデーション
-  validates :user_name, length: { maximum: 15 }
-  validates :email, uniqueness:  true
+  # validates :user_name, length: { maximum: 15 }
+  # validates :email, uniqueness:  true
   
   # ユーザー新規登録時のみバリデーションを適用
-  with_options on: :create do
-    # 英数字が含まれたパスワードのみ許可
-    VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
-    validates :password, format: { with: VALID_PASSWORD_REGEX, message: "は半角英数を両方含む必要があります" }
-  end
+  # with_options on: :create do
+  #   # 英数字が含まれたパスワードのみ許可
+  #   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+  #   validates :password, format: { with: VALID_PASSWORD_REGEX, message: "は半角英数を両方含む必要があります" }
+  # end
   
   # プロフィール画像を表示
   def get_profile_image(width, height)
@@ -29,6 +29,22 @@ class User < ApplicationRecord
       profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
+  end
+  
+  # ゲストユーザーメールアドレス
+  GUEST_USER_EMAIL = "guest@example.com"
+  
+  # ゲストログイン
+  def self.guest
+    find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
+      user.password = SecureRandom.urlsafe_base64(10)
+      user.user_name = "ゲストユーザー"
+    end
+  end
+  
+  # ログインユーザーがゲストか判定
+  def guest_user?
+    email == GUEST_USER_EMAIL
   end
   
 end

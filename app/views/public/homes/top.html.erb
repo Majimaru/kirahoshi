@@ -12,7 +12,7 @@
         
         <%= link_to "ログイン / 新規登録", new_user_session_path, 
             class: "col-sm-6 my-3 btn btn-lg btn-warning rounded-pill" %><br>
-        <%= link_to "ゲストログイン", root_path, 
+        <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, 
             class: "col-sm-6 bg-light btn btn-lg btn-outline-warning rounded-pill border-3" %>
       </div>
     </div>

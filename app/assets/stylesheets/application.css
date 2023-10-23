@@ -72,6 +72,11 @@ header, main, .col-sm-12, .nav3, .card-body, .nav4 {
   -webkit-transform: skew(-15deg);
 }
 
+.modal-close-btn {
+  width: 100px;
+  -webkit-transform: skew(-15deg);
+}
+
 /*@media screen and (min-width:426px) {*/
 /*  .main-visual {*/
 /*    margin-top: 48px;*/

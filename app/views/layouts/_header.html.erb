@@ -1,43 +1,44 @@
 <header>
   <nav class="navbar navbar-expand-md navbar-dark px-4 border-bottom border-secondary">
-    <a class="navbar-brand text-light" href="/">きらほし</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon text-light"></span>
-    </button>
-    
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav ms-auto nav1">
-        
-        <% if user_signed_in? %>
-          <li class="nav-item">
-            <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-light" do %>
-              ログアウト
-            <% end %>
-          </li>
-          
-        <% elsif admin_signed_in? %>
-          <li class="nav-item">
-            <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-light" do %>
-              ログアウト
-            <% end %>
-          </li>
-          
-        <% else %>
-          <li class="nav-item">
-            <%= link_to new_user_session_path, class: "nav-link text-light" do %>
-              <i class="fa-solid fa-right-to-bracket"></i>
-              ログイン
-            <% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to new_admin_session_path, class: "nav-link text-light" do %>
-              <i class="fa-solid fa-user-secret"></i>
-              管理者
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
+    <div class="container-fluid">
+      <a class="navbar-brand text-light" href="/">きらほし</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#kirahoshiNavbar" 
+        aria-controls="kirahoshiNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="kirahoshiNavbar">
+        <ul class="navbar-nav ms-auto nav1">
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-light" do %>
+                ログアウト
+              <% end %>
+            </li>
+            
+          <% elsif admin_signed_in? %>
+            <li class="nav-item">
+              <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-light" do %>
+                ログアウト
+              <% end %>
+            </li>
+            
+          <% else %>
+            <li class="nav-item">
+              <%= link_to new_user_session_path, class: "nav-link text-light" do %>
+                <i class="fa-solid fa-right-to-bracket"></i>
+                ログイン
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to new_admin_session_path, class: "nav-link text-light" do %>
+                <i class="fa-solid fa-user-secret"></i>
+                管理者
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </nav>
 </header>

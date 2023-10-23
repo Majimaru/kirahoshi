@@ -1,14 +1,36 @@
-      <%= form_with model: @review, url: post_reviews_path(post), method: :post, local: false do |f| %>
-        <div class="modal-body mx-auto border-top border-bottom border-info">
+<div class="modal fade" id="reviewModal_<%= post.id %>" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-dark">
+      <div class="modal-header border-bottom border-info">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-10 ps-5">
+              <h1 class="modal-title text-center fs-5" id="reviewModalLabel">レビュー</h1>
+            </div>
+            <div class="col-2 text-end">
+              <button type="button" class="mt-1 btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body py-4">
+        <%= form_with model: @review, url: post_reviews_path(post), method: :post do |f| %>
           <%= post.review_item %>
-          <%= f.hidden_field :rate %>
+          <%= f.hidden_field :rate, required: true %>
           <span class="post_<%= post.id %>">
-            <span class="ms-2" id="rate_<%= post.id %>2"></span>
+            <span class="ms-2" id="save_rate_<%= post.id %>"></span>
           </span>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-          <%= f.submit "レビューする", class: "sakaa btn btn-sm btn-success" %>
-        </div>
-      <% end %>
+          <div class="mt-4">
+            <%= f.label :comment, class: "form-label" %>
+            <%= f.text_area :comment, class: "form-control", rows: 4, placeholder: "100文字以内", 
+              maxlength: 100 %>
+          </div>
+      </div>
+      <div class="modal-footer mx-auto">
+        <button type="button" class="btn btn-outline-secondary border-2 modal-cancel-btn" data-bs-dismiss="modal">キャンセル</button>
+        <%= f.submit "レビューする", class: "btn modal-save-btn" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

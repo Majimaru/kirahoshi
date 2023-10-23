@@ -10,20 +10,65 @@
       
       <nav class="col-12 mt-5 mx-auto navbar navbar-expand nav3">
         <ul class="w-100 navbar-nav nav-justified">
-          <li class="nav-item">
-            <%= link_to profile_edit_path, class: "nav-link text-light" do %>
-              <i class="fa-solid fa-user-pen h2 text-info"></i><br>
-              プロフィール情報
-            <% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to new_post_path, class: "nav-link text-light" do %>
-              <i class="fa-solid fa-user-large-slash h2 text-info"></i><br>
-              ログイン情報
-            <% end %>
-          </li>
+          <!--ログインユーザーがゲストではない場合-->
+          <% unless @user.guest_user? %>
+            <li class="nav-item">
+              <%= link_to profile_edit_path, class: "nav-link btn text-light" do %>
+                <i class="fa-solid fa-user-pen h2 text-info"></i><br>
+                プロフィール情報
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to new_post_path, class: "nav-link text-light" do %>
+                <i class="fa-solid fa-user-large-slash h2 text-info"></i><br>
+                ログイン情報
+              <% end %>
+            </li>
+          
+          <!--ゲストユーザーの場合-->
+          <% else %>
+            <li class="nav-item">
+              <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#unableEditModal">
+                <i class="fa-solid fa-user-pen h2 text-info"></i><br>
+                プロフィール情報
+              </button>
+            </li>
+            <li class="nav-item">
+              <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#unableEditModal">
+                <i class="fa-solid fa-user-large-slash h2 text-info"></i><br>
+                ログイン情報
+              </button>
+            </li>
+          <% end %>
         </ul>
       </nav>
+      
+      <!--操作不可メッセージ表示モーダル-->
+      <div class="modal fade" id="unableEditModal" tabindex="-1" aria-labelledby="unableEditModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+          <div class="modal-content text-dark">
+            <div class="modal-header border-bottom border-danger">
+              <div class="container-fluid">  
+                <div class="row">
+                  <div class="col-10 ps-5">
+                    <h1 class="modal-title text-center fs-5" id="unableEditModalLabel">アラート</h1>
+                  </div>
+                  <div class="col-2 text-end">
+                    <button type="button" class="mt-1 btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-body py-4 text-center">
+              ゲストユーザーはこちらの操作を<br>行うことが出来ません。
+            </div>
+            <div class="modal-footer mx-auto">
+              <button type="button" class="btn btn-secondary modal-close-btn" data-bs-dismiss="modal">閉じる</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
     </div>
   </div>
 </div>
