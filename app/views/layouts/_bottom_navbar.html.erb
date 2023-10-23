@@ -8,9 +8,21 @@
         <%= link_to "投稿", new_post_path, class: "w-100 btn rounded-pill",data: {"turbolinks"=>false} %>
       </li>
       <li class="nav-item">
-        <%= link_to new_review_path, class: "w-100 btn rounded-pill",data: {"turbolinks"=>false} do %>
-          レビュー
-        <% end %>
+        <%= link_to "レビュー", new_review_path, class: "w-100 btn rounded-pill",data: {"turbolinks"=>false} %>
+      </li>
+    </ul>
+  </nav>
+<% elsif admin_signed_in? %>
+  <nav class="col-md-8 mx-auto mb-md-5 navbar navbar-expand navbar-dark bg-secondary fixed-bottom nav2 rounded-pill">
+    <ul class="w-100 navbar-nav nav-justified text-light">
+      <li class="nav-item">
+        <%= link_to "会員", mypage_path, class: "w-100 btn rounded-pill" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "投稿", new_post_path, class: "w-100 btn rounded-pill" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "レビュー", new_review_path, class: "w-100 btn rounded-pill" %>
       </li>
     </ul>
   </nav>

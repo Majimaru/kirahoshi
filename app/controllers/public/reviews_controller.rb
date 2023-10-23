@@ -9,17 +9,6 @@ class Public::ReviewsController < ApplicationController
   end
   
   def create
-    # @post = Post.find(params[:post_id])
-    # rate = params[:review][:rate]
-    
-    # # Reviewテーブルに既にレコードが存在していれば更新、存在しなければ登録
-    # if @post.reviewed_by?(current_user)
-    #   Review.find_by(user_id: current_user.id, post_id: @post.id).update(rate: rate)
-    # else
-    #   review = current_user.reviews.new(post_id: @post.id, rate: rate)
-    #   review.save
-    # end
-    
     @post = Post.find(params[:post_id])
     
     # Reviewテーブルに既にレコードが存在していれば更新、存在しなければ登録
