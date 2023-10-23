@@ -1,4 +1,4 @@
-$('#reviewModal').modal('hide');
+$('#reviewModal_<%= @post.id %>').modal('hide');
 <!--$(".modal-backdrop").remove();-->
 <!--$("body").removeClass("modal-open");-->
 $(“.post_<%= @post.id %>”).html("<%= escape_javascript(render 'public/reviews/view_rate', post: @post) %>");

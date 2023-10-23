@@ -10,6 +10,9 @@ class User < ApplicationRecord
   # アソシエーション
   has_many :posts, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  
+  # enum
+  # enum membership_status: { join: 0, delete: 1, suspension_use: 2 }
          
   # バリデーション
   validates :user_name, length: { maximum: 15 }

@@ -20,7 +20,7 @@ class Public::ReviewsController < ApplicationController
       review.save
     end
     
-    redirect_to new_review_path
+    # redirect_to new_review_path
   end
   
   private
