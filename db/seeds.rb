@@ -7,11 +7,14 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # ユーザー
-7.times do |n|
-  User.create!(
-    user_name: "テストユーザー#{n + 1}",
-    email: "test#{n + 1}@email.com",
-    password: "test" + "#{n}" * 6,
-    membership_status: 0
-  )
-end
+# 7.times do |n|
+#   User.create!(
+#     user_name: "テストユーザー#{n + 1}",
+#     email: "test2#{n + 1}@email.com",
+#     password: "test" + "#{n}" * 6,
+#     membership_status: 0
+#   )
+# end
+
+# 管理者
+# Admin.create!(email: "adminuser1@email.com", password: "Admin17722ss")
