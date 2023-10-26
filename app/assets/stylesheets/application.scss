@@ -67,6 +67,12 @@ header, main, .col-sm-12, .nav3, .card-body, .nav4 {
   background-image: linear-gradient(50deg, #2af598 20%, #009efd 80%);
 }
 
+.modal-footer .modal-delete-btn  {
+  color: black;
+  -webkit-transform: skew(-15deg);
+  background-image: linear-gradient(50deg, #ffaaaa 20%, #ff8080 80%);
+}
+
 .modal-cancel-btn {
   width: 120px;
   -webkit-transform: skew(-15deg);

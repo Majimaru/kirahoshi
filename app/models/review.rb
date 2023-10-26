@@ -4,6 +4,8 @@ class Review < ApplicationRecord
   belongs_to :user
   belongs_to :post
   
+  has_many :review_reports, dependent: :destroy
+  
   # バリデーション
   validates :user_id, uniqueness: {scope: :post_id}
   

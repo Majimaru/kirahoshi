@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_10_17_161446) do
+ActiveRecord::Schema.define(version: 2023_10_25_211614) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -52,6 +52,17 @@ ActiveRecord::Schema.define(version: 2023_10_17_161446) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "post_reports", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
+    t.string "reason", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_post_reports_on_post_id"
+    t.index ["user_id"], name: "index_post_reports_on_user_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
     t.text "message", null: false
@@ -59,6 +70,17 @@ ActiveRecord::Schema.define(version: 2023_10_17_161446) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "review_reports", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "review_id", null: false
+    t.string "reason", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["review_id"], name: "index_review_reports_on_review_id"
+    t.index ["user_id"], name: "index_review_reports_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -88,7 +110,11 @@ ActiveRecord::Schema.define(version: 2023_10_17_161446) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "post_reports", "posts"
+  add_foreign_key "post_reports", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "review_reports", "reviews"
+  add_foreign_key "review_reports", "users"
   add_foreign_key "reviews", "posts"
   add_foreign_key "reviews", "users"
 end

@@ -5,7 +5,9 @@ class Post < ApplicationRecord
   
   # アソシエーション
   belongs_to :user
-  has_many :reviews, dependent: :destroy
+  
+  has_many :reviews,        dependent: :destroy
+  has_many :post_reports,   dependent: :destroy
   
   # バリデーション
   validates :message, presence: true, length: { maximum: 500 }

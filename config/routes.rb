@@ -28,9 +28,12 @@ Rails.application.routes.draw do
     
     resources :posts, only: [:new, :index, :show, :create, :destroy] do
       resource :reviews, only: [:create]
+      resource :post_reports, only: [:create], as: "report"
     end
     
-    resources :reviews, only: [:new, :index]
+    resources :reviews, only: [:new, :index] do
+      resource :review_reports, only: [:create], as: "report"
+    end
   end
   
   

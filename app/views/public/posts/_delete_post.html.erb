@@ -1,0 +1,31 @@
+<a data-bs-toggle="modal" data-bs-target="#deletePostModal_<%= post.id %>">
+  <i class="fa-solid fa-trash-can"></i>
+  <span class="ms-1">削除</span>
+</a>
+
+<!--投稿削除モーダル-->
+<div class="modal fade" id="deletePostModal_<%= post.id %>" tabindex="-1" aria-labelledby="deletePostModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-dialog-centered">
+    <div class="modal-content text-dark">
+      <div class="modal-header border-bottom border-danger">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-10 ps-5">
+              <h1 class="modal-title text-center fs-5" id="deletePostModalLabel">削除</h1>
+            </div>
+            <div class="col-2 text-end">
+              <button type="button" class="mt-1 btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body py-4">
+        こちらの投稿を削除しても<br>本当によろしいですか？
+      </div>
+      <div class="modal-footer mx-auto">
+        <button type="button" class="me-2 btn btn-outline-secondary border-2 modal-cancel-btn" data-bs-dismiss="modal">キャンセル</button>
+        <%= link_to "削除する", post_path(post), method: :delete, class: "ms-2 btn modal-delete-btn" %>
+      </div>
+    </div>
+  </div>
+</div>

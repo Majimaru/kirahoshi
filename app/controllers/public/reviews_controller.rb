@@ -2,6 +2,7 @@ class Public::ReviewsController < ApplicationController
   
   def new
     @review = Review.new
+    @review_report = ReviewReport.new
     @posts = Post.where.not(user_id: current_user.id)
   end
 

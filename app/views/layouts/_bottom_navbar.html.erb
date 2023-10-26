@@ -1,29 +1,41 @@
-<% if user_signed_in? %>
-  <nav class="col-md-8 mx-auto mb-md-5 navbar navbar-expand navbar-dark bg-secondary fixed-bottom nav2 rounded-pill">
+<!--ログイン後のみ表示-->
+<% if user_signed_in? || admin_signed_in? %>
+  <nav class="col-md-8 mx-auto mb-md-5 py-0 navbar navbar-expand navbar-dark bg-secondary fixed-bottom nav2 rounded-pill">
     <ul class="w-100 navbar-nav nav-justified text-light">
-      <li class="nav-item">
-        <%= link_to "マイページ", mypage_path, class: "w-100 btn rounded-pill" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "投稿", new_post_path, class: "w-100 btn rounded-pill",data: {"turbolinks"=>false} %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "レビュー", new_review_path, class: "w-100 btn rounded-pill",data: {"turbolinks"=>false} %>
-      </li>
-    </ul>
-  </nav>
-<% elsif admin_signed_in? %>
-  <nav class="col-md-8 mx-auto mb-md-5 navbar navbar-expand navbar-dark bg-secondary fixed-bottom nav2 rounded-pill">
-    <ul class="w-100 navbar-nav nav-justified text-light">
-      <li class="nav-item">
-        <%= link_to "会員", mypage_path, class: "w-100 btn rounded-pill" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "投稿", new_post_path, class: "w-100 btn rounded-pill" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "レビュー", new_review_path, class: "w-100 btn rounded-pill" %>
-      </li>
+      
+      <!--ユーザーでログイン時のみ表示-->
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to mypage_path, class: "py-0 w-100 btn rounded-pill" do %>
+            <i class="fa-solid fa-house"></i><Br>
+            マイページ
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to new_post_path, class: "py-0 w-100 btn rounded-pill",data: {"turbolinks"=>false} do %>
+            <i class="fa-solid fa-rocket"></i><br>
+            投稿
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to new_review_path, class: "py-0 w-100 btn rounded-pill",data: {"turbolinks"=>false} do %>
+            <%= image_tag "telescope.png", size: "20x20" %><br>
+            レビュー
+          <% end %>
+        </li>
+      
+      <!--管理者でログイン時のみ表示-->
+      <% elsif admin_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "会員", mypage_path, class: "w-100 btn rounded-pill" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "投稿", new_post_path, class: "w-100 btn rounded-pill" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "レビュー", new_review_path, class: "w-100 btn rounded-pill" %>
+        </li>
+      <% end %>
     </ul>
   </nav>
 <% end %>

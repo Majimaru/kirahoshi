@@ -8,8 +8,10 @@ class User < ApplicationRecord
   has_one_attached :profile_image
   
   # アソシエーション
-  has_many :posts, dependent: :destroy
-  has_many :reviews, dependent: :destroy
+  has_many :posts,          dependent: :destroy
+  has_many :reviews,        dependent: :destroy
+  has_many :post_reports,   dependent: :destroy
+  has_many :review_reports, dependent: :destroy
   
   # enum
   # enum membership_status: { join: 0, delete: 1, suspension_use: 2 }
