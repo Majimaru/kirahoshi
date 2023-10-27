@@ -1,4 +1,42 @@
-<a data-bs-toggle="modal" data-bs-target="#deletePostModal_<%= post.id %>">
+<a data-bs-toggle="modal" data-bs-target="#reviewReportModal_<%= post.id %>">
   <i class="fa-solid fa-triangle-exclamation"></i>
   <span class="ms-1">通報</span>
 </a>
+
+<!--モーダル-->
+<div class="modal fade" id="reviewReportModal_<%= post.id %>" tabindex="-1" aria-labelledby="reviewReportModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-dark">
+      <div class="modal-header border-bottom border-info">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-10 ps-5">
+              <h1 class="modal-title text-center fs-5" id="reviewReportModalLabel">レビュー</h1>
+            </div>
+            <div class="col-2 text-end">
+              <button type="button" class="mt-1 btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body py-4">
+        <%= form_with model: @review_report, url: post_reviews_path(post), method: :post, local: false do |f| %>
+          <%= post.review_item %>
+          <%= f.hidden_field :rate, required: true %>
+          <span class="post_<%= post.id %>">
+            <span class="ms-2" id="save_rate_<%= post.id %>"></span>
+          </span>
+          <div class="mt-4">
+            <%= f.label :comment, class: "form-label" %>
+            <%= f.text_area :comment, class: "form-control", rows: 4, placeholder: "100文字以内", 
+              maxlength: 100 %>
+          </div>
+      </div>
+      <div class="modal-footer mx-auto">
+        <button type="button" class="me-2 btn btn-outline-secondary border-2 modal-cancel-btn" data-bs-dismiss="modal">キャンセル</button>
+        <%= f.submit "レビューする", class: "ms-2 btn modal-save-btn" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

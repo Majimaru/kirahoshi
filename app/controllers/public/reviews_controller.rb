@@ -1,14 +1,15 @@
 class Public::ReviewsController < ApplicationController
   
+  def index
+    @reviews = Review.where(user_id: current_user.id, post_id: params[:post_id])
+  end
+  
   def new
     @review = Review.new
-    @review_report = ReviewReport.new
+    @post_report = PostReport.new
     @posts = Post.where.not(user_id: current_user.id)
   end
 
-  def index
-  end
-  
   def create
     @post = Post.find(params[:post_id])
     

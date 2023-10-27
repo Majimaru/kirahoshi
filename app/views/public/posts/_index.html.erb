@@ -24,7 +24,7 @@
         </div>
         
         <div>
-          <span class=" post_<%= post.id %>">
+          <span class="post_<%= post.id %>">
             <!--星評価を入力不可で表示-->
             <%= render "public/reviews/view_rate", post: post %>
           </span>
@@ -35,11 +35,13 @@
           <!--レビュー画面から呼び出された時のみ表示-->
           <% elsif view == "review" %>
             <!--レビューモーダルを表示-->
-            <%= render "public/reviews/save_rate", post: post %>
+            <span class="review_modal_<%= post.id %>">
+              <%= render "public/reviews/save_rate", post: post %>
+            </span>
           <% end %>
         </div>
         
-        <div class="row mt-4 text-center text-secondary post-bottom-item">
+        <div class="row mt-4 text-center post-bottom-item">
           <div class="col-3 col-md-4 px-0 accordion accordion-flush" id="tagAccordion">
             <a class="collapsed" data-bs-toggle="collapse" data-bs-target="#tag-collapse" aria-expanded="false" aria-controls="tag-collapse">
               <i class="fa-solid fa-tags text-secondary"></i>
@@ -48,8 +50,10 @@
             </a>
           </div>
           <div class="col-6 col-md-4 px-0">
-            <i class="fa-solid fa-splotch"></i>
-            <span class="ms-1">レビュー(1000)</span>
+            <%= link_to post_review_index_path(post) do %>
+              <i class="fa-solid fa-splotch text-secondary"></i>
+              <span class="ms-1">レビュー(1000)</span>
+            <% end %>
           </div>
           <div class="col-3 col-md-4 px-0">
             <% if view == "post" %>
@@ -57,8 +61,10 @@
               <%= render "delete_post.html", post: post %>
               
             <% elsif view == "review" %>
-              <!--投稿通報モーダルを表示-->
-              <%= render "reviews/review_report.html", post: post %>
+              <span class="post_report_<%= post.id %>">
+                <!--未通報の場合に投稿通報モーダルを表示-->
+                <%= render "public/post_reports/report", post: post %>
+              </span>
             <% end %>
           </div>
         </div>

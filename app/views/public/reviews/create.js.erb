@@ -1,4 +1,54 @@
 $('#reviewModal_<%= @post.id %>').modal('hide');
-<!--$(".modal-backdrop").remove();-->
-<!--$("body").removeClass("modal-open");-->
-$(“.post_<%= @post.id %>”).html("<%= escape_javascript(render 'public/reviews/view_rate', post: @post) %>");
+$(".post_<%= @post.id %>").html("<%= escape_javascript(render('public/reviews/view_rate', post: @post)) %>");
+$(".review_modal_<%= @post.id %>").html("<%= escape_javascript(render('public/reviews/save_rate', post: @post)) %>");
+
+$(".form_submit").removeAttr("disabled");
+$(".form_submit").removeAttr("data-disable-with");
+
+<!--星評価の更新処理を呼び出す-->
+updateViewRate(<%= @post.id %>);
+updateSaveRate(<%= @post.id %>);
+
+<!--レビュー画面の星評価表示の更新処理-->
+function updateViewRate(postId) {
+  let elem = document.querySelector('#view_rate_' + postId);
+  
+  let opt = {
+    starOff:  "<%= asset_path('star-off.png') %>",
+    starOn : "<%= asset_path('star-on.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+      
+    <% if @post.reviewed_by?(current_user) %>
+      score: "<%= @post.get_rate(current_user).rate %>", 
+      scoreName: "review[rate]",
+      readOnly: true,
+    <% else %>
+      scoreName: "review[rate]",
+      readOnly: true,
+    <% end %>
+      
+    half: true,
+  };
+  raty(elem, opt);
+}
+
+<!--レビューモーダルの星評価表示の更新処理-->
+function updateSaveRate(postId) {
+  let elem = document.querySelector('#save_rate_' + postId);
+  
+  let opt = {
+    starOff:  "<%= asset_path('star-off.png') %>",
+    starOn : "<%= asset_path('star-on.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+      
+    <% if @post.reviewed_by?(current_user) %>
+      score: "<%= @post.get_rate(current_user).rate %>", 
+      scoreName: "review[rate]",
+    <% else %>
+      scoreName: "review[rate]",
+    <% end %>
+      
+    half: true,
+  };
+  raty(elem, opt);
+}

@@ -199,8 +199,12 @@ ja:
         message: メッセージ
         post_image: 投稿画像
         review_item: レビュー項目
+      post_report:
+        reason: 理由
       review:
         comment: コメント
+      review_report:
+        reason: 理由
       user:
         user_name: ユーザー名
         profile_image: プロフィール画像

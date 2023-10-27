@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
   
-  namespace :public do
-    get 'reviews/new'
-    get 'reviews/index'
-  end
+  # namespace :public do
+  #   get 'post_reports/create'
+  # end
+  # namespace :public do
+  #   get 'reviews/new'
+  #   get 'reviews/index'
+  # end
   namespace :admin do
     get "users/index"
   end
@@ -19,7 +22,6 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    # devise_for :users, skip: [:passwords]
     root to: "homes#top"
     resources :users, only: [:destroy]
     get "users/mypage" => "users#show", as: "mypage"
@@ -31,7 +33,9 @@ Rails.application.routes.draw do
       resource :post_reports, only: [:create], as: "report"
     end
     
-    resources :reviews, only: [:new, :index] do
+    get "/posts/:post_id/reviews" => "reviews#index", as: "post_review_index"
+    
+    resources :reviews, only: [:new] do
       resource :review_reports, only: [:create], as: "report"
     end
   end
@@ -43,7 +47,6 @@ Rails.application.routes.draw do
   }
   
   namespace :admin do
-    # devise_for :admin, skip: [:registrations, :passwords]
     resources :users, only: [:index]
   end
   

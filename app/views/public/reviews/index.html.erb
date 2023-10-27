@@ -1,2 +1,17 @@
-<h1>Public::Reviews#index</h1>
-<p>Find me in app/views/public/reviews/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-9 col-lg-6 mx-auto text-light">
+      <%= render "post_top_navbar" %>
+      
+      <!--レビューが0件の時-->
+      <% if @reviews.count == 0 %>
+        <h5 class="mt-4 text-center">レビューがありません</h5>
+        
+      <!--レビューが1件以上の時-->
+      <% else %>
+        <!--レビュー一覧表示-->
+        <%= render "index", reviews: @reviews %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -22,9 +22,14 @@ class Post < ApplicationRecord
     post_image.variant(resize_to_limit: [width, height]).processed
   end
   
-  # Reviewテーブルに自信のユーザーIDが存在するか確認
+  # ReviewテーブルにユーザーIDと投稿IDが一致するデータが存在するか確認
   def reviewed_by?(user)
     reviews.exists?(user_id: user.id)
+  end
+  
+  # PostReportテーブルにユーザーIDと投稿IDが一致するデータが存在するか確認
+  def post_reported_by?(user)
+    post_reports.exists?(user_id: user.id)
   end
   
   # ユーザーIDと投稿IDが該当するレコードのrateカラムを取得

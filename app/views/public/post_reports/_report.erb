@@ -1,0 +1,40 @@
+<% if post.post_reported_by?(current_user) %>
+  <i class="fa-solid fa-triangle-exclamation"></i>
+  <span class="ms-1">通報済</span>
+
+<% else %>
+  <a data-bs-toggle="modal" data-bs-target="#postReportModal_<%= post.id %>">
+    <i class="fa-solid fa-triangle-exclamation text-secondary"></i>
+    <span class="ms-1">通報</span>
+  </a>
+  
+  <div class="modal fade" id="postReportModal_<%= post.id %>" tabindex="-1" aria-labelledby="postReportModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header border-bottom border-danger">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-10 ps-5">
+                <h1 class="modal-title text-center fs-5" id="postReportModalLabel">投稿通報</h1>
+              </div>
+              <div class="col-2 text-end">
+                <button type="button" class="mt-1 btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body py-4 text-start">
+          <%= form_with model: @post_report, url: post_report_path(post), method: :post, local: false do |f| %>
+            <%= f.label :reason, class: "form-label ms-1" %>
+            <%= f.text_area :reason, class: "form-control", rows: 4, placeholder: "100文字以内", 
+                maxlength: 100, required: true %>
+        </div>
+        <div class="modal-footer mx-auto">
+          <button type="button" class="me-2 btn btn-outline-secondary border-2 modal-cancel-btn" data-bs-dismiss="modal">キャンセル</button>
+          <%= f.submit "通報する", class: "ms-2 btn modal-delete-btn" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
