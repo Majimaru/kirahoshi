@@ -80,6 +80,23 @@ admin1 = Admin.find_or_create_by!(email: "kiraAdmin@example.com") do |admin|
   admin.password = "kiraAdmin0001"
 end
 
+# ジャンルデータ
+Genre.find_or_create_by!(name: "ジャンルなし");
+Genre.find_or_create_by!(name: "悩み事");
+Genre.find_or_create_by!(name: "アニメ");
+Genre.find_or_create_by!(name: "ゲーム");
+Genre.find_or_create_by!(name: "映画");
+Genre.find_or_create_by!(name: "ドラマ");
+Genre.find_or_create_by!(name: "恋愛");
+Genre.find_or_create_by!(name: "音楽");
+Genre.find_or_create_by!(name: "スポーツ");
+Genre.find_or_create_by!(name: "芸術");
+Genre.find_or_create_by!(name: "旅行");
+Genre.find_or_create_by!(name: "料理");
+
+# 投稿データ
+
+
 # レビュー
 # Review.create!(user_id: 6, post_id: 1, rate: 2.0, comment: "テスト")
 
