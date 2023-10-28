@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   
   # アソシエーション
   belongs_to :user
+  belongs_to :genre
   
   has_many :reviews,        dependent: :destroy
   has_many :post_reports,   dependent: :destroy

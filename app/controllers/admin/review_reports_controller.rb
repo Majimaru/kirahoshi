@@ -1,7 +1,7 @@
 class Admin::ReviewReportsController < ApplicationController
   
   def index
-    @reports = ReviewReport.all.page(params[:page]).per(3)
+    @reports = ReviewReport.all.page(params[:page]).per(10)
   end
   
   def update

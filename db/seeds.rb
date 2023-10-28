@@ -20,4 +20,14 @@
 # Admin.create!(email: "adminuser1@email.com", password: "Admin17722ss")
 
 # レビュー
-Review.create!(user_id: 6, post_id: 1, rate: 2.0, comment: "テスト")
+# Review.create!(user_id: 6, post_id: 1, rate: 2.0, comment: "テスト")
+
+# ジャンル
+# Genre.create!(name: "ジャンルなし");
+# Genre.create!(name: "アニメ");
+# Genre.create!(name: "ゲーム");
+# Genre.create!(name: "映画");
+# Genre.create!(name: "ドラマ");
+# Genre.create!(name: "恋愛");
+# Genre.create!(name: "音楽");
+# Genre.create!(name: "スポーツ");

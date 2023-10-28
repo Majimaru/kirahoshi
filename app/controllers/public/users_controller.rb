@@ -1,9 +1,8 @@
 class Public::UsersController < ApplicationController
   
-  before_action :ensure_guest_user, only: [:profile_edit, :profile_update]
+  before_action :ensure_guest_user, only: [:profile_edit, :profile_update, :withdrawal]
   
   def show
-    # @user_new = User.new
     @user = User.find(current_user.id)
   end
 
@@ -21,6 +20,13 @@ class Public::UsersController < ApplicationController
       flash.now[:alert] = "プロフィールの更新に失敗しました"
       render "show"
     end
+  end
+  
+  def withdrawal
+    @user = User.find(current_user.id)
+    @user.update(membership_status: "withdrawal")
+    reset_session
+    redirect_to root_path
   end
   
   private

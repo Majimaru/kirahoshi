@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
     
     when User
       mypage_path
+      
     when Admin
       admin_users_path
     end

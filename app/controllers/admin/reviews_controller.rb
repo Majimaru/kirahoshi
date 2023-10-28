@@ -6,7 +6,6 @@ class Admin::ReviewsController < ApplicationController
   end
   
   def destroy
-    # byebug
     Review.find(params[:id]).destroy
     redirect_to admin_review_reports_path
   end

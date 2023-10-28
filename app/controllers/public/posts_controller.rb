@@ -5,7 +5,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.where(user_id: current_user.id).page(params[:page]).per(4)
+    @posts = Post.where(user_id: current_user.id).page(params[:page]).per(10)
   end
 
   def show
@@ -32,7 +32,7 @@ class Public::PostsController < ApplicationController
   private
   
   def post_params
-    params.require(:post).permit(:message, :post_image, :review_item)
+    params.require(:post).permit(:message, :post_image, :genre_id, :review_item)
   end
   
 end

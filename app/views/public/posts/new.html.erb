@@ -12,8 +12,13 @@
         </div>
         
         <div class="mb-4">
-          <%= f.label :post_image, class: "form-label" %>
+          <%= f.label "画像 (任意)", class: "form-label" %>
           <%= f.file_field :post_image, class: "mt-2 form-control", accept: "image/*" %>
+        </div>
+        
+        <div class="mt-4 pt-3 mb-4">
+          <%= f.label "ジャンル", class: "form-label me-2" %>
+          <%= f.collection_select :genre_id, Genre.all, :id, :name, class: "form-control text-center" %>
         </div>
         
         <div class="mb-5">

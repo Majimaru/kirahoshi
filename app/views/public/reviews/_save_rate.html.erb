@@ -76,13 +76,5 @@
       half: true,
      };
     raty(elem,opt);
-    
-    <% if post.reviewed_by?(current_user) %>
-    document.getElementById("review_comment").value = "Hello world";
-  <% end %>
   });
-  
-  function changeRate(){
-    $('#rate_<%= post.id %>').empty();
-  }
 </script>

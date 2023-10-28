@@ -1,20 +1,20 @@
 Rails.application.routes.draw do
   
-  namespace :admin do
-    get 'review/show'
-  end
-  namespace :admin do
-    get 'postss/show'
-  end
-  namespace :admin do
-    get 'review_reports/index'
-  end
-  namespace :admin do
-    get 'post_reports/index'
-  end
-  namespace :public do
-    get 'review_reports/create'
-  end
+  # namespace :admin do
+  #   get 'review/show'
+  # end
+  # namespace :admin do
+  #   get 'postss/show'
+  # end
+  # namespace :admin do
+  #   get 'review_reports/index'
+  # end
+  # namespace :admin do
+  #   get 'post_reports/index'
+  # end
+  # namespace :public do
+  #   get 'review_reports/create'
+  # end
   # namespace :public do
   #   get 'post_reports/create'
   # end
@@ -22,9 +22,9 @@ Rails.application.routes.draw do
   #   get 'reviews/new'
   #   get 'reviews/index'
   # end
-  namespace :admin do
-    get "users/index"
-  end
+  # namespace :admin do
+  #   get "users/index"
+  # end
   
   # ユーザー側
   devise_for :users,skip: [:passwords], controllers: {
@@ -38,10 +38,11 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: "homes#top"
-    resources :users, only: [:destroy]
+    # resources :users, only: [:destroy]
     get "users/mypage" => "users#show", as: "mypage"
     get "users/profile/edit" => "users#profile_edit", as: "profile_edit"
     patch "users/profile" => "users#profile_update", as: "profile_update"
+    patch "/users/account_delete" => "users#withdrawal", as: "account_delete"
     
     resources :posts, only: [:new, :index, :show, :create, :destroy] do
       resource :reviews, only: [:create]
@@ -53,6 +54,8 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new] do
       resource :review_reports, only: [:create], as: "report"
     end
+    
+    get "/searches/genre" => "searches#genre_search"
   end
   
   
