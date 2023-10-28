@@ -1,0 +1,25 @@
+<span class="ms-2" id="average_rate<%= post.id %>"></span>
+
+<script>
+  $(document).on('turbolinks:load', function() {
+    // ブラウザバックで星が増え続ける不具合対策
+    $('#average_rate<%= post.id %>').empty();
+
+    $('#average_rate<%= post.id %>').each(function() {
+      let elem = document.querySelector('#average_rate<%= post.id %>');
+      // 星画像などのオプション
+      let opt = {
+        starOff:  "<%= asset_path('star-off.png') %>",
+        starOn : "<%= asset_path('star-on.png') %>",
+        starHalf: "<%= asset_path('star-half.png') %>",
+
+        <% if post.reviews.count > 0 %>
+          score: "<%= post.get_average_rate %>",
+        <% end %>
+
+        readOnly: true,
+      };
+      raty(elem,opt);
+    });
+  });
+</script>

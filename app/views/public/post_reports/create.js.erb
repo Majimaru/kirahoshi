@@ -1,4 +1,2 @@
 $('#postReportModal_<%= @post.id %>').modal('hide');
-<!--$(".modal-backdrop").remove();-->
-<!--$("body").removeClass("modal-open");-->
-$(“.post_report_<%= @post.id %>”).html("<%= escape_javascript(render "public/post_reports/report", post: @post) %>");
+$(".post_report_<%= @post.id %>").html("<%= escape_javascript(render("public/post_reports/report", post: @post)) %>");

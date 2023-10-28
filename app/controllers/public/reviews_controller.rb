@@ -1,13 +1,14 @@
 class Public::ReviewsController < ApplicationController
   
   def index
-    @reviews = Review.where(user_id: current_user.id, post_id: params[:post_id])
+    @reviews = Review.where(post_id: params[:post_id]).page(params[:page]).per(10)
+    @review_report = ReviewReport.new
   end
   
   def new
     @review = Review.new
     @post_report = PostReport.new
-    @posts = Post.where.not(user_id: current_user.id)
+    @posts = Post.where.not(user_id: current_user.id).page(params[:page]).per(10)
   end
 
   def create
@@ -21,8 +22,6 @@ class Public::ReviewsController < ApplicationController
       review.post_id = @post.id
       review.save
     end
-    
-    # redirect_to new_review_path
   end
   
   private

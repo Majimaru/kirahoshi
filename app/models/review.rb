@@ -16,4 +16,9 @@ class Review < ApplicationRecord
   
   validates :comment, length: { maximum: 100 }
   
+  # ReviewReportテーブルにユーザーIDとレビューIDが一致するデータが存在するか確認
+  def review_reported_by?(user)
+    review_reports.exists?(user_id: user.id)
+  end
+  
 end

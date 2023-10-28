@@ -24,10 +24,6 @@ html, body, main {
   min-height:100vh;
 }
 
-/*header {*/
-/*  background-color: #0D0116;*/
-/*}*/
-
 header, main, .col-sm-12, .nav3, .card-body, .nav4 {
   background-color: #333333;
 }
@@ -46,12 +42,6 @@ header, main, .col-sm-12, .nav3, .card-body, .nav4 {
 
 .nav2 .btn:hover {
   background-color: rgba(255, 255, 0, 0.7);
-  /*color: red;*/
-}
-
-.nav2 .btn:active {
-  /*background-color: red;*/
-  /*color: blue;*/
 }
 
 .nav3 .btn {
@@ -99,12 +89,6 @@ header, main, .col-sm-12, .nav3, .card-body, .nav4 {
 .pagination > li > a:hover {        
   background-color: rgba(255, 255, 0, 1);
 }
-
-/*@media screen and (min-width:426px) {*/
-/*  .main-visual {*/
-/*    margin-top: 48px;*/
-/*  }*/
-/*}*/
 
 /*スマホサイズのみ適用*/
 @media screen and (max-width:576px) {

@@ -12,13 +12,13 @@ class User < ApplicationRecord
   has_many :reviews,        dependent: :destroy
   has_many :post_reports,   dependent: :destroy
   has_many :review_reports, dependent: :destroy
-  
-  # enum
-  # enum membership_status: { join: 0, delete: 1, suspension_use: 2 }
          
   # バリデーション
   validates :user_name, length: { maximum: 15 }
   validates :email, uniqueness:  true
+  
+  # enum
+  enum membership_status: { admission: 0, withdrawal: 1 }
   
   # ユーザー新規登録時のみバリデーションを適用
   with_options on: :create do

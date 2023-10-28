@@ -5,32 +5,24 @@
     // ブラウザバックで星が増え続ける不具合対策
     $('#view_rate_<%= post.id %>').empty();
     
-    let elem = document.querySelector('#view_rate_<%= post.id %>');
-    // 星画像などのオプション
-    let opt = {  
-      starOff:  "<%= asset_path('star-off.png') %>",
-      starOn : "<%= asset_path('star-on.png') %>",
-      starHalf: "<%= asset_path('star-half.png') %>",
-      
-      // ReviewテーブルにユーザーIDと投稿IDが一致するデータが存在しているか判定
-      <% if post.reviewed_by?(current_user) %>
-        // 存在していたらrateを表示
-        score: "<%= post.get_rate(current_user).rate %>", 
-        scoreName: "review[rate]",
+    $('#view_rate_<%= post.id %>').each(function() {
+      let elem = document.querySelector('#view_rate_<%= post.id %>');
+      // 星画像などのオプション
+      let opt = {  
+        starOff:  "<%= asset_path('star-off.png') %>",
+        starOn : "<%= asset_path('star-on.png') %>",
+        starHalf: "<%= asset_path('star-half.png') %>",
+        
+        // ReviewテーブルにユーザーIDと投稿IDが一致するデータが存在しているか判定
+        <% if post.reviewed_by?(current_user) %>
+          score: "<%= post.get_rate(current_user).rate %>", 
+        <% end %>
+        
+        // 星半分評価の入力を許可
+        half: true,
         readOnly: true,
-      <% else %>
-        // reviewモデルのrateカラムへ値を保存
-        scoreName: "review[rate]",
-        readOnly: true,
-      <% end %>
-      
-      // 星半分評価の入力を許可
-      half: true,
-     };
-    raty(elem,opt);
+       };
+      raty(elem,opt);
+    });
   });
-  
-  function changeRate(){
-    $('#rate_<%= post.id %>').empty();
-  }
 </script>

@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-10 col-lg-8 mx-auto mt-2 pt-4 text-light">
+      <h3 class="mb-4 pb-1 px-3 border-start border-5 border-warning">レビュー詳細</h3>
+      
+      <table class="table table-borderless admin-post-table">
+        <tr class="mb-4">
+          <td class="col-4 report-td">レビューID</td>
+          <td class="col-8 report-td"><%= @review.id %></td>
+        </tr>
+        <tr class="mb-4">
+          <td class="report-td">ユーザー名</td>
+          <td class="report-td"><%= @review.user.user_name %></td>
+        </tr>
+        <tr class="mb-4">
+          <td class="report-td">コメント</td>
+          <td class="report-td">
+            <% if @review.comment.blank? %>
+              コメントなし
+            <% else %>
+              <%= @review.comment %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+      
+      <div class="row mt-5">
+        <!--通報ステータスが未対応の場合のみ「問題なし」ボタンを表示する-->
+        <% if @report.status == "wait_response" %>
+          <%= link_to "問題なし", admin_review_report_path(@report), method: :patch, 
+            class: "col-3 me-4 btn btn-success rounded-pill", :data => {:confirm => '通報ステータスを「対応済み」にしてもよろしいですか？'} %>
+        <% end %>
+        
+        <%= link_to "削除する", admin_review_path(@review), method: :delete, 
+          class: "col-3 btn btn-outline-danger rounded-pill border-3", :data => {:confirm => '削除してもよろしいですか？'} %>
+      </div>
+    </div>
+  </div>
+</div>
+

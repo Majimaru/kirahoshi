@@ -1,11 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-12 col-md-9 col-lg-6 mx-auto text-light">
-      <%= render "post_top_navbar" %>
-      
+    <div class="col-sm-12 col-md-9 col-lg-6 mx-auto pt-5 text-light">
       <!--レビューが0件の時-->
       <% if @reviews.count == 0 %>
-        <h5 class="mt-4 text-center">レビューがありません</h5>
+        <h5 class="text-center">レビューがありません</h5>
         
       <!--レビューが1件以上の時-->
       <% else %>

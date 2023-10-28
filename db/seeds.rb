@@ -18,3 +18,6 @@
 
 # 管理者
 # Admin.create!(email: "adminuser1@email.com", password: "Admin17722ss")
+
+# レビュー
+Review.create!(user_id: 6, post_id: 1, rate: 2.0, comment: "テスト")

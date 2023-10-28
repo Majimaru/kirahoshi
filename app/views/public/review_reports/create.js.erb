@@ -1,0 +1,2 @@
+$('#reviewReportModal_<%= @review.id %>').modal('hide');
+$(".review_report_<%= @review.id %>").html("<%= escape_javascript(render("public/review_reports/report", review: @review)) %>");

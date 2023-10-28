@@ -1,5 +1,20 @@
 Rails.application.routes.draw do
   
+  namespace :admin do
+    get 'review/show'
+  end
+  namespace :admin do
+    get 'postss/show'
+  end
+  namespace :admin do
+    get 'review_reports/index'
+  end
+  namespace :admin do
+    get 'post_reports/index'
+  end
+  namespace :public do
+    get 'review_reports/create'
+  end
   # namespace :public do
   #   get 'post_reports/create'
   # end
@@ -48,6 +63,17 @@ Rails.application.routes.draw do
   
   namespace :admin do
     resources :users, only: [:index]
+    resources :posts, only: [:destroy]
+    
+    resources :post_reports, only: [:index, :update] do
+      resources :posts, only: [:show]
+    end
+    
+    resources :reviews, only: [:destroy]
+    
+    resources :review_reports, only: [:index, :update] do
+      resources :reviews, only: [:show]
+    end
   end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

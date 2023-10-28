@@ -37,4 +37,9 @@ class Post < ApplicationRecord
     reviews.select("rate").find_by(user_id: user.id)
   end
   
+  # ユーザーIDと投稿IDが該当するレコードのrateカラムの平均値を取得
+  def get_average_rate
+    reviews.where(post_id: id).average(:rate).round(1)
+  end
+  
 end

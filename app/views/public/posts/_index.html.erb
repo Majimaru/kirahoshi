@@ -24,16 +24,26 @@
         </div>
         
         <div>
-          <span class="post_<%= post.id %>">
-            <!--星評価を入力不可で表示-->
-            <%= render "public/reviews/view_rate", post: post %>
-          </span>
-          
-          <!--投稿一覧画面から呼び出された時のみ表示-->
+          <!--投稿一覧画面から呼び出された時に表示-->
           <% if view == "post" %>
-            <span class="ms-2">(平均 2.0 / 全3件)</span>
-          <!--レビュー画面から呼び出された時のみ表示-->
+            <span class="post_<%= post.id %>">
+              <!--星評価を入力不可で表示-->
+              <%= render "public/reviews/average_rate", post: post %>
+            </span>
+            
+            <% if post.reviews.count > 0 %>
+              <span class="ms-2">(平均 <%= post.get_average_rate %> / 全 <%= post.reviews.count %>件)</span>
+            <% else %>
+              <span class="ms-2">(レビューなし)</span>
+            <% end %>
+            
+          <!--レビュー画面から呼び出された時に表示-->
           <% elsif view == "review" %>
+            <span class="post_<%= post.id %>">
+              <!--星評価を入力不可で表示-->
+              <%= render "public/reviews/view_rate", post: post %>
+            </span>
+          
             <!--レビューモーダルを表示-->
             <span class="review_modal_<%= post.id %>">
               <%= render "public/reviews/save_rate", post: post %>
@@ -50,9 +60,9 @@
             </a>
           </div>
           <div class="col-6 col-md-4 px-0">
-            <%= link_to post_review_index_path(post) do %>
+            <%= link_to post_review_index_path(post), data: {"turbolinks"=>false} do %>
               <i class="fa-solid fa-splotch text-secondary"></i>
-              <span class="ms-1">レビュー(1000)</span>
+              <span class="ms-1">レビュー(<%= post.reviews.count %>))</span>
             <% end %>
           </div>
           <div class="col-3 col-md-4 px-0">
@@ -77,3 +87,8 @@
     </div>
   </div>
 <% end %>
+
+<!--ページネーション-->
+<div class="my-5 d-flex justify-content-center">
+  <%= paginate @posts %>
+</div>

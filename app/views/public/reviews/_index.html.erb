@@ -1,1 +1,38 @@
-aaaaaa
+<% reviews.each do |review| %>
+  <div class="card mb-4 text-light border-3 border-secondary">
+    <div class="card-header ps-2">
+      <div class="row">
+        <div class="col-8">
+          <%= image_tag review.user.get_profile_image(30,30), class: "rounded-circle" %>
+          <span class="ms-2"><%= review.user.user_name %></span>
+        </div>
+        <div class="col-4 text-end text-secondary"><%= time_ago_in_words(review.created_at) %>前</div>
+      </div>
+    </div>
+    
+    <div class="card-body pt-2 ps-2">
+      <!--コメントがブランクでなければ表示-->
+      <% unless review.comment.blank? %>
+        <div class="ms-2 mb-2"><%= review.comment %></div>
+      <% end %>
+      
+      <div class="row">
+        <div class="col-6">
+          <!--星評価を入力不可で表示-->
+          <%= render "public/reviews/review_rate", review: review %>
+        </div>
+        <div class="col-6 text-end">
+          <span class="review_report_<%= review.id %> review-bottom-item">
+            <!--未通報の場合に投稿通報モーダルを表示-->
+            <%= render "public/review_reports/report", review: review %>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<!--ページネーション-->
+<div class="my-5 d-flex justify-content-center">
+  <%= paginate @reviews %>
+</div>
