@@ -6,18 +6,79 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# ユーザー
-# 7.times do |n|
-#   User.create!(
-#     user_name: "テストユーザー#{n + 1}",
-#     email: "test2#{n + 1}@email.com",
-#     password: "test" + "#{n}" * 6,
-#     membership_status: 0
-#   )
-# end
+# テストデータ
 
-# 管理者
-# Admin.create!(email: "adminuser1@email.com", password: "Admin17722ss")
+# ユーザーデータ
+kirahoshi = User.find_or_create_by!(user_name: "きらほし") do |user|
+  user.email = "kirahoshi@example.com"
+  user.password = "kira1922ssssf"
+  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user1.jpg"), filename:"sample-user1.jpg")
+end
+
+alice = User.find_or_create_by!(user_name: "アリス") do |user|
+  user.email = "alice@example.com"
+  user.password = "alice122xx"
+  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user2.jpg"), filename:"sample-user2.jpg")
+end
+
+bob = User.find_or_create_by!(user_name: "ボブ") do |user|
+  user.email = "bob@example.com"
+  user.password = "bob12pppxx"
+  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user3.jpg"), filename:"sample-user3.jpg")
+end
+
+miku = User.find_or_create_by!(user_name: "美久") do |user|
+  user.email = "miku@example.com"
+  user.password = "miku2222xxx"
+  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user4.jpg"), filename:"sample-user4.jpg")
+end
+
+hinahina = User.find_or_create_by!(user_name: "ひなひな") do |user|
+  user.email = "hinahina@example.com"
+  user.password = "hina22hina"
+  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user5.jpg"), filename:"sample-user5.jpg")
+end
+
+hideki = User.find_or_create_by!(user_name: "ひでき") do |user|
+  user.email = "hideki@example.com"
+  user.password = "hideki9999"
+  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user6.jpg"), filename:"sample-user6.jpg")
+end
+
+masashi = User.find_or_create_by!(user_name: "まさし@アニメ大好き") do |user|
+  user.email = "masashi@example.com"
+  user.password = "masashi0s0s"
+  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user7.jpg"), filename:"sample-user7.jpg")
+end
+
+mugi = User.find_or_create_by!(user_name: "むぎちゃん") do |user|
+  user.email = "mugi@example.com"
+  user.password = "mugimugi222"
+  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user8.jpg"), filename:"sample-user8.jpg")
+end
+
+kimimaro = User.find_or_create_by!(user_name: "きみまろ") do |user|
+  user.email = "kimimaro@example.com"
+  user.password = "mugimugi222"
+  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user9.jpg"), filename:"sample-user9.jpg")
+end
+
+moroq = User.find_or_create_by!(user_name: "もろQ") do |user|
+  user.email = "moroq@example.com"
+  user.password = "moroq222112"
+  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user10.jpg"), filename:"sample-user10.jpg")
+end
+
+saeri = User.find_or_create_by!(user_name: "さえり") do |user|
+  user.email = "saeri@example.com"
+  user.password = "saerit3r33"
+  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user11.jpg"), filename:"sample-user11.jpg")
+end
+
+# 管理者データ
+admin1 = Admin.find_or_create_by!(email: "kiraAdmin@example.com") do |admin|
+  admin.password = "kiraAdmin0001"
+end
 
 # レビュー
 # Review.create!(user_id: 6, post_id: 1, rate: 2.0, comment: "テスト")
