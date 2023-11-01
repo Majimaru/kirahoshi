@@ -1,5 +1,7 @@
 class Public::PostsController < ApplicationController
   
+  before_action :level_up, only: [:create]
+  
   def new
     @post = Post.new
   end

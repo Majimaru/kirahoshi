@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_10_28_054629) do
+ActiveRecord::Schema.define(version: 2023_11_01_110509) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -54,6 +54,13 @@ ActiveRecord::Schema.define(version: 2023_10_28_054629) do
 
   create_table "genres", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "level_settings", force: :cascade do |t|
+    t.integer "level", default: 0, null: false
+    t.integer "thresold", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -107,6 +114,8 @@ ActiveRecord::Schema.define(version: 2023_10_28_054629) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.integer "membership_status", default: 0, null: false
+    t.integer "active_level", default: 1, null: false
+    t.integer "experience_point", default: 0, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

@@ -42,6 +42,5 @@ class Public::UsersController < ApplicationController
     if @user.guest_user?
       redirect_to mypage_path, notice: "ゲストユーザーはこちらの操作を行うことが出来ません。"
     end
-  end  
-  
+  end
 end

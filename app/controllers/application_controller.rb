@@ -35,4 +35,23 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:user_name])
   end
   
+  # 投稿またはレビューをした際に行うレベルアップ処理
+  def level_up
+    user = User.find(current_user.id)
+    
+    # ユーザーの現在の経験値に1ポイント加算する
+    totalExp = user.experience_point + 1
+    # 加算後の経験値を総経験値に反映させる
+    user.update(experience_point: totalExp)
+    
+    # ユーザーのアクティブレベルより1高いレコードを取得
+    level_setting = LevelSetting.find_by(level: user.active_level + 1)
+    
+    # ユーザーの総経験値がレベルアップの閾値を超えていれば、レベルアップを行う
+    if level_setting.thresold <= user.experience_point
+      user.active_level = user.active_level + 1
+      user.update(active_level: user.active_level, experience_point: 0)
+    end
+  end
+  
 end
