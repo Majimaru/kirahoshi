@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   
+  # namespace :public do
+  #   get 'contacts/new'
+  # end
   # namespace :admin do
   #   get 'review/show'
   # end
@@ -56,6 +59,7 @@ Rails.application.routes.draw do
     end
     
     get "/searches/genre" => "searches#genre_search"
+    resources :contacts, only: [:new, :create]
   end
   
   

@@ -19,6 +19,16 @@ ja:
       status:
         wait_response: "未対応"
         responded: "対応済み"
+    contact:
+      classification:
+        opinion: "意見"
+        question: "質問"
+        contact_request: "要望"
+      confirmation_status:
+        unconfirmed: "未確認"
+        confirmed: "確認済み"
+        adopt: "採用する"
+        responded: "対応済み"
   activerecord:
     errors:
       messages:
@@ -213,6 +223,9 @@ ja:
         comment: コメント
       review_report:
         reason: 理由
+      contact:  
+        classification: 区分
+        message: メッセージ
       user:
         user_name: ユーザー名
         profile_image: プロフィール画像

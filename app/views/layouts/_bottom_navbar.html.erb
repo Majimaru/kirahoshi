@@ -23,6 +23,12 @@
             レビュー
           <% end %>
         </li>
+        <li class="nav-item">
+          <%= link_to new_contact_path, class: "py-0 w-100 btn rounded-pill" do %>
+            <i class="fa-regular fa-envelope"></i><br>
+            問い合わせ
+          <% end %>
+        </li>
 
       <!--管理者でログイン時のみ表示-->
       <% elsif admin_signed_in? %>

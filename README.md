@@ -44,3 +44,5 @@
 - フリーイラスト素材として以下を使用する<br>
   - illustAC (https://www.ac-illust.com/)
   - Pexels (https://www.pexels.com/ja-jp/)
+  - photoAC (https://www.photo-ac.com/)
+  - pixabay (https://pixabay.com/ja/)

@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :reviews,        dependent: :destroy
   has_many :post_reports,   dependent: :destroy
   has_many :review_reports, dependent: :destroy
+  has_many :contacts,       dependent: :destroy
          
   # バリデーション
   validates :user_name, length: { maximum: 15 }
