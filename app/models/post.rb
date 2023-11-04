@@ -9,6 +9,8 @@ class Post < ApplicationRecord
   
   has_many :reviews,        dependent: :destroy
   has_many :post_reports,   dependent: :destroy
+  has_many :tag_relationships, dependent: :destroy
+  has_many :tags, through: :tag_relationships, source: :tag
   
   # バリデーション
   validates :message, presence: true, length: { maximum: 500 }
@@ -41,6 +43,29 @@ class Post < ApplicationRecord
   # ユーザーIDと投稿IDが該当するレコードのrateカラムの平均値を取得
   def get_average_rate
     reviews.where(post_id: id).average(:rate).round(1)
+  end
+  
+  # タグを保存する
+  def save_tags(post_tags)
+    byebug
+    # 対象の投稿のタグがTagテーブルにあれば、pluckで指定しているnameカラムを配列で格納
+    current_tags = self.tags.pluck(:name) unless self.tags.nil?
+    # 現在、postが持っているタグと、今回保存されたタグの差分を現在のタグとし、古いタグは削除
+    old_tags = current_tags - post_tags
+    # 今回保存されたタグと現在のタグの差分を新しいタグとし、新しいタグは保存
+    new_tags = post_tags - current_tags
+
+    # 古いタグを削除する
+    old_tags.each do |old_name|
+      self.tags.delete Tag.find_by(name: old_name)
+    end
+
+    # 新しいタグを保存する
+    new_tags.each do |new_tag|
+      # tag_relationshipsがthroughしているのでtagsでアソシエーションを指定すると中間テーブルを通過した際に保存される
+      # find_or_create_by : Tagテーブルにnameカラムがブロック変数tagの値が無ければレコードを作成
+      self.tags.find_or_create_by(name: new_tag)
+    end
   end
   
 end

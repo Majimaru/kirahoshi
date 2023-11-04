@@ -3,6 +3,8 @@ class Public::PostsController < ApplicationController
   before_action :level_up, only: [:create]
   
   def new
+    # @post_de = Post.find(13)
+    # byebug
     @post = Post.new
   end
 
@@ -15,8 +17,12 @@ class Public::PostsController < ApplicationController
   
   def create
     @post = current_user.posts.new(post_params)
+    tags = params[:post][:name].split(",")
     
     if @post.save
+      # タグを保存するためのメソッドを呼び出す
+      @post.save_tags(tags)
+      
       flash[:notice] = "投稿に成功しました"
       redirect_to new_post_path
     else
