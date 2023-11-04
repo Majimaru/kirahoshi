@@ -4,6 +4,8 @@
   </div>
 <% end %>
 
+<%= render "public/posts/sort_search_navbar" %>
+
 <% posts.each do |post| %>
   <div class="card mb-4 text-light border-3 border-secondary">
     <div class="card-header ps-2">
@@ -38,7 +40,7 @@
             </span>
             
             <% if post.reviews.count > 0 %>
-              <span class="ms-2">(平均 <%= post.get_average_rate %> / 全 <%= post.reviews.count %>件)</span>
+              <span class="ms-2">(平均 <%= post.average_rate %> / 全 <%= post.reviews.count %>件)</span>
             <% else %>
               <span class="ms-2">(レビューなし)</span>
             <% end %>

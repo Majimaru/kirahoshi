@@ -7,6 +7,7 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.references :genre, null: false, foreign_key: true
       t.text :message, null: false
       t.string :review_item, null: false
+      t.float :average_rate, null: false, default: 0.0
 
       t.timestamps
     end

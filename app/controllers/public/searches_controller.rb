@@ -15,4 +15,8 @@ class Public::SearchesController < ApplicationController
     render template: "public/reviews/new"
   end
   
+  def tag_search
+    
+  end
+  
 end

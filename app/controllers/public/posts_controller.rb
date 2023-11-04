@@ -3,8 +3,6 @@ class Public::PostsController < ApplicationController
   before_action :level_up, only: [:create]
   
   def new
-    # @post_de = Post.find(13)
-    # byebug
     @post = Post.new
   end
 

@@ -1,0 +1,17 @@
+<nav class="col-12 mt-2 mb-4 mx-auto navbar navbar-expand sticky-top nav4">
+  <ul class="w-100 navbar-nav nav-justified">
+    <li class="nav-item">
+      <%= link_to "新しい順", new_review_path(sort: "created_at desc"), class: "text-info" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "古い順", new_review_path(sort: "created_at asc"), class: "text-info" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "評価順", posts_path, class: "text-info" %>
+    </li>
+    <li class="nav-item">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <%= link_to "検索", posts_path, class: "text-info" %>
+    </li>
+  </ul>
+</nav>

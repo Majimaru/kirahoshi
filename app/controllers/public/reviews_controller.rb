@@ -8,7 +8,7 @@ class Public::ReviewsController < ApplicationController
   def new
     @review = Review.new
     @post_report = PostReport.new
-    @posts = Post.where.not(user_id: current_user.id).page(params[:page]).per(10)
+    @posts = Post.where.not(user_id: current_user.id).page(params[:page]).per(10).order(params[:sort])
   end
 
   def create
@@ -22,6 +22,8 @@ class Public::ReviewsController < ApplicationController
       review.post_id = @post.id
       review.save
     end
+    
+    @post.update(average_rate: @post.get_average_rate)
   end
   
   private

@@ -58,8 +58,9 @@ Rails.application.routes.draw do
       resource :review_reports, only: [:create], as: "report"
     end
     
-    get "/searches/genre" => "searches#genre_search"
     resources :contacts, only: [:new, :create]
+    get "/searches/genre" => "searches#genre_search"
+    get "/searches/tag" => "searches#tag_search"
   end
   
   

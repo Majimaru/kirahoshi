@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 2023_11_04_132701) do
     t.integer "genre_id", null: false
     t.text "message", null: false
     t.string "review_item", null: false
+    t.float "average_rate", default: 0.0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["genre_id"], name: "index_posts_on_genre_id"

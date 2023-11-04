@@ -18,7 +18,7 @@
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to new_review_path, class: "py-0 w-100 btn rounded-pill", data: {"turbolinks"=>false} do %>
+          <%= link_to new_review_path(sort: "created_at desc"), class: "py-0 w-100 btn rounded-pill", data: {"turbolinks"=>false} do %>
             <%= image_tag "telescope.png", size: "20x20" %><br>
             レビュー
           <% end %>

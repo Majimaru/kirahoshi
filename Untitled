@@ -1,21 +1,22 @@
-<span class="ms-2" id="review_rate_<%= review.id %>"></span>
+  # タグを保存する
+  def save_tags(post_tags)
+    byebug
+    # 対象の投稿のタグがTagテーブルにあれば、pluckで指定しているnameカラムを配列で格納
+    current_tags = self.tags.pluck(:name) unless self.tags.nil?
+    # 現在、postが持っているタグと、今回保存されたタグの差分を現在のタグとし、古いタグは削除
+    old_tags = current_tags - post_tags
+    # 今回保存されたタグと現在のタグの差分を新しいタグとし、新しいタグは保存
+    new_tags = post_tags - current_tags
 
-<script>
-  $(document).on('turbolinks:load', function() {
-    // ブラウザバックで星が増え続ける不具合対策
-    $('#review_rate_<%= review.id %>').empty();
-    
-    $('#review_rate_<%= review.id %>').each(function() {
-    let elem = document.querySelector('#review_rate_<%= review.id %>');
-    // 星画像などのオプション
-    let opt = {  
-      starOff:  "<%= asset_path('star-off.png') %>",
-      starOn : "<%= asset_path('star-on.png') %>",
-      starHalf: "<%= asset_path('star-half.png') %>",
-      score: "<%= review.rate %>", 
-      readOnly: true,
-     };
-    raty(elem,opt);
-    });
-  });
-</script>
+    # 古いタグを削除する
+    old_tags.each do |old_name|
+      self.tags.delete Tag.find_by(name: old_name)
+    end
+
+    # 新しいタグを保存する
+    new_tags.each do |new_tag|
+      # tag_relationshipsがthroughしているのでtagsでアソシエーションを指定すると中間テーブルを通過した際に保存される
+      # find_or_create_by : Tagテーブルにnameカラムがブロック変数tagの値が無ければレコードを作成
+      self.tags.find_or_create_by(name: new_tag)
+    end
+  end

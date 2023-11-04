@@ -10,7 +10,7 @@ class Post < ApplicationRecord
   has_many :reviews,        dependent: :destroy
   has_many :post_reports,   dependent: :destroy
   has_many :tag_relationships, dependent: :destroy
-  has_many :tags, through: :tag_relationships, source: :tag
+  has_many :tags, through: :tag_relationships
   
   # バリデーション
   validates :message, presence: true, length: { maximum: 500 }
@@ -47,7 +47,6 @@ class Post < ApplicationRecord
   
   # タグを保存する
   def save_tags(post_tags)
-    byebug
     # 対象の投稿のタグがTagテーブルにあれば、pluckで指定しているnameカラムを配列で格納
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
     # 現在、postが持っているタグと、今回保存されたタグの差分を現在のタグとし、古いタグは削除
