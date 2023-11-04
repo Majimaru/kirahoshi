@@ -100,4 +100,13 @@ header, main, .col-sm-12, .nav3, .card-body, .nav4 {
     width : 150px;
     height: 150px;
   }
+  
+  // 画面下部メニューバー
+  .nav2 ul {
+    padding: 5px 0px;
+  }
+  
+  .nav2 .btn {
+    font-size: 12px;
+  }
 }

@@ -9,6 +9,7 @@ class Public::ReviewsController < ApplicationController
     @review = Review.new
     @post_report = PostReport.new
     @posts = Post.where.not(user_id: current_user.id).page(params[:page]).per(10).order(params[:sort])
+    @tags = Tag.all
   end
 
   def create
