@@ -1,9 +1,3 @@
-<% if view == "review" %>
-  <div class="col-12 mb-4 text-end">
-    <%= render "public/searches/form" %>
-  </div>
-<% end %>
-
 <%= render "public/posts/sort_search_navbar", tags: @tags %>
 
 <% posts.each do |post| %>

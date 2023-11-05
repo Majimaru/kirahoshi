@@ -15,7 +15,7 @@ class Public::PostsController < ApplicationController
   
   def create
     @post = current_user.posts.new(post_params)
-    tags = params[:post][:name].split(",")
+    tags = params[:post][:name].split(",").uniq
     
     if @post.save
       # タグを保存するためのメソッドを呼び出す
