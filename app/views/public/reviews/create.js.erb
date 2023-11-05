@@ -8,6 +8,7 @@ $(".form_submit").removeAttr("data-disable-with");
 <!--星評価の更新処理を呼び出す-->
 updateViewRate(<%= @post.id %>);
 updateSaveRate(<%= @post.id %>);
+
 <!--レビュー画面の星評価表示の更新処理-->
 function updateViewRate(postId) {
   let elem = document.querySelector('#view_rate_' + postId);
@@ -34,7 +35,7 @@ function updateViewRate(postId) {
 <!--レビューモーダルの星評価表示の更新処理-->
 function updateSaveRate(postId) {
   let elem = document.querySelector('#save_rate_' + postId);
-  console.log("UPDATE2!!");
+  
   let opt = {
     starOff:  "<%= asset_path('star-off.png') %>",
     starOn : "<%= asset_path('star-on.png') %>",
@@ -50,5 +51,5 @@ function updateSaveRate(postId) {
     half: true,
   };
   raty(elem, opt);
-  $(".review-form").reset();
+  <!--$(".review-form").reset();-->
 }
