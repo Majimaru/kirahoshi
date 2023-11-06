@@ -1,0 +1,78 @@
+<nav class="col-12 mb-3 mx-auto navbar navbar-expand sticky-top nav4">
+  <ul class="w-100 navbar-nav nav-justified">
+    <li class="nav-item">
+      <%= link_to "新しい順", new_review_path(sort: "created_at desc"), class: "text-info", data: {"turbolinks"=>false} %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "古い順", new_review_path(sort: "created_at asc"), class: "text-info", data: {"turbolinks"=>false} %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "評価順", new_review_path(sort: "average_rate desc"), class: "text-info", data: {"turbolinks"=>false} %>
+    </li>
+    <li class="nav-item">
+      <button type="button" class="px-2 btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#searchModal">
+        <i class="me-1 fa-solid fa-magnifying-glass"></i>
+        検索
+      </button>
+    </li>
+  </ul>
+</nav>
+
+<!--検索モーダル-->
+<div class="modal fade" id="searchModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content text-dark">
+      <!--ジャンル検索-->
+      <div class="modal-header">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-10 mt-2 px-0 text-start">
+              <h5 class="m-0">キーワード検索</h5>
+            </div>
+            <div class="col-2 text-end">
+              <button type="button" class="mt-1 btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <%= form_with url: searches_genre_path, method: :get do |f| %>
+          <%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt => "すべてを選択する", class: "form-control" %>
+          <%= f.submit "検索", class: "ms-3 btn btn-sm btn-secondary" %>
+        <% end %>
+      </div>
+      
+      <!--ジャンル検索-->
+      <div class="mt-3 modal-header">
+          <h5 class="m-0">ジャンル検索</h5>
+      </div>
+      <div class="modal-body">
+        <%= form_with url: searches_genre_path, method: :get do |f| %>
+          <%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt => "すべてを選択する", class: "form-control" %>
+          <%= f.submit "検索", class: "ms-3 btn btn-sm btn-secondary" %>
+        <% end %>
+      </div>
+      
+      <!--タグ検索-->
+      <div class="mt-3 modal-header">
+        <div class="col-10 mt-2 px-0 text-start">
+          <h5 class="m-0">タグ検索</h5>
+        </div>
+      </div>
+      <div class="modal-body">
+        <!--タグリスト-->
+        <div class="container-fluid">
+          <div class="row">
+            <% tags.each do |tag| %>
+              <div class="col-6 px-0">
+                <i class="fa-solid fa-tags text-secondary"></i>
+                <%= link_to tag.name, root_path %>
+                <%= "(#{tag.posts.count})" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

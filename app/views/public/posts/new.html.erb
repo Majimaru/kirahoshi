@@ -2,45 +2,45 @@
   <div class="row">
     <div class="col-sm-12 col-md-9 col-lg-6 mx-auto text-light">
       <%= render "top_navbar" %>
-      
+
       <p class="mb-3">質問、悩みなど何でも投稿して下さい</p>
       <!--新規投稿フォーム-->
-      <%= form_with model: @post do |f| %>
+      <%= form_with model: @post_new do |f| %>
         <div class="mb-4">
-          <%= f.text_area :message, class: "form-control", rows: 5, placeholder: "500文字以内", 
-              maxlength: 500, required: true %>
+          <%= f.text_area :message, class: "form-control", rows: 4, placeholder: "500文字以内",
+            maxlength: 500, required: true %>
         </div>
-        
+
         <div class="mb-4">
           <%= f.label "画像 (任意)", class: "form-label" %>
           <%= f.file_field :post_image, class: "mt-2 form-control", accept: "image/*" %>
         </div>
-        
+
         <div class="mb-4">
           <%= f.label "タグ (任意)", class: "form-label" %>
-          <%= f.text_field :name, class: "form-control", placeholder: "カンマ区切りで複数追加できます" %>
+          <%= f.text_field :name, class: "form-control", placeholder: "カンマ区切りで複数追加可能。100文字以内", maxlength: 100 %>
         </div>
-        
+
         <div class="mt-4 pt-3 mb-4">
           <%= f.label "ジャンル", class: "form-label me-2" %>
           <span class="col-12">
             <%= f.collection_select :genre_id, Genre.all, :id, :name, class: "form-control text-center" %>
           </span>
         </div>
-        
+
         <div class="mb-5">
           <%= f.label :review_item, class: "form-label" %>
           <div class="row">
             <div class="col-7">
-              <%= f.text_field :review_item, class: "form-control", placeholder: "10文字以内", 
+              <%= f.text_field :review_item, class: "form-control", placeholder: "10文字以内",
                   maxlength: 10, required: true %>
             </div>
             <!--星評価を入力不可で表示-->
             <div class="col-5 px-0" id="post_raty"></div>
           </div>
         </div>
-        
-        <div class="text-center">
+
+        <div class="mb-5 pb-5 text-center">
           <%= f.submit "投稿する", class: "col-6 btn btn-outline-warning rounded-pill border-3" %>
         </div>
       <% end %>
@@ -55,7 +55,7 @@
     // scriptファイルをどのidの部分に配置するかを指定
     let elem = document.querySelector('#post_raty');
     // 星評価のオプションを指定
-    let opt = {  
+    let opt = {
       // 表示画像
       starOn : '<%= asset_path('star-on.png') %>',
       // 表示する星の数

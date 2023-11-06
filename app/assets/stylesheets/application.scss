@@ -94,6 +94,22 @@ header, main, .col-sm-12, .nav3, .card-body, .nav4 {
   background-color: rgba(255, 255, 0, 1);
 }
 
+// 正常時のフラッシュメッセージ
+.flash_notice {
+  // position: absolute;
+  position: fixed;
+  bottom: 10%;
+  left: 33%;
+  z-index: 1;  // 要素を最前面に
+}
+
+/*タブレットサイズのみ適用*/
+@media screen and (max-width:768px) {
+  .flash_notice {
+    left: 25%;
+  }
+}
+
 /*スマホサイズのみ適用*/
 @media screen and (max-width:576px) {
   .profile-image img {
@@ -108,5 +124,15 @@ header, main, .col-sm-12, .nav3, .card-body, .nav4 {
   
   .nav2 .btn {
     font-size: 12px;
+  }
+  
+  .flash_notice {
+    bottom: 11%;
+    left: 14%;
+  }
+  
+  .flash_notice .alert-primary {
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 }

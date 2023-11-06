@@ -29,13 +29,13 @@ ja:
         confirmed: "確認済み"
         adopt: "採用する"
         responded: "対応済み"
-  activerecord:
-    errors:
-      messages:
-        record_invalid: 'バリデーションに失敗しました: %{errors}'
-        restrict_dependent_destroy:
-          has_one: "%{record}が存在しているので削除できません"
-          has_many: "%{record}が存在しているので削除できません"
+  # activerecord:
+  #   errors:
+  #     messages:
+  #       record_invalid: 'バリデーションに失敗しました: %{errors}'
+  #       restrict_dependent_destroy:
+  #         has_one: "%{record}が存在しているので削除できません"
+  #         has_many: "%{record}が存在しているので削除できません"
   date:
     abbr_day_names:
     - 日
@@ -236,7 +236,7 @@ ja:
         current_password: 現在のパスワード
         current_sign_in_at: 現在のログイン時刻
         current_sign_in_ip: 現在のログインIPアドレス
-        email: Eメール
+        email: メールアドレス
         encrypted_password: 暗号化パスワード
         failed_attempts: 失敗したログイン試行回数
         last_sign_in_at: 最終ログイン時刻
@@ -252,6 +252,17 @@ ja:
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン
         updated_at: 更新日
+    errors:
+      messages:
+        invalid: "%{attribute}が正しくありません"
+        blank: "を入力してください"
+        too_long: "は%{count}文字以内で入力してください"
+        too_short: "は%{count}文字以上で入力してください"
+        confirmation: と%{attribute}の入力が一致しません
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているので削除できません"
+          has_many: "%{record}が存在しているので削除できません"  
     models:
       user: ユーザー
   devise:

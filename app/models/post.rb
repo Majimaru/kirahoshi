@@ -13,7 +13,7 @@ class Post < ApplicationRecord
   has_many :tags, through: :tag_relationships
   
   # バリデーション
-  validates :message, presence: true, length: { maximum: 500 }
+  validates :message, presence: true, length: { maximum: 5 }
   validates :review_item, presence: true, length: { maximum: 10 }
   
   # 投稿画像を表示
@@ -59,11 +59,18 @@ class Post < ApplicationRecord
       self.tags.delete Tag.find_by(name: old_name)
     end
 
-    # 新しいタグを保存する
     new_tags.each do |new_tag|
-      # tag_relationshipsがthroughしているのでtagsでアソシエーションを指定すると中間テーブルを通過した際に保存される
-      # find_or_create_by : Tagテーブルにnameカラムがブロック変数tagの値が無ければレコードを作成
-      self.tags.find_or_create_by(name: new_tag)
+      new_tag = new_tag.downcase
+      
+      # 新しいタグが既にTagテーブルにあれば、TagRelationshipテーブルにのみ保存する
+      if Tag.exists?(name: new_tag)
+        old_tag = Tag.select("id").find_by(name: new_tag)
+        TagRelationship.create(post_id: self.id, tag_id: old_tag.id)
+      
+      # 新しいタグを保存する
+      else
+        self.tags.find_or_create_by(name: new_tag)
+      end
     end
   end
   

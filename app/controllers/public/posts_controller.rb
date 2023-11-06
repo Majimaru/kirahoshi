@@ -3,11 +3,12 @@ class Public::PostsController < ApplicationController
   before_action :level_up, only: [:create]
   
   def new
-    @post = Post.new
+    @post_new = Post.new
   end
 
   def index
     @posts = Post.where(user_id: current_user.id).page(params[:page]).per(10)
+    @tags = Tag.all
   end
 
   def show
@@ -15,7 +16,7 @@ class Public::PostsController < ApplicationController
   
   def create
     @post = current_user.posts.new(post_params)
-    tags = params[:post][:name].split(",").uniq
+    tags = params[:post][:name].split(",").map(&:strip).uniq
     
     if @post.save
       # タグを保存するためのメソッドを呼び出す
@@ -23,16 +24,23 @@ class Public::PostsController < ApplicationController
       
       flash[:notice] = "投稿に成功しました"
       redirect_to new_post_path
+      
     else
       flash.now[:alert] = "投稿に失敗しました"
-      @post = Post.new
+      @post_new = Post.new
       render "new"
     end
   end
   
   def destroy
-    Post.find(params[:id]).destroy
-    redirect_to posts_path
+    if Post.find(params[:id]).destroy
+      flash[:notice] = "削除に成功しました"
+      redirect_to posts_path
+      
+    else
+      flash.now[:alert] = "削除に失敗しました"
+      render "index"
+    end
   end
   
   private

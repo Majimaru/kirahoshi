@@ -17,11 +17,10 @@
   <body>
     <!--ヘッダー-->
     <%= render "layouts/header" %>
+    <!--フラッシュメッセージ-->
+    <%= render "layouts/flash_message" %>
     
     <main>
-      <!--フラッシュメッセージ-->
-      <%= render "layouts/flash_message" %>
-      
       <%= yield %>
       
       <!--下部メニューバー-->

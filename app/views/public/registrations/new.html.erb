@@ -8,7 +8,7 @@
         
         <div class="field">
           <%= f.label "ユーザー名" %><br />
-          <%= f.text_field :user_name, autofocus: true, class: "col-12 mt-2 mb-4", required: true %>
+          <%= f.text_field :user_name, autofocus: true, class: "col-12 mt-2 mb-4", maxlength: 15, required: true %>
         </div>
         
         <div class="field">
@@ -21,12 +21,14 @@
           <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %>  桁以上 16桁以下の英数字)</em>
           <% end %><br />
-          <%= f.password_field :password, autocomplete: "new-password", class: "col-12 mt-2 mb-4", required: true %>
+          <%= f.password_field :password, autocomplete: "new-password", class: "col-12 mt-2 mb-4", 
+            minlength: 8, maxlength: 16, required: true %>
         </div>
       
         <div class="field">
           <%= f.label "パスワードの確認" %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "col-12 mt-2" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "col-12 mt-2", 
+            minlength: 8, maxlength: 16, required: true %>
         </div>
       
         <div class="actions">

@@ -4,6 +4,9 @@ class Tag < ApplicationRecord
   has_many :tag_relationships, dependent: :destroy
   has_many :posts, through: :tag_relationships
   
+  # バリデーション
+  validates :name, presence: true, uniqueness: true
+  
   def self.search_for(content, method)
     if method == "perfect"
       tags = Tag.where(name: content)
