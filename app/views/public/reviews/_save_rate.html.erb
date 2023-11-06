@@ -30,7 +30,7 @@
       </div>
 
       <div class="modal-body py-4">
-        <%= form_with model: @review, url: post_reviews_path(post), method: :post, local: false, class: "review-form" do |f| %>
+        <%= form_with model: review, url: post_reviews_path(post), method: :post, local: false, class: "review-form" do |f| %>
           <%= post.review_item %>
           <%= f.hidden_field :rate, required: true %>
 

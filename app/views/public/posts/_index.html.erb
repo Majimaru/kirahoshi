@@ -48,7 +48,7 @@
           
             <!--レビューモーダルを表示-->
             <span class="review_modal_<%= post.id %>">
-              <%= render "public/reviews/save_rate", post: post %>
+              <%= render "public/reviews/save_rate", post: post, review: @review %>
             </span>
           <% end %>
         </div>
