@@ -52,6 +52,7 @@ class Public::ReviewsController < ApplicationController
     end
     
     @post.update(average_rate: @post.get_average_rate)
+    redirect_to new_review_path(sort: "created_at desc")
   end
   
   private
