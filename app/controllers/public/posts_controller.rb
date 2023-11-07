@@ -7,7 +7,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.where(user_id: current_user.id).page(params[:page]).per(10)
+    @posts = Post.where(user_id: current_user.id).page(params[:page]).per(10).order(params[:sort])
     @tags = Tag.all
   end
 
@@ -16,7 +16,6 @@ class Public::PostsController < ApplicationController
   
   def create
     @post = current_user.posts.new(post_params)
-    @list.score = Language.get_data(list_params[:body])
     tags = params[:post][:name].split(",").map(&:strip).uniq
     
     if @post.save

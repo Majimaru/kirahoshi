@@ -8,7 +8,7 @@
       <!--レビューが1件以上の時-->
       <% else %>
         <!--レビュー一覧表示-->
-        <%= render "index", reviews: @reviews %>
+        <%= render "public/reviews/index", reviews: @reviews, view: "reviews" %>
       <% end %>
     </div>
   </div>

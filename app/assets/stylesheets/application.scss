@@ -103,6 +103,16 @@ header, main, .col-sm-12, .nav3, .card-body, .nav4 {
   z-index: 1;  // 要素を最前面に
 }
 
+#filter {
+  width: 185px;
+}
+
+// 検索ボタン
+.search_btn {
+  width: 71px;
+  height: 36px;
+}
+
 /*タブレットサイズのみ適用*/
 @media screen and (max-width:768px) {
   .flash_notice {

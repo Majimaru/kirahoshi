@@ -1,8 +1,29 @@
 class Public::ReviewsController < ApplicationController
   
   def index
-    @reviews = Review.where(post_id: params[:post_id]).page(params[:page]).per(10)
+    # フィルタ設定
+    filter = params[:filter]
+    
+    # フィルタ設定が存在するか判定
+    unless filter.nil?
+      # 「すべて」が選択された場合、すべてのレコードを取得
+      if filter == "all"
+        @reviews = Review.where(post_id: params[:post_id]).page(params[:page]).per(10)
+      # 「ポジティブなレビューのみ」が選択された場合、レートが2.5以上かつ感情スコアが0以上のレコードを取得
+      elsif filter == "positive"
+        @reviews = Review.where(post_id: params[:post_id], rate: 2.5..., emotion_score: 0...).page(params[:page]).per(10)
+      # 「ネガティブなレビューのみ」が選択された場合、レートが2.5未満かつ感情スコアが0未満のレコードを取得
+      elsif filter == "negative"
+        @reviews = Review.where(post_id: params[:post_id], rate: ...2.5).page(params[:page]).per(10)
+      end
+    
+    # フィルタ設定が存在しない場合は、投稿に関連する投稿をすべて取得し、ソートする
+    else
+      @reviews = Review.where(post_id: params[:post_id]).page(params[:page]).per(10).order(params[:sort])
+    end
+    
     @review_report = ReviewReport.new
+    @post = Post.find(params[:post_id])
   end
   
   def new

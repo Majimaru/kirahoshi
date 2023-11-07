@@ -1,16 +1,22 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-9 col-lg-6 mx-auto text-light">
-      <%= render "top_navbar" %>
+      <%= render "public/posts/top_navbar" %>
       
       <!--投稿データが0件の時-->
       <% if @posts.count == 0 %>
-        <h5 class="mt-4 text-center">投稿データがありません</h5>
+        <!--ジャンル検索から遷移した場合-->
+        <% unless @search.nil? %>
+          <h5 class="mt-5 text-center">検索結果がありません</h5>
+          
+        <% else %>
+          <h5 class="mt-5 text-center">投稿データがありません</h5>
+        <% end %>
         
       <!--投稿データが1件以上の時-->
       <% else %>
         <!--投稿一覧表示-->
-        <%= render "index", posts: @posts, view: "post" %>
+        <%= render "public/posts/index", posts: @posts, view: "post" %>
       <% end %>
     </div>
   </div>

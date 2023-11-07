@@ -1,10 +1,20 @@
-<nav class="col-12 mt-2 mb-4 mx-auto navbar navbar-expand sticky-top nav4">
+<% unless @search.nil? %>
+  <div class="row pt-3 pt-sm-4 pb-3 pb-sm-4 sticky-top nav4">
+    <h5 class="col-12">
+      <i class="mb-0 me-4 fa-solid fa-arrow-left h4"></i>
+      <%= @search %>
+    </h5>
+  </div>
+
+<% else %>
+<nav class="col-12 pt-3 pt-sm-4 pb-3 pb-sm-4 mx-auto navbar navbar-expand sticky-top nav4">
   <ul class="w-100 navbar-nav nav-justified">
     <li class="nav-item">
       <%= link_to "新規投稿", new_post_path, class: "text-info" %>
     </li>
     <li class="nav-item">
-      <%= link_to "投稿一覧", posts_path, class: "text-info",data: {"turbolinks"=>false} %>
+      <%= link_to "投稿一覧", posts_path(sort: "created_at desc"), class: "text-info",data: {"turbolinks"=>false} %>
     </li>
   </ul>
 </nav>
+<% end %>

@@ -1,4 +1,4 @@
-<%= render "public/searches/sort_search_navbar", tags: @tags %>
+<%= render "public/searches/sort_search_navbar", tags: @tags, view: view %>
 
 <% posts.each do |post| %>
   <div class="card mb-4 text-light border-3 border-secondary">
@@ -64,7 +64,7 @@
             </a>
           </div>
           <div class="col-5 col-md-4 px-0">
-            <%= link_to post_review_index_path(post), data: {"turbolinks"=>false} do %>
+            <%= link_to post_review_index_path(post, sort: "created_at desc"), data: {"turbolinks"=>false} do %>
               <i class="fa-solid fa-splotch text-secondary"></i>
               <span class="ms-1">レビュー(<%= post.reviews.count %>))</span>
             <% end %>
@@ -72,7 +72,7 @@
           <div class="col-3 col-md-4 px-0">
             <% if view == "post" %>
               <!--投稿削除モーダルを表示-->
-              <%= render "delete_post.html", post: post %>
+              <%= render "public/posts/delete_post", post: post %>
               
             <% elsif view == "review" %>
               <span class="post_report_<%= post.id %>">
