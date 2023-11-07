@@ -13,7 +13,7 @@ class Post < ApplicationRecord
   has_many :tags, through: :tag_relationships
   
   # バリデーション
-  validates :message, presence: true, length: { maximum: 5 }
+  validates :message, presence: true, length: { maximum: 500 }
   validates :review_item, presence: true, length: { maximum: 10 }
   
   # 投稿画像を表示
