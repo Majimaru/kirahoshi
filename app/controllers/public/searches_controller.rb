@@ -16,7 +16,7 @@ class Public::SearchesController < ApplicationController
         @posts = Post.where(user_id: current_user.id, genre_id: @genre_id).page(params[:page]).per(10).order("created_at desc")
         # 検索結果画面に表示する文字列を設定
         genre = Genre.select("name").where(id: @genre_id).first
-        @search = "ジャンル  :  " + genre.name.to_s
+        @search = "ジャンル :　" + genre.name.to_s
       end
       
       render template: "public/posts/index"
@@ -24,9 +24,14 @@ class Public::SearchesController < ApplicationController
     # 遷移元がレビュー画面の時 
     elsif view == "review"
       if @genre_id.blank?
-        @posts = Post.where.not(user_id: current_user.id).page(params[:page]).per(10)
+        @posts = Post.where.not(user_id: current_user.id).page(params[:page]).per(10).order("created_at desc")
+        @serarch = ""
+        
       else
-        @posts = Post.where(genre_id: @genre_id).where.not(user_id: current_user.id).page(params[:page]).per(10)
+        @posts = Post.where(genre_id: @genre_id).where.not(user_id: current_user.id).page(params[:page]).per(10).order("created_at desc")
+        # 検索結果画面に表示する文字列を設定
+        genre = Genre.select("name").where(id: @genre_id).first
+        @search = "ジャンル :　" + genre.name.to_s
       end
       
       @review = Review.new
