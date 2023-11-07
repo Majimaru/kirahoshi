@@ -48,10 +48,10 @@ class ApplicationController < ActionController::Base
     level_setting = LevelSetting.find_by(level: user.active_level + 1)
     
     # ユーザーの総経験値がレベルアップの閾値を超えていれば、レベルアップを行う
-    if level_setting.thresold <= user.experience_point
-      user.active_level = user.active_level + 1
-      user.update(active_level: user.active_level, experience_point: 0)
-    end
+    # if level_setting.thresold <= user.experience_point
+    #   user.active_level = user.active_level + 1
+    #   user.update(active_level: user.active_level, experience_point: 0)
+    # end
   end
   
 end
