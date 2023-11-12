@@ -97,17 +97,15 @@
       </div>
       <div class="modal-body">
         <!--タグリスト-->
-        <div class="container-fluid">
-          <div class="row">
-            <% tags.each do |tag| %>
-              <div class="col-6 px-0">
-                <i class="fa-solid fa-tags text-secondary"></i>
-                <%= link_to tag.name, root_path %>
-                <%= "(#{tag.posts.count})" %>
-              </div>
+        <% tags.each do |tag| %>
+          <div class="me-1 mb-2 py-1 btn btn-outline-secondary rounded-pill border-2">
+            <i class="fa-solid fa-tags text-secondary"></i>
+            <%= link_to root_path do %>
+              <%= tag.name %>
+              <%= "(#{tag.posts.count})" %>
             <% end %>
           </div>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>
