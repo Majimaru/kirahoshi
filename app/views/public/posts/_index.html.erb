@@ -94,7 +94,10 @@
             <div class="col-3 col-md-2 pe-0">タグ</div>
             <div class="col-9 col-md-10">
               <% post.tags.each do |tag| %>
-                <span class="me-1 mb-2 py-0 btn btn-outline-warning rounded-pill"><%= tag.name %></span>
+                <%= link_to tag_search_path(tag, view: view), class: "me-1 mb-2 py-0 btn btn-outline-warning rounded-pill", 
+                  data: {"turbolinks"=>false} do %>
+                  <%= tag.name %>
+                <% end %>
               <% end %>
             </div>
           </div>

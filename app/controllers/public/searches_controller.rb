@@ -41,7 +41,20 @@ class Public::SearchesController < ApplicationController
   end
   
   def tag_search
+    tag = Tag.find(params[:id])
+    @tags = Tag.all
+    view = params[:view]
     
+    if view == "post"
+      # タグに紐づくログインユーザーの投稿を取得
+      @posts = tag.posts.where(user_id: current_user.id).page(params[:page]).per(10).order(created_at: :desc)
+      render template: "public/posts/index"
+      
+    elsif view == "review"
+      # タグに紐づく投稿をすべて取得
+      @posts = tag.posts.page(params[:page]).per(10).order(created_at: :desc)
+      render template: "public/reviews/new"
+    end
   end
   
 end

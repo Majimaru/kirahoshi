@@ -90,23 +90,25 @@
       </div>
       
       <!--タグ検索-->
-      <div class="mt-3 modal-header">
-        <div class="col-10 mt-2 px-0 text-start">
-          <h5 class="m-0">タグ検索</h5>
-        </div>
-      </div>
-      <div class="modal-body">
-        <!--タグリスト-->
-        <% tags.each do |tag| %>
-          <div class="me-1 mb-2 py-1 btn btn-outline-secondary rounded-pill border-2">
-            <i class="fa-solid fa-tags text-secondary"></i>
-            <%= link_to root_path do %>
-              <%= tag.name %>
-              <%= "(#{tag.posts.count})" %>
-            <% end %>
+      <% unless view == "post" %>
+        <div class="mt-3 modal-header">
+          <div class="col-10 mt-2 px-0 text-start">
+            <h5 class="m-0">タグ検索</h5>
           </div>
-        <% end %>
-      </div>
+        </div>
+        <div class="modal-body">
+          <!--タグリスト-->
+          <% tags.each do |tag| %>
+            <div class="me-1 mb-2 py-1 btn btn-outline-secondary rounded-pill border-2">
+              <i class="fa-solid fa-tags text-secondary"></i>
+              <%= link_to tag_search_path(tag, view: view), data: {"turbolinks"=>false} do %>
+                <%= tag.name %>
+                <%= "(#{tag.posts.count})" %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

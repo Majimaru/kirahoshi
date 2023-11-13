@@ -60,7 +60,7 @@ Rails.application.routes.draw do
     
     resources :contacts, only: [:new, :create]
     get "/searches/genre" => "searches#genre_search"
-    get "/searches/tag" => "searches#tag_search"
+    get "/searches/tag/:id" => "searches#tag_search", as: "tag_search"
   end
   
   
