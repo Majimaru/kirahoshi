@@ -4,6 +4,9 @@ class Public::UsersController < ApplicationController
   
   def show
     @user = User.find(current_user.id)
+    # アクティブレベルに対するしきい値を取得
+    @thresold = LevelSetting.new.get_thresold(@user.active_level)
+    # @level_setting.get_thresold(@user.active_level)
   end
 
   def profile_edit

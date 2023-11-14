@@ -44,11 +44,11 @@ class ApplicationController < ActionController::Base
     # 加算後の経験値を総経験値に反映させる
     user.update(experience_point: totalExp)
     
-    # ユーザーのアクティブレベルより1高いレコードを取得
-    level_setting = LevelSetting.find_by(level: user.active_level + 1)
+    # アクティブレベルに対するレベルアップに必要な閾値を取得する
+    thresold = LevelSetting.find_by(level: user.active_level).thresold
     
-    # ユーザーの総経験値がレベルアップの閾値を超えていれば、レベルアップを行う
-    if level_setting.thresold <= user.experience_point
+    # ユーザーの総経験値が閾値を超えていれば、レベルアップを行う
+    if thresold <= user.experience_point
       user.active_level = user.active_level + 1
       user.update(active_level: user.active_level, experience_point: 0)
     end

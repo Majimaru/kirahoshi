@@ -1,3 +1,16 @@
 // Place all the styles related to the public/users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+// 経験値バー
+.experience_bar {
+  height: 25px;
+  border-radius: 4px;
+}
+
+// 経験値割合
+.experience {
+  height: 100%;
+  border-radius: 4px;
+}

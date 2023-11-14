@@ -55,6 +55,41 @@ class Public::ReviewsController < ApplicationController
     # redirect_to new_review_path(sort: "created_at desc")
   end
   
+  def destroy
+    if Review.find(params[:id]).destroy
+      flash[:notice] = "削除に成功しました"
+      redirect_to my_review_path(sort: "created_at desc")
+      
+    else
+      flash.now[:alert] = "削除に失敗しました"
+      render "my_review"
+    end
+  end
+  
+  def my_review
+    # byebug
+    # フィルタ設定
+    filter = params[:filter]
+    
+    # フィルタ設定が存在するか判定
+    unless filter.nil?
+      # 「すべて」が選択された場合、すべてのレコードを取得
+      if filter == "all"
+        @reviews = Review.where(user_id: current_user.id).page(params[:page]).per(10)
+      # 「ポジティブなレビューのみ」が選択された場合、レートが2.5以上かつ感情スコアが0以上のレコードを取得
+      elsif filter == "positive"
+        @reviews = Review.where(user_id: current_user.id, rate: 2.5..., emotion_score: 0...).page(params[:page]).per(10)
+      # 「ネガティブなレビューのみ」が選択された場合、レートが2.5未満かつ感情スコアが0未満のレコードを取得
+      elsif filter == "negative"
+        @reviews = Review.where(user_id: current_user.id, rate: ...2.5).page(params[:page]).per(10)
+      end
+    
+    # フィルタ設定が存在しない場合は、自身のすべてのレビューを取得しソートする
+    else
+      @reviews = Review.where(user_id: current_user.id).page(params[:page]).per(10).order(params[:sort])
+    end
+  end
+  
   private
   
   def review_params

@@ -1,7 +1,22 @@
 <nav class="col-12 mb-3 navbar navbar-expand">
   <ul class="ms-auto navbar-nav">
+    <!--マイページから呼び出された時に表示-->
+    <% if view == "mypage" %>
+      <li class="me-3 nav-item"> 
+        <%= form_with url: my_review_path, method: :get do |f| %>
+          <%= f.select :sort, options_for_select([["ソート : 新しい順","created_at desc"], ["ソート : 古い順","created_at asc"], 
+            ["ソート : 評価順","rate desc"]], params[:sort]), {}, { class: "form-control py-1 bg-secondary text-light border-2 border-info" } %>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= form_with url: my_review_path, method: :get do |f| %>
+          <%= f.select :filter, options_for_select([["フィルタ : すべて","all"], ["フィルタ : ポジティブなレビューのみ","positive"], 
+            ["フィルタ : ネガティブなレビューのみ","negative"]], params[:filter]), {}, { class: "form-control py-1 bg-secondary text-light border-2 border-info" } %>
+        <% end %>
+      </li>
+    
     <!--投稿一覧画面から呼び出された時に表示-->
-    <% if view == "post" %>
+    <% elsif view == "post" %>
       <li class="me-3 nav-item"> 
         <%= form_with url: posts_path, method: :get do |f| %>
           <%= f.select :sort, options_for_select([["ソート : 新しい順","created_at desc"], ["ソート : 古い順","created_at asc"], 
@@ -51,7 +66,7 @@
 </nav>
 
 <!--レビュー一覧画面以外から呼び出された時のみ-->
-<% unless view == "reviews" %>
+<% unless view == "reviews" || view == "mypage" %>
 <!--検索モーダル-->
 <div class="modal fade" id="searchModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">

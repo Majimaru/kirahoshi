@@ -54,4 +54,9 @@ class User < ApplicationRecord
     email == GUEST_USER_EMAIL
   end
   
+  # 必要経験値に対する取得経験値の割合を取得
+  def experience_percentage(thresold)
+    self.experience_point.to_f / thresold.to_f * 100.round
+  end
+  
 end

@@ -23,12 +23,24 @@
           <!--星評価を入力不可で表示-->
           <%= render "public/reviews/review_rate", review: review %>
         </div>
-        <div class="col-6 text-end">
-          <span class="review_report_<%= review.id %> review-bottom-item">
-            <!--未通報の場合に投稿通報モーダルを表示-->
-            <%= render "public/review_reports/report", review: review %>
-          </span>
-        </div>
+        
+        <!--マイページから遷移した時-->
+        <% if view == "mypage" %>
+          <div class="col-6 text-end">
+            <span class="review_report_<%= review.id %> review-bottom-item">
+              <!--レビュー削除モーダルを表示-->
+              <%= render "public/reviews/delete_review", review: review %>
+            </span>
+          </div>
+          
+        <% else %>
+          <div class="col-6 text-end">
+            <span class="review_report_<%= review.id %> review-bottom-item">
+              <!--未通報の場合に投稿通報モーダルを表示-->
+              <%= render "public/review_reports/report", review: review %>
+            </span>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

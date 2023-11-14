@@ -1,11 +1,57 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-9 col-lg-6 mt-5 mx-auto text-light">
+      <!--プロフィール画像-->
       <div class="text-center profile-image">
         <%= image_tag @user.get_profile_image(200,200), class: "rounded-circle" %>
         <h2 class="mt-4">
           <%= @user.user_name %>
         </h2>
+      </div>
+      
+      <div class="mt-5 h5 text-center">
+        <%= link_to posts_path(view: "user", sort: "created_at desc"), class: "link-light text-decoration-none", data: {"turbolinks"=>false} do %>
+          投稿数　<%= @user.posts.count %>
+        <% end %>
+        
+        <span class="mx-4">|</span>
+        
+        <%= link_to my_review_path(sort: "created_at desc"), class: "link-light text-decoration-none", data: {"turbolinks"=>false} do %>
+          レビュー数　<%= @user.reviews.count %>
+        <% end %>
+      </div>
+      
+      <!--アクティブレベル-->
+      <div class="row mt-5">
+        <div class="row col-11 col-sm-9 mx-auto">
+          <div class="col-2">
+            <h4 class="mb-0 text-warning text-center">Lv.</h4>
+          </div>
+          <div class="col-10 mt-2 px-0 experience_bar bg-secondary">
+            <div class="experience bg-info" style="width: <%= @user.experience_percentage(@thresold) %>%;"></div>
+          </div>
+          <div class="col-2">
+            <h2><%= @user.active_level %></h2>
+          </div>
+          <div class="col-10 mt-1 px-0">
+            <span class="d-none d-md-inline text-info">
+              経験値
+              <span class="ms-2 me-3"><%= @user.experience_point %></span>
+              /
+            </span>
+            <!--アクティブレベルに対するしきい値を表示-->
+            <span class="ms-2 text-info">
+              次のレベルまで
+              <span class="ms-3"><%= @thresold %></span>
+            </span>
+          </div>
+          <div>
+            <button type="button" class="ps-0 btn text-secondary" data-bs-toggle="modal" data-bs-target="#activeLevelModal">
+              <span class="px-2 border border-secondary rounded-circle">?</span>
+              アクティブレベルとは
+            </button>
+          </div>
+        </div>
       </div>
       
       <nav class="col-12 mt-5 mx-auto navbar navbar-expand nav3">
@@ -44,6 +90,35 @@
         </ul>
       </nav>
       
+      <!--アクティブレベルの説明モーダル-->
+      <div class="modal fade" id="activeLevelModal" tabindex="-1" aria-labelledby="activeLevelLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content text-dark">
+            <div class="modal-header border-bottom border-info">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-2"></div>
+                  <div class="col-8">
+                    <h1 class="modal-title text-center fs-5" id="activeLevelLabel">アクティブレベルとは？</h1>
+                  </div>
+                  <div class="col-2 text-end">
+                    <button type="button" class="mt-1 btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-body py-4">
+              対象ユーザーが当サイトをどれくらい利用しているかを表すレベルとなります。<br><br>
+              投稿 または レビューを1回行うごとに1経験値を得ることができ、アクティブレベルに対する
+              必要経験値に達した際にレベルが上昇します。<br><br>
+            </div>
+            <div class="modal-footer mx-auto">
+              <button type="button" class="btn btn-secondary modal-close-btn" data-bs-dismiss="modal">閉じる</button>
+            </div>
+          </div>
+        </div>
+      </div>      
+      
       <!--操作不可メッセージ表示モーダル-->
       <div class="modal fade" id="unableEditModal" tabindex="-1" aria-labelledby="unableEditModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm modal-dialog-centered">
@@ -69,7 +144,7 @@
           </div>
         </div>
       </div>
-    
+      
     </div>
   </div>
 </div>

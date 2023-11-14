@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-9 col-lg-6 mx-auto text-light">
+      <!--投稿一覧画面へ戻るリンク-->
+      <div class="pt-3 pt-sm-4 pb-3 pb-sm-4 sticky-top nav4">
+        <%= link_to mypage_path, class: "text-info text-decoration-none" do %>
+          <i class="mb-0 me-4 fa-solid fa-arrow-left h4"></i>
+          <span class="h5">マイレビュー一覧</span>
+        <% end %>
+      </div>
+      
+      <!--レビューが0件の時-->
+      <% if @reviews.count == 0 %>
+        <h5 class="mt-4 text-center">レビューがありません</h5>
+        
+      <!--レビューが1件以上の時-->
+      <% else %>
+        <!--レビュー一覧表示-->
+        <%= render "public/reviews/index", reviews: @reviews, view: "mypage" %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -53,8 +53,9 @@ Rails.application.routes.draw do
     end
     
     get "/posts/:post_id/reviews" => "reviews#index", as: "post_review_index"
+    get "/reviews/my_review" => "reviews#my_review", as: "my_review"
     
-    resources :reviews, only: [:new] do
+    resources :reviews, only: [:new, :destroy] do
       resource :review_reports, only: [:create], as: "report"
     end
     
