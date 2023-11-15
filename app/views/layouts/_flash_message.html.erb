@@ -26,14 +26,16 @@
         </div>
         
         <!--エラーが存在している場合にリストで表示-->
-        <% if error.errors.any? %>
-          <div class="col-12 p-0">
-            <ul class="mb-0 ps-3">
-              <% error.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
+        <% unless error.nil? %>
+          <% if error.errors.any? %>
+            <div class="col-12 p-0">
+              <ul class="mb-0 ps-3">
+                <% error.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
         <% end %>
       </div>
     <% end %>

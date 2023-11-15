@@ -87,15 +87,13 @@ ActiveRecord::Schema.define(version: 2023_11_06_184116) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "genre_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "genre_id", null: false
     t.text "message", null: false
     t.string "review_item", null: false
     t.float "average_rate", default: 0.0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["genre_id"], name: "index_posts_on_genre_id"
-    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "review_reports", force: :cascade do |t|
@@ -157,8 +155,6 @@ ActiveRecord::Schema.define(version: 2023_11_06_184116) do
   add_foreign_key "contacts", "users"
   add_foreign_key "post_reports", "posts"
   add_foreign_key "post_reports", "users"
-  add_foreign_key "posts", "genres"
-  add_foreign_key "posts", "users"
   add_foreign_key "review_reports", "reviews"
   add_foreign_key "review_reports", "users"
   add_foreign_key "reviews", "posts"

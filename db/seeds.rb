@@ -93,6 +93,7 @@ Genre.find_or_create_by!(name: "旅行");
 Genre.find_or_create_by!(name: "料理");
 
 # レベル設定
+LevelSetting.find_or_create_by!(level: 1,  thresold: 3);
 LevelSetting.find_or_create_by!(level: 2,  thresold: 5);
 LevelSetting.find_or_create_by!(level: 3,  thresold: 6);
 LevelSetting.find_or_create_by!(level: 4,  thresold: 7);
