@@ -64,9 +64,10 @@ group :production do
   gem 'mysql2'
 end
 
-gem "net-smtp"
-gem "net-pop"
-gem "net-imap"
+gem 'net-smtp'
+gem 'net-pop'
+gem 'net-imap'
 gem 'kaminari', '~> 1.2', '>= 1.2.1'
 gem 'bootstrap', '~> 5.0'
-gem "enum_help"
+gem 'enum_help'
+gem 'listen'
