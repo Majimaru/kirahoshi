@@ -2,12 +2,12 @@
   <div class="row pt-3 pt-sm-4 pb-3 pb-sm-4 sticky-top nav4">
     <div class="col-1">
       <% if view == "post" %>
-        <%= link_to posts_path(sort: "created_at desc"), class: "text-light text-decoration-none",data: {"turbolinks"=>false} do %>
+        <%= link_to posts_path(sort: "created_at desc"), class: "text-info text-decoration-none",data: {"turbolinks"=>false} do %>
           <i class="mb-0 me-4 fa-solid fa-arrow-left h4"></i>
         <% end %>
         
       <% else %>
-        <%= link_to new_review_path(sort: "created_at desc"), class: "text-light text-decoration-none",data: {"turbolinks"=>false} do %>
+        <%= link_to new_review_path(sort: "created_at desc"), class: "text-info text-decoration-none",data: {"turbolinks"=>false} do %>
           <i class="mb-0 me-4 fa-solid fa-arrow-left h4"></i>
         <% end %>
       <% end %>
@@ -22,7 +22,7 @@
   <!--マイページから遷移した場合-->
   <% unless @user.nil? %>
     <div class="pt-3 pt-sm-4 pb-3 pb-sm-4 sticky-top nav4">
-      <%= link_to mypage_path, class: "text-light text-decoration-none" do %>
+      <%= link_to mypage_path, class: "text-info text-decoration-none" do %>
         <i class="mb-0 me-4 fa-solid fa-arrow-left h4"></i>
         <span class="h5">投稿一覧</span>
       <% end %>

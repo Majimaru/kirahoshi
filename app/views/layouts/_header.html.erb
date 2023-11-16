@@ -1,7 +1,18 @@
 <header>
   <nav class="navbar navbar-expand-md navbar-dark px-4 border-bottom border-secondary">
     <div class="container-fluid ps-0">
-      <a class="navbar-brand p-0 text-light" href="/">
+      <!--ログイン状態により、ロゴ押下時の遷移先を変更-->
+      <% if user_signed_in? %>
+        <% logo_link = "/users/mypage" %>
+        
+      <% elsif admin_signed_in? %>
+        <% logo_link = "/admin/users" %>
+        
+      <% else %>
+        <% logo_link = "/" %>
+      <% end %>
+        
+      <a class="navbar-brand p-0 text-light" href="<%= logo_link %>">
         <%= image_tag "log_image.png", size: "55x40" %>
         <span class="ms-1">きらほし</span>
       </a>

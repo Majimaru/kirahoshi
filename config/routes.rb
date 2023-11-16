@@ -41,26 +41,27 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: "homes#top"
-    # resources :users, only: [:destroy]
-    get "users/mypage" => "users#show", as: "mypage"
-    get "users/profile/edit" => "users#profile_edit", as: "profile_edit"
-    patch "users/profile" => "users#profile_update", as: "profile_update"
-    patch "/users/account_delete" => "users#withdrawal", as: "account_delete"
+    
+    get   "users/mypage"          => "users#show",           as: "mypage"
+    get   "users/profile/edit"    => "users#profile_edit",   as: "profile_edit"
+    patch "users/profile"         => "users#profile_update", as: "profile_update"
+    patch "/users/account_delete" => "users#withdrawal",     as: "account_delete"
     
     resources :posts, only: [:new, :index, :show, :create, :destroy] do
-      resource :reviews, only: [:create]
+      resource :reviews,      only: [:create]
       resource :post_reports, only: [:create], as: "report"
     end
-    
     get "/posts/:post_id/reviews" => "reviews#index", as: "post_review_index"
-    get "/reviews/my_review" => "reviews#my_review", as: "my_review"
     
     resources :reviews, only: [:new, :destroy] do
       resource :review_reports, only: [:create], as: "report"
     end
+    get "/reviews/my_review" => "reviews#my_review", as: "my_review"
     
     resources :contacts, only: [:new, :create]
-    get "/searches/genre" => "searches#genre_search"
+    
+    get "/searches/keyword" => "searches#keyword_search"
+    get "/searches/genre"   => "searches#genre_search"
     get "/searches/tag/:id" => "searches#tag_search", as: "tag_search"
   end
   

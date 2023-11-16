@@ -3,9 +3,9 @@
     <div class="col-sm-12 col-md-9 col-lg-6 mx-auto text-light">
       <!--投稿一覧画面へ戻るリンク-->
       <div class="pt-3 pt-sm-4 pb-3 pb-sm-4 sticky-top nav4">
-        <%= link_to posts_path(sort: "created_at desc"), class: "text-info text-decoration-none", data: {"turbolinks"=>false} do %>
+        <%= link_to new_review_path(sort: "created_at desc"), class: "text-info text-decoration-none", data: {"turbolinks"=>false} do %>
           <i class="mb-0 me-4 fa-solid fa-arrow-left h4 d-inline"></i>
-          <h5 class="text-info d-inline">投稿一覧</h5>
+          <h5 class="text-info d-inline">レビュー一覧</h5>
         <% end %>
       </div>
       

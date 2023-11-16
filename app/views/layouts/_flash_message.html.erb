@@ -1,42 +1,55 @@
-  <!--渡されてきたオブジェクトをエラー用のオブジェクトに格納-->
-  <% unless @post.nil? %>
-    <% error = @post %>
-  <% end %>
-  
-  <% unless @review.nil? %>
-    <% error = @review %>
-  <% end %>
-  
-  <% flash.each do |message_type, message| %>
-    <!--正常時のフラッシュメッセージを表示-->
-    <% if message_type == "notice" %>
-      <div class="col-9 col-sm-6 col-md-4 mb-0 flash_notice">
-        <div class="mb-0 alert alert-primary alert-dismissible fade show rounded-pill" role="alert">
-          <p class="mb-0"><%= message %></p>
-          <button type="button" class="pt-2 pt-sm-3 btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+<!--渡されてきたオブジェクトをエラー用のオブジェクトに格納-->
+<% unless @post.nil? %>
+  <% error = @post %>
+<% end %>
+
+<% unless @review.nil? %>
+  <% error = @review %>
+<% end %>
+
+<% flash.each do |message_type, message| %>
+  <!--正常時のフラッシュメッセージを表示-->
+  <% if message_type == "notice" %>
+    <div class="col-9 col-sm-6 col-md-4 mb-0 flash_notice">
+      <div class="mb-0 alert alert-primary alert-dismissible fade show rounded-pill" role="alert">
+        <p class="mb-0"><%= message %></p>
+        <button type="button" class="pt-2 pt-sm-3 btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
-    
-    <!--エラー発生時のフラッシュメッセージを表示-->
-    <% elsif message_type == "alert" %>
-      <div class="mb-0 py-1 alert alert-danger alert-dismissible fade show flash_alert" role="alert">
-        <div>
-          <p class="mb-0"><%= message %></p>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        
-        <!--エラーが存在している場合にリストで表示-->
-        <% unless error.nil? %>
-          <% if error.errors.any? %>
-            <div class="col-12 p-0">
-              <ul class="mb-0 ps-3">
-                <% error.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
+    </div>
+  
+  <!--エラー発生時のフラッシュメッセージを表示-->
+  <% elsif message_type == "alert" %>
+    <div class="mb-0 py-1 alert alert-danger alert-dismissible fade show flash_alert" role="alert">
+      <div>
+        <p class="mb-0"><%= message %></p>
+        <button type="button" class="pt-0 btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      
+      <!--エラーが存在している場合にリストで表示-->
+      <% unless error.nil? %>
+        <% if error.errors.any? %>
+          <div class="col-12 p-0">
+            <ul class="mb-0 ps-3">
+              <% error.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   <% end %>
+<% end %>
+  
+<!--5秒後に成功時フラッシュメッセージを非表示にする-->
+<script>
+function hideElement() {
+  let element = document.querySelector(".flash_notice");
+  
+  // 要素を非表示にする
+  element.style.display = "none";
+}
+
+// 5秒後にhideElementを実行する
+setTimeout(hideElement, 3000);
+</script>

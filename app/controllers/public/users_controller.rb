@@ -6,7 +6,6 @@ class Public::UsersController < ApplicationController
     @user = User.find(current_user.id)
     # アクティブレベルに対するしきい値を取得
     @thresold = LevelSetting.new.get_thresold(@user.active_level)
-    # @level_setting.get_thresold(@user.active_level)
   end
 
   def profile_edit
@@ -25,6 +24,7 @@ class Public::UsersController < ApplicationController
     end
   end
   
+  # アカウント削除
   def withdrawal
     @user = User.find(current_user.id)
     @user.update(membership_status: "withdrawal")
