@@ -1,10 +1,26 @@
-<nav class="col-12 mb-4 pb-1 mx-auto p-0 navbar navbar-expand sticky-top">
+<nav class="col-12 mb-4 pb-2 mx-auto p-0 navbar navbar-expand sticky-top">
   <ul class="w-100 navbar-nav nav-justified">
     <li class="nav-item">
-      <%= link_to "投稿通報", admin_post_reports_path, class: "h4 text-light" %>
+      <%= link_to "投稿通報", admin_post_reports_path(view: "post_report"), class: "h4", id: "post_report_link", data: {"turbolinks"=>false} %>
     </li>
     <li class="nav-item">
-      <%= link_to "レビュー通報", admin_review_reports_path, class: "h4 text-light" %>
+      <%= link_to "レビュー通報", admin_review_reports_path(view: "post_report"), class: "h4", id: "review_report_link", data: {"turbolinks"=>false} %>
     </li>
   </ul>
 </nav>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    let postReportLink = document.getElementById("post_report_link");
+    let reviewReportLink = document.getElementById("review_report_link");
+    
+    // 投稿通報画面から呼び出された場合
+    <% if view =="post" %>
+      postReportLink.style.color = "rgb(13, 202, 240)";
+    
+    // レビュー通報画面から呼び出された場合
+    <% elsif view == "review" %>
+      reviewReportLink.style.color = "rgb(13, 202, 240)";
+    <% end %>
+  });
+</script>

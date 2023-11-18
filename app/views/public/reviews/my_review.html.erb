@@ -3,7 +3,7 @@
     <div class="col-sm-12 col-md-9 col-lg-6 mx-auto text-light">
       <!--投稿一覧画面へ戻るリンク-->
       <div class="pt-3 pt-sm-4 pb-3 pb-sm-4 sticky-top nav4">
-        <%= link_to mypage_path, class: "text-info text-decoration-none" do %>
+        <%= link_to mypage_path, class: "text-info text-decoration-none", data: {"turbolinks"=>false} do %>
           <i class="mb-0 me-4 fa-solid fa-arrow-left h4"></i>
           <span class="h5">マイレビュー一覧</span>
         <% end %>
@@ -21,3 +21,6 @@
     </div>
   </div>
 </div>
+
+<!--画面下部メニューバー-->
+<%= render "layouts/bottom_navbar", bottom_nav: "" %>

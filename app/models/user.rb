@@ -19,7 +19,7 @@ class User < ApplicationRecord
   validates :email, presence: true
   
   # enum
-  enum membership_status: { admission: 0, withdrawal: 1 }
+  enum membership_status: { admission: 0, withdrawal: 1,  }
   
   # ユーザー新規登録時のみバリデーションを適用
   with_options on: :create do

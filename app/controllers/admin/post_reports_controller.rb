@@ -1,7 +1,7 @@
 class Admin::PostReportsController < ApplicationController
   
   def index
-    @reports = PostReport.all.page(params[:page]).per(10)
+    @reports = PostReport.order("created_at desc").page(params[:page]).per(10)
   end
   
   def update

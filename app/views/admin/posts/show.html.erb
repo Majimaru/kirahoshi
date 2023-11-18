@@ -3,37 +3,37 @@
     <div class="col-sm-12 col-md-10 col-lg-8 mx-auto mt-2 pt-4 text-light">
       <h3 class="mb-4 pb-1 px-3 border-start border-5 border-warning">投稿詳細</h3>
       
-      <table class="table table-borderless admin-post-table">
-        <tr class="mb-4">
-          <td class="col-4 report-td">投稿ID</td>
-          <td class="col-8 report-td"><%= @post.id %></td>
+      <table class="table table-borderless admin-table">
+        <tr>
+          <td class="col-4 admin-td text-danger">通報理由</td>
+          <td class="col-8 admin-td"><%= @report.reason %></td>
         </tr>
-        <tr class="mb-4">
-          <td class="report-td">ユーザー名</td>
-          <td class="report-td"><%= @post.user.user_name %></td>
+        <tr>
+          <td class="admin-td">ユーザー名</td>
+          <td class="admin-td"><%= @post.user.user_name %></td>
         </tr>
-        <tr class="mb-4">
-          <td class="report-td">メッセージ</td>
-          <td class="report-td"><%= @post.message %></td>
+        <tr>
+          <td class="admin-td">投稿内容</td>
+          <td class="admin-td"><%= @post.message %></td>
         </tr>
         
         <!--投稿画像が存在する場合は表示-->
         <% if @post.post_image.attached? %>
           <tr>
-            <td class="report-td">投稿画像</td>
-            <td class="report-td">
+            <td class="admin-td">投稿画像</td>
+            <td class="admin-td">
               <%= image_tag @post.post_image, class: "mt-3 rounded post-image" %>
             </td>
           </tr>
         <% end %> 
         
         <tr>
-          <td class="report-td">レビュー項目</td>
-          <td class="report-td"><%= @post.review_item %></td>
+          <td class="admin-td">レビュー項目</td>
+          <td class="admin-td"><%= @post.review_item %></td>
         </tr>
       </table>
       
-      <div class="row mt-5">
+      <div class="row my-5">
         <!--通報ステータスが未対応の場合のみ「問題なし」ボタンを表示する-->
         <% if @report.status == "wait_response" %>
           <%= link_to "問題なし", admin_post_report_path(@report), method: :patch, 
@@ -47,3 +47,5 @@
   </div>
 </div>
 
+<!--画面下部メニューバー-->
+<%= render "layouts/bottom_navbar", bottom_nav: "admin_report" %>

@@ -2,8 +2,9 @@ $('#reviewModal_<%= @post.id %>').modal('hide');
 $(".post_<%= @post.id %>").html("<%= escape_javascript(render('public/reviews/view_rate', post: @post)) %>");
 $(".review_modal_<%= @post.id %>").html("<%= escape_javascript(render('public/reviews/save_rate', post: @post, review: Review.find_by(user_id: current_user.id, post_id: @post.id))) %>");
 
-<!--$(".form_submit").removeAttr("disabled");-->
-<!--$(".form_submit").removeAttr("data-disable-with");-->
+<!--フラッシュメッセージの表示-->
+$("#flash_message").html("<%= escape_javascript(render("layouts/flash_message")) %>");
+<% flash.clear %>
 
 <!--星評価の更新処理を呼び出す-->
 updateViewRate(<%= @post.id %>);
@@ -51,5 +52,4 @@ function updateSaveRate(postId) {
     half: true,
   };
   raty(elem, opt);
-  <!--$(".review-form").reset();-->
 }

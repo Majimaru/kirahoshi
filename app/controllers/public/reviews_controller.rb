@@ -40,15 +40,26 @@ class Public::ReviewsController < ApplicationController
     
     # Reviewテーブルに既にレコードが存在していれば更新、存在しなければ登録
     if @post.reviewed_by?(current_user)
-      Review.find_by(user_id: current_user.id, post_id: @post.id).update(review_params)
-      # 感情スコアを更新
-      Review.find_by(user_id: current_user.id, post_id: @post.id).update(emotion_score: score)
+      if Review.find_by(user_id: current_user.id, post_id: @post.id).update(review_params)
+        # 感情スコアを更新
+        Review.find_by(user_id: current_user.id, post_id: @post.id).update(emotion_score: score)
+        flash[:notice] = "再レビューに成功しました"
+        
+      else
+        flash[:alert] = "再レビューに失敗しました"
+      end
       
     else
       review = current_user.reviews.new(review_params)
       review.post_id = @post.id
       review.emotion_score = score
-      review.save
+      
+      if review.save
+        flash[:notice] = "レビューに成功しました"
+      
+      else
+        flash[:alert] = "レビューに失敗しました"
+      end
     end
     
     @post.update(average_rate: @post.get_average_rate)

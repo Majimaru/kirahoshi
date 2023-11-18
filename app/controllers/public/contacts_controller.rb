@@ -8,7 +8,7 @@ class Public::ContactsController < ApplicationController
     @contact = current_user.contacts.new(contact_params)
     
     if @contact.save
-      flash[:notice] = "送信に成功しました"
+      flash[:notice] = "お問い合わせいただき誠にありがとうございます"
       redirect_to new_contact_path
     else
       flash.now[:alert] = "送信に失敗しました"

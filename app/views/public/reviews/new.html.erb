@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-9 col-lg-6 mb-5 mx-auto text-light">
-      <%= render "public/posts/top_navbar", view: "review" %>
+      <%= render "public/posts/top_navbar", view: "review", top_nav: "" %>
       
       <!--投稿データが0件の時-->
       <% if @posts.count == 0 %>
@@ -26,3 +26,6 @@
     </div>
   </div>
 </div>
+
+<!--画面下部メニューバー-->
+<%= render "layouts/bottom_navbar", bottom_nav: "review" %>

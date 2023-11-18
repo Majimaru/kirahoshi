@@ -19,3 +19,10 @@
   color: rgb(214, 51, 132);
   text-decoration: none;
 }
+
+/*スマホサイズのみ適用*/
+@media screen and (max-width:576px) {
+  .post-top-nav a {
+    font-size: 16px;
+  }
+}

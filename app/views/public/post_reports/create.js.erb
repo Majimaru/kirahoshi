@@ -1,2 +1,6 @@
 $('#postReportModal_<%= @post.id %>').modal('hide');
 $(".post_report_<%= @post.id %>").html("<%= escape_javascript(render("public/post_reports/report", post: @post)) %>");
+
+<!--フラッシュメッセージの表示-->
+$("#flash_message").html("<%= escape_javascript(render("layouts/flash_message")) %>");
+<% flash.clear %>

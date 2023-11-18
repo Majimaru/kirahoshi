@@ -1,2 +1,6 @@
 $('#reviewReportModal_<%= @review.id %>').modal('hide');
 $(".review_report_<%= @review.id %>").html("<%= escape_javascript(render("public/review_reports/report", review: @review)) %>");
+
+<!--フラッシュメッセージの表示-->
+$("#flash_message").html("<%= escape_javascript(render("layouts/flash_message")) %>");
+<% flash.clear %>

@@ -16,9 +16,13 @@
         </div>
         
         <div class="text-center">
-          <%= f.submit "更新する", class: "col-6 btn btn-outline-warning rounded-pill border-3" %>
+          <%= link_to "戻る", mypage_path, class: "col-4 me-2 btn btn-secondary rounded-pill border-3", data: {"turbolinks"=>false} %>
+          <%= f.submit "更新する", class: "col-4 ms-2 btn btn-outline-warning rounded-pill border-3" %>
         </div>
       <% end %>
     </div>
   </div>
 </div>
+
+<!--画面下部メニューバー-->
+<%= render "layouts/bottom_navbar", bottom_nav: "mypage" %>

@@ -59,7 +59,7 @@
           <!--ログインユーザーがゲストではない場合-->
           <% unless @user.guest_user? %>
             <li class="nav-item">
-              <%= link_to profile_edit_path, class: "nav-link btn text-light" do %>
+              <%= link_to profile_edit_path, class: "nav-link btn text-light", data: {"turbolinks"=>false} do %>
                 <i class="fa-solid fa-user-pen h2 text-info"></i><br>
                 プロフィール情報
               <% end %>
@@ -148,3 +148,6 @@
     </div>
   </div>
 </div>
+
+<!--画面下部メニューバー-->
+<%= render "layouts/bottom_navbar", bottom_nav: "mypage" %>

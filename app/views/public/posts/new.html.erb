@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-9 col-lg-6 mx-auto text-light">
-      <%= render "public/posts/top_navbar", view: "post" %>
+      <%= render "public/posts/top_navbar", view: "post", top_nav: "new_post" %>
 
       <p class="mb-3">質問、悩みなど何でも投稿して下さい</p>
       <!--新規投稿フォーム-->
@@ -47,6 +47,9 @@
     </div>
   </div>
 </div>
+
+<!--画面下部メニューバー-->
+<%= render "layouts/bottom_navbar", bottom_nav: "post" %>
 
 <script>
   $(document).on('turbolinks:load', function() {

@@ -1,21 +1,27 @@
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark px-4 border-bottom border-secondary">
+  <nav class="navbar navbar-expand-md navbar-dark px-1 px-sm-4 border-bottom border-secondary">
     <div class="container-fluid ps-0">
       <!--ログイン状態により、ロゴ押下時の遷移先を変更-->
+      <!--遷移後に下部メニューバーの色を変更させるためにturbolinksの設定が必要だったため、それぞれの分岐にlink_toを記述-->
       <% if user_signed_in? %>
-        <% logo_link = "/users/mypage" %>
+        <%= link_to mypage_path, class: "navbar-brand p-0 text-light", data: {"turbolinks"=>false} do %>
+          <%= image_tag "log_image.png", size: "55x40" %>
+          <span class="ms-1">きらほし</span>
+        <% end %>
         
       <% elsif admin_signed_in? %>
-        <% logo_link = "/admin/users" %>
+        <%= link_to admin_users_path, class: "navbar-brand p-0 text-light", data: {"turbolinks"=>false} do %>
+          <%= image_tag "log_image.png", size: "55x40" %>
+          <span class="ms-1">きらほし</span>
+        <% end %>
         
       <% else %>
-        <% logo_link = "/" %>
+        <%= link_to root_path, class: "navbar-brand p-0 text-light" do %>
+          <%= image_tag "log_image.png", size: "55x40" %>
+          <span class="ms-1">きらほし</span>
+        <% end %>
       <% end %>
         
-      <a class="navbar-brand p-0 text-light" href="<%= logo_link %>">
-        <%= image_tag "log_image.png", size: "55x40" %>
-        <span class="ms-1">きらほし</span>
-      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#kirahoshiNavbar" 
         aria-controls="kirahoshiNavbar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

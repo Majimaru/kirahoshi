@@ -4,7 +4,13 @@ class Public::PostReportsController < ApplicationController
     @post = Post.find(params[:post_id])
     @report = current_user.post_reports.new(post_report_params)
     @report.post_id = @post.id
-    @report.save
+    
+    if @report.save
+      flash[:notice] = "通報に成功しました"
+    
+    else  
+      flash[:alert] = "通報に失敗しました"
+    end
   end
   
   private

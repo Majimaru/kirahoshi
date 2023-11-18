@@ -3,18 +3,18 @@
     <div class="col-sm-12 col-md-10 col-lg-8 mx-auto mt-2 pt-4 text-light">
       <h3 class="mb-4 pb-1 px-3 border-start border-5 border-warning">レビュー詳細</h3>
       
-      <table class="table table-borderless admin-post-table">
-        <tr class="mb-4">
-          <td class="col-4 report-td">レビューID</td>
-          <td class="col-8 report-td"><%= @review.id %></td>
+      <table class="table table-borderless admin-table">
+        <tr>
+          <td class="col-4 admin-td text-danger">通報理由</td>
+          <td class="col-8 admin-td"><%= @report.reason %></td>
         </tr>
-        <tr class="mb-4">
-          <td class="report-td">ユーザー名</td>
-          <td class="report-td"><%= @review.user.user_name %></td>
+        <tr>
+          <td class="admin-td">ユーザー名</td>
+          <td class="admin-td"><%= @review.user.user_name %></td>
         </tr>
-        <tr class="mb-4">
-          <td class="report-td">コメント</td>
-          <td class="report-td">
+        <tr>
+          <td class="admin-td">コメント</td>
+          <td class="admin-td">
             <% if @review.comment.blank? %>
               コメントなし
             <% else %>
@@ -38,3 +38,5 @@
   </div>
 </div>
 
+<!--画面下部メニューバー-->
+<%= render "layouts/bottom_navbar", bottom_nav: "admin_report" %>

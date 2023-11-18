@@ -19,7 +19,7 @@
   
   <!--エラー発生時のフラッシュメッセージを表示-->
   <% elsif message_type == "alert" %>
-    <div class="mb-0 py-1 alert alert-danger alert-dismissible fade show flash_alert" role="alert">
+    <div class="mb-0 py-1 alert alert-danger alert-dismissible fade show flash_alert sticky-top" role="alert">
       <div>
         <p class="mb-0"><%= message %></p>
         <button type="button" class="pt-0 btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

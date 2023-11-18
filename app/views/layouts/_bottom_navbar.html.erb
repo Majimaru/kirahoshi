@@ -1,50 +1,87 @@
 <!--ログイン後のみ表示-->
 <% if user_signed_in? || admin_signed_in? %>
   <nav class="col-md-8 mx-auto mb-md-6 py-0 navbar navbar-expand navbar-dark bg-secondary fixed-bottom nav2 rounded-pill">
-    <ul class="w-100 navbar-nav nav-justified text-light">
+    <ul class="w-100 navbar-nav nav-justified text-light bottom_nav">
 
       <!--ユーザーでログイン時のみ表示-->
       <% if user_signed_in? %>
         <li class="nav-item">
-          <%= link_to mypage_path, class: "py-0 w-100 btn rounded-pill" do %>
+          <%= link_to mypage_path, class: "py-0 w-100 btn rounded-pill", id: "user_button", data: {"turbolinks"=>false} do %>
             <i class="fa-solid fa-house"></i><Br>
             マイページ
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to new_post_path, class: "py-0 w-100 btn rounded-pill", data: {"turbolinks"=>false} do %>
+          <%= link_to new_post_path, class: "py-0 w-100 btn rounded-pill", id: "post_button", data: {"turbolinks"=>false} do %>
             <i class="fa-solid fa-rocket"></i><br>
             投稿
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to new_review_path(sort: "created_at desc"), class: "py-0 w-100 btn rounded-pill", data: {"turbolinks"=>false} do %>
+          <%= link_to new_review_path(sort: "created_at desc"), class: "py-0 w-100 btn rounded-pill", id: "review_button", data: {"turbolinks"=>false} do %>
             <%= image_tag "telescope.png", size: "20x20" %><br>
             レビュー
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to new_contact_path, class: "py-0 w-100 btn rounded-pill" do %>
+          <%= link_to new_contact_path, class: "py-0 w-100 btn rounded-pill", id: "contact_button", data: {"turbolinks"=>false} do %>
             <i class="fa-regular fa-envelope"></i><br>
-            問い合わせ
+            問合わせ
           <% end %>
         </li>
 
       <!--管理者でログイン時のみ表示-->
       <% elsif admin_signed_in? %>
         <li class="nav-item">
-          <%= link_to admin_users_path, class: "py-0 w-100 btn rounded-pill" do %>
+          <%= link_to admin_users_path, class: "py-0 w-100 btn rounded-pill", id: "user_button", data: {"turbolinks"=>false} do %>
             <i class="fa-solid fa-users"></i><br>
             ユーザー
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to admin_post_reports_path, class: "py-0 w-100 btn rounded-pill" do %>
+          <%= link_to admin_post_reports_path, class: "py-0 w-100 btn rounded-pill", id: "report_button", data: {"turbolinks"=>false} do %>
             <i class="fa-solid fa-triangle-exclamation"></i><br>
             通報
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to admin_contacts_path, class: "py-0 w-100 btn rounded-pill", id: "contact_button", data: {"turbolinks"=>false} do %>
+            <i class="fa-regular fa-envelope"></i><br>
+            メッセージ
           <% end %>
         </li>
       <% end %>
     </ul>
   </nav>
 <% end %>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    let userButton = document.getElementById("user_button");
+    let postButton = document.getElementById("post_button");
+    let reviewButton = document.getElementById("review_button");
+    let reportButton = document.getElementById("report_button");
+    let contactButton = document.getElementById("contact_button");
+    
+    // マイページ または ユーザー一覧画面から呼び出された場合
+    <% if bottom_nav == "mypage" || bottom_nav == "admin_user" %>
+      userButton.style.backgroundColor = "rgba(255, 255, 0, 0.7)";
+    
+    // 投稿画面から呼び出された場合
+    <% elsif bottom_nav == "post" %>
+      postButton.style.backgroundColor = "rgba(255, 255, 0, 0.7)";
+      
+    // レビュー画面から呼び出された場合
+    <% elsif bottom_nav == "review" %>
+      reviewButton.style.backgroundColor = "rgba(255, 255, 0, 0.7)";
+      
+    // 通報一覧画面から呼び出された場合
+    <% elsif bottom_nav == "admin_report" %>
+      reportButton.style.backgroundColor = "rgba(255, 255, 0, 0.7)";
+    
+    // 問合わせ画面 または メッセージ一覧画面から呼び出された場合
+    <% elsif bottom_nav == "contact" %>
+      contactButton.style.backgroundColor = "rgba(255, 255, 0, 0.7)";
+    <% end %>
+  });
+</script>

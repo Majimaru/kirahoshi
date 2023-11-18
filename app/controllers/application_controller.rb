@@ -16,7 +16,15 @@ class ApplicationController < ActionController::Base
     case resource
     
     when User
-      mypage_path
+      # ログインユーザーが退会済みの場合、セッションを切りフラッシュメッセージを表示
+      if current_user.withdrawal?
+        reset_session
+        flash[:alert] = "こちらのアカウントは退会済みのため、ログインできません。"
+        root_path
+        
+      else
+        mypage_path
+      end
       
     when Admin
       admin_users_path

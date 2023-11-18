@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  namespace :admin do
+    get 'contacts/show'
+    get 'contacts/index'
+  end
   # namespace :public do
   #   get 'contacts/new'
   # end
@@ -72,14 +76,14 @@ Rails.application.routes.draw do
   }
   
   namespace :admin do
-    resources :users, only: [:index]
-    resources :posts, only: [:destroy]
+    resources :users,    only: [:index]
+    resources :posts,    only: [:destroy]
+    resources :reviews,  only: [:destroy]
+    resources :contacts, only: [:index, :show, :update]
     
     resources :post_reports, only: [:index, :update] do
       resources :posts, only: [:show]
     end
-    
-    resources :reviews, only: [:destroy]
     
     resources :review_reports, only: [:index, :update] do
       resources :reviews, only: [:show]
