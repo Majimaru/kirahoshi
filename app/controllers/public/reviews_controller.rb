@@ -63,7 +63,6 @@ class Public::ReviewsController < ApplicationController
     end
     
     @post.update(average_rate: @post.get_average_rate)
-    # redirect_to new_review_path(sort: "created_at desc")
   end
   
   def destroy
@@ -78,7 +77,6 @@ class Public::ReviewsController < ApplicationController
   end
   
   def my_review
-    # byebug
     # フィルタ設定
     filter = params[:filter]
     

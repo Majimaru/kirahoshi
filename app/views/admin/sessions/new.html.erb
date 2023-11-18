@@ -12,7 +12,7 @@
         <div class="field">
           <%= f.label "パスワード" %><br />
           <%= f.password_field :password, autocomplete: "current-password", class: "col-12 mt-2 mb-3", 
-            placeholder: "8桁以上 16桁以下の英数字", required: true %>
+            placeholder: "8桁以上 16桁以下の英数字", minlength: 8, maxlength: 16, required: true %>
         </div>
       
         <% if devise_mapping.rememberable? %>
