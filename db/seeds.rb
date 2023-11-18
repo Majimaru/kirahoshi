@@ -93,78 +93,78 @@ Genre.find_or_create_by!(name: "趣味");
 Genre.find_or_create_by!(name: "ファッション");
 Genre.find_or_create_by!(name: "推し活");
 
-# 投稿
-post1 = Post.find_or_create_by!(user_id: 1, genre_id: 12) do |post|
-  post.message = "昨日、オムライスを作ってみました。出来はどうですか？"
-  post.review_item = "プロが作ったみたい"
-  post.post_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename:"sample-post1.jpg")
-end
 
-post2 = Post.find_or_create_by!(user_id: 1, genre_id: 1) do |post|
+# 投稿
+post1 = Post.find_or_create_by!(user_id: 1, genre_id: 1) do |post|
   post.message = "渋谷に遊んでいたら有名人の〇〇と会いました。興奮して写真を撮っちゃった。"
   post.review_item = "びっくり"
   post.post_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post2.jpg"), filename:"sample-post2.jpg")
 end
 
-post3 = Post.find_or_create_by!(user_id: 1, genre_id: 5) do |post|
+post2 = Post.find_or_create_by!(user_id: 1, genre_id: 5) do |post|
   post.message = "最近、公開された映画〇〇が気になっているのですが、観た人いますか？"
   post.review_item = "絶対見るべき！"
 end
 
-post4 = Post.find_or_create_by!(user_id: 1, genre_id: 13) do |post|
+post3 = Post.find_or_create_by!(user_id: 1, genre_id: 13) do |post|
   post.message = "カフェ巡りが趣味なのですが、お気に入りのカフェを見つけちゃいました。"
   post.review_item = "おしゃれ"
   post.post_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post3.jpg"), filename:"sample-post3.jpg")
 end
 
-post5 = Post.find_or_create_by!(user_id: 2, genre_id: 14) do |post|
+post4 = Post.find_or_create_by!(user_id: 2, genre_id: 14) do |post|
   post.message = "この服買おうか迷っているのですが、どう思いますか？"
   post.review_item = "おしゃれ"
   post.post_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post4.jpg"), filename:"sample-post4.jpg")
 end
 
-post6 = Post.find_or_create_by!(user_id: 2, genre_id: 15) do |post|
+post5 = Post.find_or_create_by!(user_id: 2, genre_id: 15) do |post|
   post.message = "私、男性アイドルの〇〇が推しなのですが、皆さん知っていますか？"
   post.review_item = "好きです！"
 end
 
-post7 = Post.find_or_create_by!(user_id: 3, genre_id: 8) do |post|
+post6 = Post.find_or_create_by!(user_id: 3, genre_id: 8) do |post|
   post.message = "前から行きたかったバンドのライブに行ってきました。最高に楽しかったです。"
   post.review_item = "羨ましい"
   post.post_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post5.jpg"), filename:"sample-post5.jpg")
 end
 
-post8 = Post.find_or_create_by!(user_id: 4, genre_id: 11) do |post|
+post7 = Post.find_or_create_by!(user_id: 4, genre_id: 11) do |post|
   post.message = "長期で休みがもらえたので、彼氏とドバイに行ってきました。夜景が綺麗でした。"
   post.review_item = "行ってみたい"
   post.post_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post6.jpg"), filename:"sample-post6.jpg")
 end
 
-post9 = Post.find_or_create_by!(user_id: 4, genre_id: 4) do |post|
+post8 = Post.find_or_create_by!(user_id: 4, genre_id: 4) do |post|
   post.message = "今話題のス〇〇ゲームが気になっていたので、始めてみました。〇〇点までいけたのですが、これってすごいですか？"
   post.review_item = "すごい"
 end
 
-post10 = Post.find_or_create_by!(user_id: 4, genre_id: 6) do |post|
+post9 = Post.find_or_create_by!(user_id: 4, genre_id: 6) do |post|
   post.message = "今期のドラマ〇〇って見た方がいいですか？初回を見逃してしまったのでスルーしていたのですが"
   post.review_item = "見るべき"
 end
 
-post11 = Post.find_or_create_by!(user_id: 5, genre_id: 3) do |post|
+post10 = Post.find_or_create_by!(user_id: 5, genre_id: 3) do |post|
   post.message = "今期のアニメ〇〇って見た方がいいですか？友達が面白いと言っていたので気になっています"
   post.review_item = "見るべき"
 end
 
-post12 = Post.find_or_create_by!(user_id: 5, genre_id: 12) do |post|
+post11 = Post.find_or_create_by!(user_id: 5, genre_id: 12) do |post|
   post.message = "昨日、料理サイトを見ながらもつ鍋に挑戦してみました。初めて作りましたが、ビックリするぐらい美味しかったです。"
   post.review_item = "美味しそう"
   post.post_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post7.jpg"), filename:"sample-post7.jpg")
 end
 
-post13 = Post.find_or_create_by!(user_id: 6, genre_id: 13) do |post|
+post12 = Post.find_or_create_by!(user_id: 6, genre_id: 13) do |post|
   post.message = "久しぶりに海釣りに行きました。30cm越えの鯛が釣れました。"
   post.review_item = "すごすぎる"
   post.post_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post8.jpg"), filename:"sample-post8.jpg")
+end
+
+post13 = Post.find_or_create_by!(user_id: 3, genre_id: 2) do |post|
+  post.message = "現在の会社に勤めて2年になるのですが、第二新卒のうちに転職しようか迷っています。転職経験者にお聞きしたいのですが、転職して良かったと思いますか？"
+  post.review_item = "転職して良かった"
 end
 
 post14 = Post.find_or_create_by!(user_id: 7, genre_id: 10) do |post|
@@ -178,13 +178,111 @@ post15 = Post.find_or_create_by!(user_id: 7, genre_id: 2) do |post|
   post.review_item = "告白するべき"
 end
 
-post16 = Post.find_or_create_by!(user_id: 3, genre_id: 2) do |post|
-  post.message = "現在の会社に勤めて2年になるのですが、第二新卒のうちに転職しようか迷っています。転職経験者にお聞きしたいのですが、転職して良かったと思いますか？"
-  post.review_item = "転職して良かった"
+post16 = Post.find_or_create_by!(user_id: 2, genre_id: 1, review_item: "利用していきたい") do |post|
+  post.message = "「きらほし」というサイトの使い心地はどうですか？今後も利用したいと思えますか？"
 end
 
-post17 = Post.find_or_create_by!(user_id: 1, genre_id: 1, review_item: "利用していきたい") do |post|
-  post.message = "「きらほし」というサイトの使い心地はどうですか？今後も利用したいと思えますか？"
+post17 = Post.find_or_create_by!(user_id: 2, genre_id: 12) do |post|
+  post.message = "昨日、オムライスを作ってみました。出来はどうですか？"
+  post.review_item = "プロが作ったみたい"
+  post.post_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename:"sample-post1.jpg")
+end
+
+
+# レビュー
+Review.find_or_create_by!(user_id: 1, post_id: 14) do |review|
+  review.rate    = 5.0
+  review.comment = "上手すぎてビックリしました"
+end
+
+Review.find_or_create_by!(user_id: 5, post_id: 14) do |review|
+  review.rate    = 3.0
+  review.comment = "まあまあですね"
+end
+
+Review.find_or_create_by!(user_id: 1, post_id: 15) do |review|
+  review.rate    = 4.5
+  review.comment = "絶対告白するべきです。応援しています"
+end
+
+Review.find_or_create_by!(user_id: 2, post_id: 15) do |review|
+  review.rate    = 4.0
+end
+
+Review.find_or_create_by!(user_id: 5, post_id: 15) do |review|
+  review.rate    = 3.0
+  review.comment = "慎重にいきましょう"
+end
+
+Review.find_or_create_by!(user_id: 6, post_id: 15) do |review|
+  review.rate    = 3.0
+  review.comment = "慎重にいきましょう"
+end
+
+Review.find_or_create_by!(user_id: 7, post_id: 16) do |review|
+  review.rate    = 3.0
+end
+
+Review.find_or_create_by!(user_id: 8, post_id: 16) do |review|
+  review.rate    = 2.0
+end
+
+Review.find_or_create_by!(user_id: 7, post_id: 15) do |review|
+  review.rate    = 1.0
+  review.comment = "私なら絶対にしないです"
+end
+
+Review.find_or_create_by!(user_id: 4, post_id: 16) do |review|
+  review.rate    = 5.0
+  review.comment = "今後も使っていきたいです"
+end
+
+Review.find_or_create_by!(user_id: 1, post_id: 17) do |review|
+  review.rate    = 5.0
+  review.comment = "とても美味しそうです"
+end
+
+Review.find_or_create_by!(user_id: 3, post_id: 17) do |review|
+  review.rate    = 3.0
+  review.comment = "僕もこんなオムライス作れるようになりたいです"
+end
+
+Review.find_or_create_by!(user_id: 4, post_id: 17) do |review|
+  review.rate    = 2.5
+  review.comment = "まあまあだと思います"
+end
+
+Review.find_or_create_by!(user_id: 5, post_id: 17) do |review|
+  review.rate    = 2.0
+  review.comment = "プロ並みです"
+end
+
+Review.find_or_create_by!(user_id: 6, post_id: 17) do |review|
+  review.rate    = 1.0
+  review.comment = "すごすぎます"
+end
+
+Review.find_or_create_by!(user_id: 7, post_id: 17) do |review|
+  review.rate    = 1.0
+  review.comment = "あんまりですね"
+end
+
+Review.find_or_create_by!(user_id: 8, post_id: 17) do |review|
+  review.rate    = 0.5
+end
+
+Review.find_or_create_by!(user_id: 9, post_id: 17) do |review|
+  review.rate    = 3.5
+end
+
+Review.find_or_create_by!(user_id: 10, post_id: 17) do |review|
+  review.rate    = 4.0
+  review.comment = "美味しそう"
+end
+
+Review.find_or_create_by!(user_id: 11, post_id: 17) do |review|
+  review.rate    = 4.0
+  review.comment = "プロが作ったと思いました"
 end
 
 # タグ
@@ -375,10 +473,8 @@ LevelSetting.find_or_create_by!(level: 28, thresold: 31);
 LevelSetting.find_or_create_by!(level: 29, thresold: 32);
 LevelSetting.find_or_create_by!(level: 30, thresold: 99999);
 
+
 # 管理者
 administrator = Admin.find_or_create_by!(email: "kiraAdmin@example.com") do |admin|
   admin.password = "kiraAdmin0001"
 end
-
-# レビュー
-# Review.create!(user_id: 6, post_id: 1, rate: 2.0, comment: "テスト")
