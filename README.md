@@ -43,10 +43,11 @@
 - アプリケーション詳細設計書 (https://docs.google.com/spreadsheets/d/1b5hX8bKf8ASegs8WRIoAK-XHr9LMTOcXKDAKSaCLw6s/edit?usp=sharing)
 ​
 ## 開発環境
-- OS：Linux(CentOS)
-- 言語：HTML,CSS,JavaScript,Ruby,SQL
-- フレームワーク：Ruby on Rails
+- OS：Linux(Amazon Linux 2)
+- 言語：HTML, CSS, JavaScript, Ruby, SQL
+- フレームワーク：Ruby on Rails, Bootstrap
 - JSライブラリ：jQuery
+- インフラ : EC2, RDS, AMI, EIP
 - IDE：Cloud9
 
 ## 使用素材
