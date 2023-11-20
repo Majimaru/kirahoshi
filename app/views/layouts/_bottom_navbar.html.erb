@@ -50,6 +50,12 @@
             メッセージ
           <% end %>
         </li>
+        <li class="nav-item">
+          <%= link_to admin_contacts_path, class: "py-0 w-100 btn rounded-pill", id: "contact_button", data: {"turbolinks"=>false} do %>
+            <i class="fa-solid fa-wrench"></i><br>
+            管理
+          <% end %>
+        </li>
       <% end %>
     </ul>
   </nav>
