@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   
   namespace :admin do
+    get 'maintenances/master_tables'
+  end
+  namespace :admin do
     get 'contacts/show'
     get 'contacts/index'
   end
