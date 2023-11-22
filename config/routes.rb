@@ -91,6 +91,8 @@ Rails.application.routes.draw do
     resources :review_reports, only: [:index, :update] do
       resources :reviews, only: [:show]
     end
+    
+    get "/maintenances/master_tables" => "maintenances#master_tables", as: "master_tables"
   end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
