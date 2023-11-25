@@ -92,7 +92,11 @@ Rails.application.routes.draw do
       resources :reviews, only: [:show]
     end
     
-    get "/maintenances/master_tables" => "maintenances#master_tables", as: "master_tables"
+    get "/maintenances/master_tables"         => "maintenances#master_tables",         as: "master_tables"
+    get "/maintenances/admin_table"           => "maintenances#admin_table",           as: "admin_table"
+    get "/maintenances/level_setting_table"   => "maintenances#level_setting_table",   as: "level_setting_table"
+    get "/maintenances/genre_table"           => "maintenances#genre_table",           as: "genre_table"
+    get "/maintenances/tag_table"             => "maintenances#tag_table",             as: "tag_table"
   end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
