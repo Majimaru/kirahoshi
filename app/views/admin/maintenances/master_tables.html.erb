@@ -4,19 +4,19 @@
       <h3 class="mb-4 pb-2 px-3 border-start border-5 border-warning">管理</h3>
       <p class="mb-5">操作したいテーブルを選択してください。</p>
       
-      <div class="col-8 mb-4 p-2 bg-secondary border border-2 border-info">
+      <%= link_to admin_admin_table_path, class: "col-8 mb-4 p-2 text-start bg-secondary border-2 border-info btn link-light" do %>
         管理者テーブル
-      </div>
-      <div class="col-8 mb-4 p-2 bg-secondary border border-2 border-info">
+      <% end %>
+      <%= link_to admin_level_setting_table_path, class: "col-8 mb-4 p-2 text-start bg-secondary border-2 border-info btn link-light" do %>
         レベル設定テーブル
-      </div>
-      <div class="col-8 mb-4 p-2 bg-secondary border border-2 border-info">
+      <% end %>
+      <%= link_to admin_genre_table_path, class: "col-8 mb-4 p-2 text-start bg-secondary border-2 border-info btn link-light" do %>
         ジャンルテーブル
-      </div>
-      <div class="col-8 mb-4 p-2 bg-secondary border border-2 border-info">
-        <i class="fa-solid fa-tags"></i>
+      <% end %>
+      <%= link_to admin_tag_table_path, class: "col-8 p-2 text-start bg-secondary border-2 border-info btn link-light" do %>
+        <i class="me-2 fa-solid fa-tags h4"></i>
         タグテーブル
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
