@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-10 col-lg-8 mx-auto text-light">
+      <table class="col-12 table table-striped table-hover">
+        <thead class="table-primary">
+          <tr>
+            <th class="col-2">ランク</th>
+            <th class="col-3">ユーザー名</th>
+            <th class="text-center">投稿</th>
+            <th class="text-center">レビュー</th>
+            <th class="text-center">貢献度</th>
+          </tr>
+        </thead>
+        <tbody class="table-light table-group-divider">
+          <!--前ユーザーのアクティブレベル-->
+          <% previous_level = 0 %>
+          <% rank = 0 %>
+          
+          <% @ranking.each.with_index do |user, i| %>
+            <!--前ユーザーのアクティブレベルと異なる場合-->
+            <% if user.active_level != previous_level %>
+              <!--ランクを繰り上げ、前ユーザーのレベルを更新する-->
+              <% rank = i + 1 %>
+              <% previous_level = user.active_level %>
+            <% end %>
+            
+            <tr>
+              <td>
+                <i class="fa-solid fa-crown"></i>
+                <%= rank %>位
+              </td>
+              <td><%= user.user_name %></td>
+              <td class="text-center">n</td>
+              <td class="text-center">n</td>
+              <td class="text-center"><%= user.active_level %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!--画面下部メニューバー-->
+<%= render "layouts/bottom_navbar", bottom_nav: "" %>

@@ -32,10 +32,14 @@ class Public::UsersController < ApplicationController
     redirect_to root_path
   end
   
+  def ranking
+    @ranking = User.order(active_level: :desc).limit(30)
+  end
+  
   private
   
   def user_params
-    params.require(:user).permit(:profile_image, :user_name)
+    params.require(:user).permit(:profile_image, :user_name, :active_level)
   end
   
   # ログインユーザーがゲストか判定

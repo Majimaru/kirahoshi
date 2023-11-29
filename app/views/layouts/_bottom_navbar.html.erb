@@ -24,6 +24,12 @@
           <% end %>
         </li>
         <li class="nav-item">
+          <%= link_to users_ranking_path, class: "py-0 w-100 btn rounded-pill", id: "contact_button", data: {"turbolinks"=>false} do %>
+            <i class="fa-solid fa-crown"></i><br>
+            ランキング
+          <% end %>
+        </li>
+        <li class="nav-item">
           <%= link_to new_contact_path, class: "py-0 w-100 btn rounded-pill", id: "contact_button", data: {"turbolinks"=>false} do %>
             <i class="fa-regular fa-envelope"></i><br>
             問合わせ

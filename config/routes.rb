@@ -52,7 +52,8 @@ Rails.application.routes.draw do
     get   "users/mypage"          => "users#show",           as: "mypage"
     get   "users/profile/edit"    => "users#profile_edit",   as: "profile_edit"
     patch "users/profile"         => "users#profile_update", as: "profile_update"
-    patch "/users/account_delete" => "users#withdrawal",     as: "account_delete"
+    patch "users/account_delete"  => "users#withdrawal",     as: "account_delete"
+    get   "users/ranking"         => "users#ranking"
     
     resources :posts, only: [:new, :index, :show, :create, :destroy] do
       resource :reviews,      only: [:create]
