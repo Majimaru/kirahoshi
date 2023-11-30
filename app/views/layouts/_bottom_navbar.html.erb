@@ -24,7 +24,7 @@
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to users_ranking_path, class: "py-0 w-100 btn rounded-pill", id: "contact_button", data: {"turbolinks"=>false} do %>
+          <%= link_to users_ranking_path, class: "py-0 w-100 btn rounded-pill", id: "ranking_button", data: {"turbolinks"=>false} do %>
             <i class="fa-solid fa-crown"></i><br>
             ランキング
           <% end %>
@@ -56,12 +56,6 @@
             メッセージ
           <% end %>
         </li>
-        <li class="nav-item">
-          <%= link_to admin_master_tables_path, class: "py-0 w-100 btn rounded-pill", id: "contact_button", data: {"turbolinks"=>false} do %>
-            <i class="fa-solid fa-wrench"></i><br>
-            管理
-          <% end %>
-        </li>
       <% end %>
     </ul>
   </nav>
@@ -73,6 +67,7 @@
     let postButton    = document.getElementById("post_button");
     let reviewButton  = document.getElementById("review_button");
     let reportButton  = document.getElementById("report_button");
+    let rankingButton  = document.getElementById("ranking_button");
     let contactButton = document.getElementById("contact_button");
     
     // マイページ または ユーザー一覧画面から呼び出された場合
@@ -91,6 +86,10 @@
     <% elsif bottom_nav == "admin_report" %>
       reportButton.style.backgroundColor = "rgba(255, 255, 0, 0.7)";
     
+    // ランキング画面から呼び出された場合
+    <% elsif bottom_nav == "ranking_button" %>
+      rankingButton.style.backgroundColor = "rgba(255, 255, 0, 0.7)";
+      
     // 問合わせ画面 または メッセージ一覧画面から呼び出された場合
     <% elsif bottom_nav == "contact" %>
       contactButton.style.backgroundColor = "rgba(255, 255, 0, 0.7)";

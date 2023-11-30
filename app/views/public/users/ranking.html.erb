@@ -1,14 +1,26 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-12 col-md-10 col-lg-8 mx-auto text-light">
-      <table class="col-12 table table-striped table-hover">
+    <div class="col-sm-12 col-md-10 col-lg-8 mt-4 mx-auto pt-2 pb-5 text-light">
+      <h2 class="mb-3 px-3 border-start border-5 border-warning">ランキング</h2>
+      <p class="mb-0">
+        いつも当サイトを盛り上げてくださり、誠にありがとうございます！<br>
+        (ランキングは「アクティブレベル (貢献度)」に基づいて行っております)
+      </p>
+      <div class="mt-1 mb-4">
+        <button type="button" class="pt-0 ps-0 btn text-secondary" data-bs-toggle="modal" data-bs-target="#activeLevelModal">
+          <span class="px-2 border border-secondary rounded-circle">?</span>
+          アクティブレベルとは
+        </button>
+      </div>
+      
+      <table class="mb-5 table table-striped table-hover">
         <thead class="table-primary">
           <tr>
             <th class="col-2">ランク</th>
-            <th class="col-3">ユーザー名</th>
-            <th class="text-center">投稿</th>
-            <th class="text-center">レビュー</th>
-            <th class="text-center">貢献度</th>
+            <th class="col-4 pe-0">ユーザー名</th>
+            <th class="px-0 text-center">投稿</th>
+            <th class="px-0 text-center">レビュー</th>
+            <th class="px-0 text-center">貢献度</th>
           </tr>
         </thead>
         <tbody class="table-light table-group-divider">
@@ -26,13 +38,18 @@
             
             <tr>
               <td>
-                <i class="fa-solid fa-crown"></i>
+                <% if i < 3 %>
+                  <i class="h5 fa-solid fa-crown rank_<%= rank %>"></i>
+                <% end %>
+                
                 <%= rank %>位
               </td>
-              <td><%= user.user_name %></td>
-              <td class="text-center">n</td>
-              <td class="text-center">n</td>
-              <td class="text-center"><%= user.active_level %></td>
+              <td class="pe-0">
+                <%= image_tag user.get_profile_image(30,30), class: "rounded-circle" %>
+                <%= user.user_name %></td>
+              <td class="px-0 text-center"><%= user.posts.count %></td>
+              <td class="px-0 text-center"><%= user.reviews.count %></td>
+              <td class="px-0 text-center"><%= user.active_level %></td>
             </tr>
           <% end %>
         </tbody>
@@ -41,5 +58,36 @@
   </div>
 </div>
 
+<!--アクティブレベルの説明モーダル-->
+<div class="modal fade" id="activeLevelModal" tabindex="-1" aria-labelledby="activeLevelLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-dark">
+      <div class="modal-header border-bottom border-info">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+              <h1 class="modal-title text-center fs-5" id="activeLevelLabel">アクティブレベルとは？</h1>
+            </div>
+            <div class="col-2 text-end">
+              <button type="button" class="mt-1 btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body py-4">
+        対象ユーザーが当サイトをどれくらい利用しているかを表すレベルとなります。<br><br>
+        投稿 または レビューを1回行うごとに1経験値を得ることができ、アクティブレベルに対する
+        必要経験値に達した際にレベルが上昇します。<br><br>
+        <span class="h6">レベルを上げるメリット</span><br>
+        ✅ ランキングの上位に乗ることができます。<br><br>
+      </div>
+      <div class="modal-footer mx-auto">
+        <button type="button" class="btn btn-secondary modal-close-btn" data-bs-dismiss="modal">閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>   
+
 <!--画面下部メニューバー-->
-<%= render "layouts/bottom_navbar", bottom_nav: "" %>
+<%= render "layouts/bottom_navbar", bottom_nav: "ranking_button" %>

@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :contacts,       dependent: :destroy
          
   # バリデーション
-  validates :user_name, presence: true, length: { maximum: 15 }
+  validates :user_name, presence: true, uniqueness:  true, length: { maximum: 15 }
   validates :email, presence: true
   
   # enum
