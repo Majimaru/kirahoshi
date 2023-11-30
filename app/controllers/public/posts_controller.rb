@@ -11,9 +11,6 @@ class Public::PostsController < ApplicationController
     @posts = Post.where(user_id: current_user.id).page(params[:page]).per(10).order(params[:sort])
     @tags = Tag.all
   end
-
-  def show
-  end
   
   def create
     @post = current_user.posts.new(post_params)

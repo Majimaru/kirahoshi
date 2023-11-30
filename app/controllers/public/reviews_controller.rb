@@ -1,8 +1,12 @@
 class Public::ReviewsController < ApplicationController
   
+  before_action :level_up, only: [:create]
+  
   def index
     # フィルタ設定
     filter = params[:filter]
+    # 遷移前画面
+    @pre_view = params[:pre_view]
     
     # フィルタ設定が存在するか判定
     unless filter.nil?
@@ -27,9 +31,20 @@ class Public::ReviewsController < ApplicationController
   end
   
   def new
+    user_id = params[:user_id]
+    
+    # プロフィール画像またはユーザー名を押下し遷移した場合
+    if user_id
+      @other_user = User.find(user_id)
+      @posts = Post.where(user_id: user_id).page(params[:page]).per(10).order(params[:sort])
+    
+    # レビュー画面の場合 
+    else
+      @posts = Post.where.not(user_id: current_user.id).page(params[:page]).per(10).order(params[:sort])
+    end
+    
     @review = Review.new
     @post_report = PostReport.new
-    @posts = Post.where.not(user_id: current_user.id).page(params[:page]).per(10).order(params[:sort])
     @tags = Tag.all
   end
 

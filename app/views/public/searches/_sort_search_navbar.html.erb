@@ -33,19 +33,23 @@
     
     <!--レビュー画面から呼び出された時に表示-->
     <% elsif view == "review" %>
-      <li class="me-3 nav-item"> 
-        <%= form_with url: new_review_path, method: :get do |f| %>
-          <%= f.select :sort, options_for_select([["ソート : 新しい順","created_at desc"], ["ソート : 古い順","created_at asc"], 
-            ["ソート : 評価順","average_rate desc"]], params[:sort]), {}, { class: "form-control py-1 bg-secondary text-light border-2 border-info" } %>
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <button type="button" class="btn btn-sm btn-secondary border-2 border-info search_btn" 
-          data-bs-toggle="modal" data-bs-target="#searchModal">
-          <i class="me-1 fa-solid fa-magnifying-glass"></i>
-          検索
-        </button>
-      </li>
+      <!--プロフィール画像またはユーザー名のリンクから遷移した場合は非表示-->
+      <% unless @other_user %>
+        <li class="me-3 nav-item"> 
+          <%= form_with url: new_review_path, method: :get do |f| %>
+            <%= f.select :sort, options_for_select([["ソート : 新しい順","created_at desc"], ["ソート : 古い順","created_at asc"], 
+              ["ソート : 評価順","average_rate desc"]], params[:sort]), {}, { class: "form-control py-1 bg-secondary text-light border-2 border-info" } %>
+          <% end %>
+        </li>
+        
+        <li class="nav-item">
+          <button type="button" class="btn btn-sm btn-secondary border-2 border-info search_btn" 
+            data-bs-toggle="modal" data-bs-target="#searchModal">
+            <i class="me-1 fa-solid fa-magnifying-glass"></i>
+            検索
+          </button>
+        </li>
+      <% end %>
       
     <!--レビュー一覧画面から呼び出された時に表示-->
     <% elsif view == "reviews" %>

@@ -55,7 +55,7 @@ Rails.application.routes.draw do
     patch "users/account_delete"  => "users#withdrawal",     as: "account_delete"
     get   "users/ranking"         => "users#ranking"
     
-    resources :posts, only: [:new, :index, :show, :create, :destroy] do
+    resources :posts, only: [:new, :index, :create, :destroy] do
       resource :reviews,      only: [:create]
       resource :post_reports, only: [:create], as: "report"
     end

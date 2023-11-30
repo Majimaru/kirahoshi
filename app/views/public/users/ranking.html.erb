@@ -45,8 +45,17 @@
                 <%= rank %>位
               </td>
               <td class="pe-0">
-                <%= image_tag user.get_profile_image(30,30), class: "rounded-circle" %>
-                <%= user.user_name %></td>
+                <% if user == current_user %>
+                  <%= image_tag user.get_profile_image(30,30), class: "rounded-circle" %>
+                  <%= user.user_name %>
+                  
+                <% else %>
+                  <%= link_to new_review_path(user_id: user.id, sort: "created_at desc"), data: {"turbolinks"=>false} do %>
+                    <%= image_tag user.get_profile_image(30,30), class: "rounded-circle" %>
+                    <%= user.user_name %>
+                  <% end %>
+                <% end %>
+              </td>
               <td class="px-0 text-center"><%= user.posts.count %></td>
               <td class="px-0 text-center"><%= user.reviews.count %></td>
               <td class="px-0 text-center"><%= user.active_level %></td>
@@ -79,8 +88,8 @@
         対象ユーザーが当サイトをどれくらい利用しているかを表すレベルとなります。<br><br>
         投稿 または レビューを1回行うごとに1経験値を得ることができ、アクティブレベルに対する
         必要経験値に達した際にレベルが上昇します。<br><br>
-        <span class="h6">レベルを上げるメリット</span><br>
-        ✅ ランキングの上位に乗ることができます。<br><br>
+        <span class="h6">✅ レベルを上げるメリット</span><br>
+        ・ランキングの上位に乗ることで、レビューしてもらいやすくなります<br><br>
       </div>
       <div class="modal-footer mx-auto">
         <button type="button" class="btn btn-secondary modal-close-btn" data-bs-dismiss="modal">閉じる</button>
