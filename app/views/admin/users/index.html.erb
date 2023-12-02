@@ -15,7 +15,11 @@
         <tbody class="table-light table-group-divider">
           <% @users.each do |user| %>
             <tr>
-              <td class="ps-3"><%= user.id %></td>
+              <td class="ps-3">
+                <%= link_to admin_user_path(user), data: {"turbolinks"=>false} do %>
+                  <%= user.id %>
+                <% end %>
+              </td>
               <td><%= user.user_name %></td>
               <td><%= user.email %></td>
               <td class="text-center">

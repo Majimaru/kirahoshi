@@ -80,7 +80,7 @@ Rails.application.routes.draw do
   }
   
   namespace :admin do
-    resources :users,    only: [:index]
+    resources :users,    only: [:index, :show]
     resources :posts,    only: [:destroy]
     resources :reviews,  only: [:destroy]
     resources :contacts, only: [:index, :show, :update]
