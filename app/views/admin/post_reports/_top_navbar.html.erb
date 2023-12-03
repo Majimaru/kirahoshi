@@ -1,10 +1,16 @@
 <nav class="col-12 mb-4 pb-2 mx-auto p-0 navbar navbar-expand sticky-top">
   <ul class="w-100 navbar-nav nav-justified">
     <li class="nav-item">
-      <%= link_to "投稿通報", admin_post_reports_path(view: "post_report"), class: "h4", id: "post_report_link", data: {"turbolinks"=>false} %>
+      <%= link_to admin_post_reports_path(view: "post_report"), class: "h4", id: "post_report_link", data: {"turbolinks"=>false} do %>
+        投稿通報
+      <% end %>
+      <h4 class="d-inline">(<%= PostReport.count %>)</h4>
     </li>
     <li class="nav-item">
-      <%= link_to "レビュー通報", admin_review_reports_path(view: "post_report"), class: "h4", id: "review_report_link", data: {"turbolinks"=>false} %>
+      <%= link_to admin_review_reports_path(view: "post_report"), class: "h4", id: "review_report_link", data: {"turbolinks"=>false} do %>
+        レビュー通報
+      <% end %>
+      <h4 class="d-inline">(<%= ReviewReport.count %>)</h4>
     </li>
   </ul>
 </nav>

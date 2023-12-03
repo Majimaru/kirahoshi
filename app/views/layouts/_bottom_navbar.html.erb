@@ -69,12 +69,13 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    let userButton    = document.getElementById("user_button");
-    let postButton    = document.getElementById("post_button");
-    let reviewButton  = document.getElementById("review_button");
-    let reportButton  = document.getElementById("report_button");
-    let rankingButton  = document.getElementById("ranking_button");
-    let contactButton = document.getElementById("contact_button");
+    let userButton        = document.getElementById("user_button");
+    let postButton        = document.getElementById("post_button");
+    let reviewButton      = document.getElementById("review_button");
+    let reportButton      = document.getElementById("report_button");
+    let rankingButton     = document.getElementById("ranking_button");
+    let contactButton     = document.getElementById("contact_button");
+    let maintenanceButton = document.getElementById("maintenance_button");
     
     // マイページ または ユーザー一覧画面から呼び出された場合
     <% if bottom_nav == "mypage" || bottom_nav == "admin_user" %>
@@ -93,12 +94,16 @@
       reportButton.style.backgroundColor = "rgba(255, 255, 0, 0.7)";
     
     // ランキング画面から呼び出された場合
-    <% elsif bottom_nav == "ranking_button" %>
+    <% elsif bottom_nav == "ranking" %>
       rankingButton.style.backgroundColor = "rgba(255, 255, 0, 0.7)";
       
     // 問合わせ画面 または メッセージ一覧画面から呼び出された場合
     <% elsif bottom_nav == "contact" %>
       contactButton.style.backgroundColor = "rgba(255, 255, 0, 0.7)";
+    
+    // メンテナンス画面から呼び出された場合
+    <% elsif bottom_nav == "maintenance" %>
+      maintenanceButton.style.backgroundColor = "rgba(255, 255, 0, 0.7)";
     <% end %>
   });
 </script>

@@ -1,7 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-10 col-lg-8 mx-auto mt-2 pt-4 text-light">
-      <h3 class="mb-4 pb-1 px-3 border-start border-5 border-warning">投稿詳細</h3>
+      <h3 class="mb-4 pb-1">
+        <%= link_to admin_post_reports_path(view: "post_report"), class: "link-warning text-decoration-none h2", data: {"turbolinks"=>false} do %>
+          <i class="me-3 fa-solid fa-arrow-left"></i>
+        <% end %>
+        投稿詳細
+      </h3>
       
       <table class="table table-borderless admin-table">
         <tr>

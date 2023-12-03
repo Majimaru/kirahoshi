@@ -41,6 +41,7 @@
   - パスワード : kiraAdmin0001
 
 ## 設計書
+- 実装機能リスト (https://x.gd/rhMXb)
 - ワイヤーフレーム
   - エンドユーザー側 (https://x.gd/iFfUs)
   - 管理者側 (https://x.gd/PDWgZ)
@@ -50,7 +51,6 @@
 - ER図 (https://x.gd/gy9sp)
 - テーブル定義 (https://x.gd/EvxJN)
 - アプリケーション詳細設計書 (https://x.gd/8vBPz)
-- 実装機能リスト (https://x.gd/zN7go)
 
 ## 開発環境
 - OS：Linux(Amazon Linux 2)

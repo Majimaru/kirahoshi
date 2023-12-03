@@ -80,7 +80,7 @@ Rails.application.routes.draw do
   }
   
   namespace :admin do
-    resources :users,    only: [:index, :show]
+    resources :users,    only: [:index, :show, :update]
     resources :posts,    only: [:destroy]
     resources :reviews,  only: [:destroy]
     resources :contacts, only: [:index, :show, :update]
@@ -97,7 +97,8 @@ Rails.application.routes.draw do
     get "/maintenances/admin_table"           => "maintenances#admin_table",           as: "admin_table"
     get "/maintenances/level_setting_table"   => "maintenances#level_setting_table",   as: "level_setting_table"
     get "/maintenances/genre_table"           => "maintenances#genre_table",           as: "genre_table"
-    get "/maintenances/tag_table"             => "maintenances#tag_table",             as: "tag_table"
+    
+    post "/maintenances/admins" => "maintenances#admin_create", as: "admins"
   end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

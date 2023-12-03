@@ -1,10 +1,12 @@
 <!--渡されてきたオブジェクトをエラー用のオブジェクトに格納-->
-<% unless @post.nil? %>
+<% if @post %>
   <% error = @post %>
-<% end %>
 
-<% unless @review.nil? %>
+<% elsif @review %>
   <% error = @review %>
+  
+<% elsif @admin %>
+  <% error = @admin %>
 <% end %>
 
 <% flash.each do |message_type, message| %>

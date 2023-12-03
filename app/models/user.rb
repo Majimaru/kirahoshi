@@ -25,7 +25,7 @@ class User < ApplicationRecord
   with_options on: :create do
     # 英数字が含まれたパスワードのみ許可
     VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
-    validates :password, format: { with: VALID_PASSWORD_REGEX, message: "は半角英数を両方含む必要があります" }
+    validates :password, format: { with: VALID_PASSWORD_REGEX, message: "は半角英数字を両方含む必要があります" }
   end
   
   # プロフィール画像を表示

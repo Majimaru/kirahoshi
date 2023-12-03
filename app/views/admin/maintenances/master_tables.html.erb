@@ -1,25 +1,26 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-12 col-md-10 col-lg-8 mx-auto mt-2 pt-4 text-light">
+    <div class="col-sm-12 col-md-7 col-lg-5 mx-auto mt-2 pt-4 text-light">
       <h3 class="mb-4 pb-2 px-3 border-start border-5 border-warning">管理</h3>
       <p class="mb-5">操作したいテーブルを選択してください。</p>
       
-      <%= link_to admin_admin_table_path, class: "col-8 mb-4 p-2 text-start bg-secondary border-2 border-info btn link-light" do %>
-        管理者テーブル
+      <%= link_to admin_admin_table_path, data: {"turbolinks"=>false}, 
+        class: "col-12 mb-4 p-2 text-start bg-secondary border-2 border-info btn link-light" do %>
+        <h5 class="mb-0">管理者テーブル</h5>
       <% end %>
-      <%= link_to admin_level_setting_table_path, class: "col-8 mb-4 p-2 text-start bg-secondary border-2 border-info btn link-light" do %>
-        レベル設定テーブル
+      
+      <%= link_to admin_level_setting_table_path, data: {"turbolinks"=>false}, 
+        class: "col-12 mb-4 p-2 text-start bg-secondary border-2 border-info btn link-light" do %>
+        <h5 class="mb-0">レベル設定テーブル</h5>
       <% end %>
-      <%= link_to admin_genre_table_path, class: "col-8 mb-4 p-2 text-start bg-secondary border-2 border-info btn link-light" do %>
-        ジャンルテーブル
-      <% end %>
-      <%= link_to admin_tag_table_path, class: "col-8 p-2 text-start bg-secondary border-2 border-info btn link-light" do %>
-        <i class="me-2 fa-solid fa-tags h4"></i>
-        タグテーブル
+      
+      <%= link_to admin_genre_table_path, data: {"turbolinks"=>false}, 
+        class: "col-12 mb-4 p-2 text-start bg-secondary border-2 border-info btn link-light" do %>
+        <h5 class="mb-0">ジャンルテーブル</h5>
       <% end %>
     </div>
   </div>
 </div>
 
 <!--画面下部メニューバー-->
-<%= render "layouts/bottom_navbar", bottom_nav: "" %>
+<%= render "layouts/bottom_navbar", bottom_nav: "maintenance" %>
