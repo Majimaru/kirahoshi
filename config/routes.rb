@@ -98,7 +98,9 @@ Rails.application.routes.draw do
     get "/maintenances/level_setting_table"   => "maintenances#level_setting_table",   as: "level_setting_table"
     get "/maintenances/genre_table"           => "maintenances#genre_table",           as: "genre_table"
     
-    post "/maintenances/admins" => "maintenances#admin_create", as: "admins"
+    post "/maintenances/admins"         => "maintenances#admin_create",         as: "admins"
+    post "/maintenances/level_settings" => "maintenances#level_setting_create", as: "level_settings"
+    post "/maintenances/genres"         => "maintenances#genre_create",         as: "genres"
   end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
