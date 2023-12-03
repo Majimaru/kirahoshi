@@ -19,16 +19,16 @@ class Admin::MaintenancesController < ApplicationController
   end
   
   def admin_create
-    admin = Admin.new(admin_params)
+    @admin = Admin.new(admin_params)
     
-    if admin.save
+    if @admin.save
       flash[:notice] = "管理者の登録に成功しました"
       
       redirect_to admin_admin_table_path
       
     else
       flash.now[:alert] = "管理者の登録に失敗しました"
-      @admins     = Admin.all
+      @admins     = Admin.order("created_at desc").page(params[:page]).per(10)
       @admin_new  = Admin.new
       
       render "admin_table"
