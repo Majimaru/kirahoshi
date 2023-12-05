@@ -98,6 +98,8 @@ Rails.application.routes.draw do
     get "/maintenances/level_setting_table"   => "maintenances#level_setting_table",   as: "level_setting_table"
     get "/maintenances/genre_table"           => "maintenances#genre_table",           as: "genre_table"
     
+    get "/maintenances/admins/:id" => "maintenances#admin_show"
+    
     post "/maintenances/admins"         => "maintenances#admin_create",         as: "admins"
     post "/maintenances/level_settings" => "maintenances#level_setting_create", as: "level_settings"
     post "/maintenances/genres"         => "maintenances#genre_create",         as: "genres"

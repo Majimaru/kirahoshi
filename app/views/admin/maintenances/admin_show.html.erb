@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-10 col-lg-8 mx-auto mt-2 pt-4 text-light">
+      <h3 class="mb-4 pb-1">
+        <%= link_to admin_post_reports_path(view: "post_report"), class: "link-warning text-decoration-none h2", data: {"turbolinks"=>false} do %>
+          <i class="me-3 fa-solid fa-arrow-left"></i>
+        <% end %>
+        投稿詳細
+      </h3>
+      
+      <table class="table table-borderless admin-table">
+        <tr>
+          <td class="col-4 admin-td text-danger">通報理由</td>
+          <td class="col-8 admin-td"><%= @report.reason %></td>
+        </tr>
+        <tr>
+          <td class="admin-td">ユーザー名</td>
+          <td class="admin-td"><%= @post.user.user_name %></td>
+        </tr>
+        <tr>
+          <td class="admin-td">投稿内容</td>
+          <td class="admin-td"><%= @post.message %></td>
+        </tr>
+        
+        <!--投稿画像が存在する場合は表示-->
+        <% if @post.post_image.attached? %>
+          <tr>
+            <td class="admin-td">投稿画像</td>
+            <td class="admin-td">
+              <%= image_tag @post.post_image, class: "mt-3 rounded post-image" %>
+            </td>
+          </tr>
+        <% end %> 
+        
+        <tr>
+          <td class="admin-td">レビュー項目</td>
+          <td class="admin-td"><%= @post.review_item %></td>
+        </tr>
+      </table>
+      
+      <div class="row my-5">
+        <!--通報ステータスが未対応の場合のみ「問題なし」ボタンを表示する-->
+        <% if @report.status == "wait_response" %>
+          <%= link_to "問題なし", admin_post_report_path(@report), method: :patch, 
+            class: "col-3 me-4 btn btn-success rounded-pill", :data => {:confirm => '通報ステータスを「対応済み」にしてもよろしいですか？'} %>
+        <% end %>
+        
+        <%= link_to "削除する", admin_post_path(@post), method: :delete, 
+          class: "col-3 btn btn-outline-danger rounded-pill border-3", :data => {:confirm => '削除してもよろしいですか？'} %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--画面下部メニューバー-->
+<%= render "layouts/bottom_navbar", bottom_nav: "admin_report" %>
