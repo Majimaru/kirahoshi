@@ -49,7 +49,7 @@ class Admin::MaintenancesController < ApplicationController
     redirect_to admin_genre_table_path
   end
   
-  def level_setting_edit
+  def level_edit
     @level_setting = LevelSetting.find(params[:id])
   end
   

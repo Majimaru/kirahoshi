@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 mx-auto mt-2 pt-4 text-light">
+      <h3 class="mb-4 pb-4">
+        <%= link_to admin_users_path, class: "link-warning text-decoration-none h2" do %>
+          <i class="me-3 fa-solid fa-arrow-left"></i>
+        <% end %>
+        レベル設定編集
+      </h3>
+
+      <%= form_with model: @level_setting, url: root_path, method: :patch do |f| %>
+        <div class="row">
+          <div class="col-3 mb-4 pb-2">
+            <%= f.label "レベル" %>
+          </div>
+          <div class="col-9">
+            <%= f.number_field :level, class: "col-12", in: 1..100, required: true %>
+          </div>
+          
+          <div class="col-3 mb-5">
+            <%= f.label "閾値" %>
+          </div>
+          <div class="col-9">
+            <%= f.number_field :thresold, class: "col-12", in: 1..99999, required: true %>
+          </div>
+
+          <div class="row">
+            <%= f.submit "登録する", class: "col-3 me-4 btn btn-success rounded-pill" %>
+            
+            <%= link_to "削除する", admin_post_path, method: :delete, 
+              class: "col-3 btn btn-outline-danger rounded-pill border-3", :data => {:confirm => '削除してもよろしいですか？'} %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!--画面下部メニューバー-->
+<%= render "layouts/bottom_navbar", bottom_nav: "maintenance" %>

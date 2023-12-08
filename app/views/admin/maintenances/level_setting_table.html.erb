@@ -44,7 +44,11 @@
             <tbody class="table-light table-group-divider">
               <% @level_settings.each do |level_setting| %>
                 <tr>
-                  <td><%= level_setting.id %></td>
+                  <td>
+                    <%= link_to admin_level_edit_path(level_setting) do %>
+                      <%= level_setting.id %>
+                    <% end %>
+                  </td>
                   <td><%= level_setting.level %></td>
                   <td><%= level_setting.thresold %></td>
                 </tr>
