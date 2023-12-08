@@ -49,6 +49,10 @@ class Admin::MaintenancesController < ApplicationController
     redirect_to admin_genre_table_path
   end
   
+  def level_setting_edit
+    @level_setting = LevelSetting.find(params[:id])
+  end
+  
   def admin_destroy
     Admin.find(params[:id]).destroy
     flash[:notice] = "管理者の削除に成功しました"

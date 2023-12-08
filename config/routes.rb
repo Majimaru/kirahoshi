@@ -102,6 +102,8 @@ Rails.application.routes.draw do
     post "/maintenances/level_settings" => "maintenances#level_setting_create", as: "level_settings"
     post "/maintenances/genres"         => "maintenances#genre_create",         as: "genres"
     
+    get "/maintenances/level_setting_edit"   => "maintenances#level_setting_edit",   as: "level_setting_edit"
+    
     delete "/maintenances/admin/:id" => "maintenances#admin_destroy"
   end
   
