@@ -104,7 +104,10 @@ Rails.application.routes.draw do
     
     get "/maintenances/level/:id/edit"   => "maintenances#level_edit",   as: "level_edit"
     
+    patch "/maintenances/level/:id" => "maintenances#level_update", as: "level_update"
+    
     delete "/maintenances/admin/:id" => "maintenances#admin_destroy"
+    patch "/maintenances/level/:id" => "maintenances#level_destroy", as: "level_destroy"
   end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
