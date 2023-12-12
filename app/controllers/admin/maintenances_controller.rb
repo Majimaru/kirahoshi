@@ -53,6 +53,19 @@ class Admin::MaintenancesController < ApplicationController
     @level_setting = LevelSetting.find(params[:id])
   end
   
+  def level_update
+    level_setting = LevelSetting.find(params[:id])
+    
+    if level_setting.update(level_setting_params)
+      flash[:notice] = "レベル設定情報の更新に成功しました"
+      
+    else
+      flash[:notice] = "レベル設定情報の更新に失敗しました"
+    end
+    
+    redirect_to admin_level_setting_table_path
+  end
+  
   def admin_destroy
     Admin.find(params[:id]).destroy
     flash[:notice] = "管理者の削除に成功しました"

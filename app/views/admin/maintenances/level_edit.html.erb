@@ -8,7 +8,7 @@
         レベル設定編集
       </h3>
 
-      <%= form_with model: @level_setting, url: admin_level_update_path, method: :patch do |f| %>
+      <%= form_with model: @level_setting, url: admin_level_update_path(@level_setting), method: :patch do |f| %>
         <div class="row">
           <div class="col-3 mb-4 pb-2">
             <%= f.label "レベル" %>
