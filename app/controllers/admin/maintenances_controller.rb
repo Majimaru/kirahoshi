@@ -73,6 +73,13 @@ class Admin::MaintenancesController < ApplicationController
     redirect_to admin_admin_table_path
   end
   
+  def level_destroy
+    LevelSetting.find(params[:id]).destroy
+    flash[:notice] = "レベル設定の削除に成功しました"
+    
+    redirect_to admin_level_setting_table_path
+  end
+  
   private
   
   def admin_params

@@ -27,7 +27,7 @@
           <div class="row">
             <%= f.submit "更新する", class: "col-3 me-4 btn btn-success rounded-pill" %>
             
-            <%= link_to "削除する", admin_post_path, method: :delete, 
+            <%= link_to "削除する", admin_level_destroy_path(@level_setting), method: :delete, 
               class: "col-3 btn btn-outline-danger rounded-pill border-3", :data => {:confirm => '削除してもよろしいですか？'} %>
           </div>
         </div>
